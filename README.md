@@ -1,5 +1,5 @@
 # SEM-3-PROJECT
-# The Aim of the project is to create to achieve the following for the Web App:
+# The Aim of the project is to create a Web App in the following manner:
 To develop a digital system that streamlines the appointment scheduling process in 
 hospitals by automating the process of identifying doctor availability and appointment slot 
 allocation. The system will utilize advanced technologies such as RFID, face detection, 
