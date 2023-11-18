@@ -1,0 +1,121 @@
+*{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+.main-container{
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    
+    /* background: linear-gradient(to left, #F3FDE8, #E0F4FF, #D2E0FB); */
+    background-color: #fff;
+    align-items: center;
+    background-image: url('../Login-image.jpg');
+    background-position: center;
+
+}
+.main-container2 {
+    border: 1px solid black;
+    width: 800px;
+    /* height: 500px; */
+    /* margin-top: 20vh; */
+    display: flex;
+    background-color: #fff;
+    box-shadow: 7px 12px 32px #000;
+    border-radius: 15px;
+    overflow: hidden;
+    /* justify-content: center; */
+    background: linear-gradient(to right, #fff, #ffffff65);
+}
+
+
+
+.image-container {
+    /* margin: auto; */
+    /* border: #131ea2; */
+    /* border-radius: 3px ; */
+    /* background: radial-gradient(circle, #f0abc3, #af9ea3); */
+    /* border-radius: 15px; */
+    /* background-color: wheat; */
+}
+
+.login-container{
+    /* display: flex; */
+    /* flex-direction: column;
+    justify-content: center; */
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 60px;
+    
+
+    /* text-align: center; */
+    
+}
+
+.login-container h1{
+    text-align: center;
+    font-size: 33;
+    font-weight: bold;
+    color: #164B60 ;
+    /* margin: 20px; */
+    /* margin: 15px 6px 15px 6px; */
+}
+
+.login-container input{
+    /* margin: auto; */
+    /* margin-right: 10px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 250px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    border-bottom: 2px solid #000;
+    margin:40px;
+    height: 40px;
+    padding: 4px 4px 4px 4px;
+    background: linear-gradient(to right, #fff, #ffffff65);
+    color: #443C68;
+
+    /* margin: 20px 12px 8px 8px; */
+}
+.login-container input[type]::placeholder{
+    font-size: 16px;
+    color: #443C68;
+
+}
+
+.login-container button{
+    /* margin: auto; */
+    width: 120px;
+    height: 40px;
+    color: #fff;
+    background-color: #7eac21;
+    font-size: 16px;
+    display: flex;
+    margin: auto;
+    padding: 5px 38px;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 4px 4px 4px;
+    outline: none;
+    border:none;
+    border-radius:30px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.login-container button:hover{
+    color:#7eac21 ;
+    background-color: #fff;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
