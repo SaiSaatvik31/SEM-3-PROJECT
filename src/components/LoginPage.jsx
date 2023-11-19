@@ -19,7 +19,7 @@ function LoginPage() {
       <div className="main-container">
         <div className="main-container2">
           <div className="image-container">
-            <img src="../src/TrustCure-nobg.png" width="400px" alt="logo" />
+            <img src="../src/Trustcure-nobg.png" width="400px" alt="logo" />
           </div>
 
           <div className="login-container">
