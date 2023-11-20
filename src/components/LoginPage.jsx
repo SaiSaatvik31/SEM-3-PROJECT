@@ -25,6 +25,7 @@ function LoginPage() {
           <div className="login-container">
             <h1>Login</h1>
             {/* <label htmlFor="userid">User Id: </label> */}
+            <form action="" >
             <input
               type="email"
               name="userid"
@@ -63,6 +64,7 @@ function LoginPage() {
             >
               {message}
             </p>
+            </form>
           </div>
         </div>
       </div>
