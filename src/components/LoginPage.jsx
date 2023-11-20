@@ -29,6 +29,7 @@ function LoginPage() {
               type="email"
               name="userid"
               id="userid"
+              required
               placeholder="abc12@gmail.com"
               value={userName}
               onChange={(e) => {
@@ -40,6 +41,7 @@ function LoginPage() {
               type="password"
               name="password"
               id="password"
+              required
               placeholder="Password"
               value={password}
               onChange={(e) => {
@@ -50,6 +52,8 @@ function LoginPage() {
             {/* <p>Create Your Account</p> */}
             <p
               style={{
+                marginTop:'8px',
+                marginLeft:'25px',
                 color:
                   message ===
                   "Successfully Logged In.. Redirecting in 2 seconds.."
