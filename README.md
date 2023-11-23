@@ -1,8 +1,15 @@
-# React + Vite
+#Optimizing Doctor Availability and Appointment Allocation in Hospitals through Digital Technology and Al Integration.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To develop a digital system that streamlines the appointment scheduling process in 
+hospitals by automating the process of identifying doctor availability and appointment slot 
+allocation. The system will utilize advanced technologies such as RFID, face detection, 
+proximity of Mobile phone, or any other relevant technology to detect the presence of 
+doctors in the hospital. The system will use Artificial Intelligence (AI) to allocate appointment 
+slots based on the doctor's presence and the number of waitlisted patients. This will 
+improve the overall patient experience by reducing the waiting time.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies used:
+MERN 
+FLUTTER
+AI/ML
