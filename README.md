@@ -1,4 +1,4 @@
-#Optimizing Doctor Availability and Appointment Allocation in Hospitals through Digital Technology and Al Integration.
+##Optimizing Doctor Availability and Appointment Allocation in Hospitals through Digital Technology and Al Integration.
 
 To develop a digital system that streamlines the appointment scheduling process in 
 hospitals by automating the process of identifying doctor availability and appointment slot 
