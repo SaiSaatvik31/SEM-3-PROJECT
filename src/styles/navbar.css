@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    height: 80px;
+    background:linear-gradient(90deg, rgb(23,23,23), rgb(25,25,25)) ;
+
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-left: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/login.css";
 
 function LoginPage() {
@@ -49,7 +50,9 @@ function LoginPage() {
                 setPassword(e.target.value);
               }}
             />
+            <Link to='home'>
             <button onClick={handleValidation}>Log In</button>
+            </Link>
             {/* <p>Create Your Account</p> */}
             <p
               style={{
