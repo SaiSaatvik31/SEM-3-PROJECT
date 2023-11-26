@@ -5,7 +5,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-model=pickle.load(open('The_Palmist.pkl','rb'))
+model=pickle.load(open('Forest Integrated/The_Palmist.pkl','rb'))
 
 
 @app.route('/')
