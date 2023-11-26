@@ -1,17 +1,26 @@
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
-// import styles from "./App.jsx";
-// import logo from "./TrustCure.png";
-import LoginPage from "./components/LoginPage";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import LoginPage from "./components/LoginPage";
+import About from "./components/About";
+import Home from "./components/Home";
+import Feedback from "./components/Feedback";
+import Appointment from "./components/Appointment";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // const [count, setCount] = useState(0);
   return (
-      <>
-      <LoginPage/>
-      </>
+      <div>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/about" element={<About />}/>
+          <Route path='/book-appointment' element={<Appointment/>}/>
+          <Route path="/feedback" element={<Feedback />}/>
+          
+        </Routes>
+        </BrowserRouter>
+      </div>
   );
 }
 
