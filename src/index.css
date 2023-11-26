@@ -1,3 +1,21 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+*{
+    padding: 0, 0;
+    margin: 0, 0;
+    box-sizing: border-box;
+    /* position: relative; */
+    /* color: black; */
+}
+body {
+    font-family:  'roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+body::-webkit-scrollbar {
+    width: 0.0em;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: rgba(243, 241, 241, 0.238); /* Change this to your desired scrollbar color */
+  }

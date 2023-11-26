@@ -2,33 +2,26 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import App from './App.jsx'
 // import './index.css'
-import './styles/login.css'
-import LoginPage from './components/LoginPage.jsx'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+// import './styles/login.css'
+import './index.css'
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
 import Appointment from './components/Appointment.jsx'
 import Home from './components/Home.jsx'
+import About from './components/About.jsx'
+import Feedback from './components/Feedback.jsx'
+
 const router = createBrowserRouter(
-  [
-    {
-      path:'/',
-      element:<LoginPage/>,
-    },
-    {
-      path:'home',
-      element:<Layout/>,
-      children:[
-        {
-          path:'/home',
-          element:<Home/>
-        },
-        {
-          path:'book-appointment',
-          element:<Appointment/>
-        }
-      ]
-    }
-  ]
+  createRoutesFromElements(
+    <Route path='/' element={<Layout/>}>
+      <Route path='' element={<Home/>}/>
+      <Route path='book-appointment' element={<Appointment/>}/>
+      <Route path='about' element={<About/>}/>
+      <Route path='feedback' element={<Feedback/>}/>
+
+      
+    </Route>
+  )
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
