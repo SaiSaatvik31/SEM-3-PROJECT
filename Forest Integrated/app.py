@@ -16,14 +16,14 @@ def hello_world():
 @app.route('/predict',methods=['POST','GET'])
 def predict():
     int_features=[ x for x in request.form.values()]
-    a = pd.read_csv("test.emt.csv")
+    a = pd.read_csv("Forest Integrated/test.emt.csv")
     for i in int_features:
         a[i][0]=1
     final=[np.array(int_features)]
     print(int_features)
     print(a)
     prediction=model.predict(a)[0]
-    snakes = pd.read_csv("Snakes.csv")
+    snakes = pd.read_csv("Forest Integrated/Snakes.csv")
     output = snakes.iloc[prediction][1]
 
     
