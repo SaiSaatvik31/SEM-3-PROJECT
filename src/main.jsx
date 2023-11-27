@@ -43,6 +43,7 @@ import ForWhom from "./components/forWhom.jsx";
 import Name from "./components/name.jsx";
 import Age from "./components/Age.jsx";
 import Form from "./components/Form.jsx";
+import ChipsArray from "./components/Chips.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     
@@ -54,7 +55,7 @@ const router = createBrowserRouter(
       <Route path="/forWhom" element={<ForWhom />} />
       <Route path="/name" element={<Name />} />
       <Route path="/Age" element={<Age />} />
-      <Route path="/formPage" element={<Form />} />
+      <Route path="/formPage" element={<ChipsArray />} />
     </Route>
   )
 ); 
