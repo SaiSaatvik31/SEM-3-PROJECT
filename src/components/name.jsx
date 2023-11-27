@@ -116,6 +116,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 onClick={handleNextButtonClick}
                 variant="contained"
                 color="success"
+                type="submit"
               >
                 NEXT
               </Button>
