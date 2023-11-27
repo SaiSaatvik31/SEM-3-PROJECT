@@ -24,13 +24,13 @@ function Name() {
         </label>
         <div className="d-flex flex-row mt-4">
           <div className="mr-5">
-            <Button className="" variant="contained" color="primary">
+            <Button onClick={forWhomPage} variant="contained" color="primary">
               <i class="fa-solid fa-mars-stroke-up m-3 p-2"></i>
               MALE
             </Button>
           </div>
           <div>
-            <Button variant="contained" color="primary">
+            <Button onClick={forWhomPage} variant="contained" color="primary">
               <i class="fa-solid fa-venus m-3 p-2"></i>
               FEMALE
             </Button>
