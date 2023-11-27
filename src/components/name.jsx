@@ -45,9 +45,6 @@ function Name({ selectedOptions, updateSelectedOptions }) {
   };
 
   const handleNextButtonClick = () => {
-    // Call the functionRequired when the NEXT button is clicked
-    // Note: You might want to add logic related to the button click here
-    // as per your requirements.
     if (
       required === "" &&
       (buttonColor1 === "secondary" || buttonColor2 === "secondary")
@@ -81,7 +78,10 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 onClick={() => handleGenderSelection1("MALE")}
                 variant="contained"
                 color={buttonColor1}
+                className="p-3"
+                style={{ width: "150px" }}
               >
+                <i class="fa-solid fa-mars-stroke-up p-2"></i>
                 MALE
               </Button>
             </div>
@@ -90,7 +90,10 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 onClick={() => handleGenderSelection2("FEMALE")}
                 variant="contained"
                 color={buttonColor2}
+                className="p-3"
+                style={{ width: "150px" }}
               >
+                <i class="fa-solid fa-venus p-2"></i>
                 FEMALE
               </Button>
             </div>
