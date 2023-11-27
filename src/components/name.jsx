@@ -1,25 +1,65 @@
 import React, { useState } from "react";
-import { Button, Avatar } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
-function Name() {
+
+function Name({ selectedOptions, updateSelectedOptions }) {
+  const [buttonColor1, setButtonColor1] = useState("primary");
+  const [buttonColor2, setButtonColor2] = useState("primary");
   const [required, setRequired] = useState("");
   const navigate = useNavigate();
+
   const forWhomPage = () => {
-    navigate("/Age");
+    navigate("/forWhom");
   };
+
+  const namePage = (name) => {
+    const updatedOptions = { ...selectedOptions, name: name };
+    updateSelectedOptions(updatedOptions);
+    console.log(updatedOptions);
+  };
+
+  const handleGenderSelection1 = (gender) => {
+    setButtonColor1("secondary");
+    setButtonColor2("primary");
+    const updatedOptions = { ...selectedOptions, gender: gender };
+    updateSelectedOptions(updatedOptions);
+    console.log(updatedOptions);
+  };
+
+  const handleGenderSelection2 = (gender) => {
+    setButtonColor2("secondary");
+    setButtonColor1("primary");
+    const updatedOptions = { ...selectedOptions, gender: gender };
+    updateSelectedOptions(updatedOptions);
+    console.log(updatedOptions);
+  };
+
   const functionRequired = (event) => {
     if (event.target.value === "") {
       setRequired("*REQUIRED");
-    } else {
+    } else if (event.target.value !== "") {
       setRequired("");
-      forWhomPage();
+      namePage(event.target.value);
     }
   };
+
+  const handleNextButtonClick = () => {
+    // Call the functionRequired when the NEXT button is clicked
+    // Note: You might want to add logic related to the button click here
+    // as per your requirements.
+    if (
+      required === "" &&
+      (buttonColor1 === "secondary" || buttonColor2 === "secondary")
+    ) {
+      navigate("/Age");
+    }
+  };
+
   return (
     <>
       <div className="container">
-        <label className="mt-5" for="name">
+        <label className="mt-5" htmlFor="name">
           Enter Your Name
         </label>
         <form>
@@ -31,41 +71,53 @@ function Name() {
             placeholder="Please Enter Your Name"
             required
           />
-          <p className=" text-red-600">{required}</p>
-          <label className="mt-5 col-12" for="gender">
+          <p className="text-red-600">{required}</p>
+          <label className="mt-5 col-12" htmlFor="gender">
             Select Your Gender
           </label>
           <div className="d-flex flex-row mt-4">
             <div className="mr-5">
               <Button
-                onClick={functionRequired}
+                onClick={() => handleGenderSelection1("MALE")}
                 variant="contained"
-                color="primary"
+                color={buttonColor1}
               >
-                <i class="fa-solid fa-mars-stroke-up m-3 p-2"></i>
                 MALE
               </Button>
             </div>
             <div>
               <Button
-                onClick={functionRequired}
+                onClick={() => handleGenderSelection2("FEMALE")}
                 variant="contained"
-                color="primary"
+                color={buttonColor2}
               >
-                <i class="fa-solid fa-venus m-3 p-2"></i>
                 FEMALE
               </Button>
             </div>
           </div>
           <br />
-          <Button
-            className="mt-5"
-            onClick={functionRequired}
-            variant="contained"
-            color="success"
-          >
-            NEXT
-          </Button>
+          <div className="d-flex flex-row">
+            <div className="mr-5">
+              <Button
+                className="mt-5"
+                onClick={forWhomPage}
+                variant="contained"
+                color="success"
+              >
+                BACK
+              </Button>
+            </div>
+            <div>
+              <Button
+                className="mt-5"
+                onClick={handleNextButtonClick}
+                variant="contained"
+                color="success"
+              >
+                NEXT
+              </Button>
+            </div>
+          </div>
         </form>
       </div>
     </>

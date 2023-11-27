@@ -3,15 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { Button, Avatar } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-function ForWhom() {
+function ForWhom({ selectedOptions, updateSelectedOptions }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
     navigate("/book-appointment");
   };
 
-  const namePage = () => {
+  const namePage = (forWhom) => {
+    const updatedOptions = { ...selectedOptions, forWhom: forWhom };
+    updateSelectedOptions(updatedOptions);
     navigate("/name");
+
+    console.log(updatedOptions);
   };
 
   return (
@@ -19,7 +23,7 @@ function ForWhom() {
       <div className="row">
         <div className="col-md-6 mb-4">
           <Button
-            onClick={namePage}
+            onClick={() => namePage("FOR ME")}
             variant="contained"
             color="primary"
             size="large"
@@ -27,7 +31,7 @@ function ForWhom() {
           >
             <Avatar
               alt="Image"
-              src="https://imgs.search.brave.com/ZnZrWaDZRgPL-bh1W84_oo87O70vw2sqscE6O-MjUZQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9z/aG90LWVtb3Rpb25h/bC1iZWFyZGVkLW1h/bi1wb2ludHMtaGlt/c2VsZi1zdXJwcmlz/ZWQtYmVpbmctY2hv/c2VuLWFza3MtcXVl/c3Rpb24td2l0aC1z/aG9ja2VkLWhlc2l0/YW50LWV4cHJlc3Np/b24td2VhcnMtcm9z/eS1zd2VhdGVyLWV5/ZXdlYXItcG9zZXMt/YWdhaW5zdC15ZWxs/b3ctd2FsbC13aG8t/bWVfMjczNjA5LTQy/MjIyLmpwZz9zaXpl/PTYyNiZleHQ9anBn"
+              src="YOUR_IMAGE_SRC_HERE"
               variant="rounded"
               sx={{ marginRight: 1 }}
             ></Avatar>
@@ -36,7 +40,7 @@ function ForWhom() {
         </div>
         <div className="col-md-6 mb-4">
           <Button
-            onClick={namePage}
+            onClick={() => namePage("SOMEONE ELSE")}
             variant="contained"
             color="primary"
             size="large"
@@ -44,7 +48,7 @@ function ForWhom() {
           >
             <Avatar
               alt="Image"
-              src="https://imgs.search.brave.com/ZnZrWaDZRgPL-bh1W84_oo87O70vw2sqscE6O-MjUZQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9z/aG90LWVtb3Rpb25h/bC1iZWFyZGVkLW1h/bi1wb2ludHMtaGlt/c2VsZi1zdXJwcmlz/ZWQtYmVpbmctY2hv/c2VuLWFza3MtcXVl/c3Rpb24td2l0aC1z/aG9ja2VkLWhlc2l0/YW50LWV4cHJlc3Np/b24td2VhcnMtcm9z/eS1zd2VhdGVyLWV5/ZXdlYXItcG9zZXMt/YWdhaW5zdC15ZWxs/b3ctd2FsbC13aG8t/bWVfMjczNjA5LTQy/MjIyLmpwZz9zaXpl/PTYyNiZleHQ9anBn"
+              src="YOUR_IMAGE_SRC_HERE"
               sx={{ marginRight: 1 }}
             ></Avatar>
             SOMEONE ELSE
