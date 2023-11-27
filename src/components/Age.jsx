@@ -4,7 +4,7 @@ import { Slider } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function Age() {
+function Age({ selectedOptions, updateSelectedOptions }) {
   const navigate = useNavigate();
   const [sliderValue, setSliderValue] = useState(0);
 
@@ -14,6 +14,9 @@ function Age() {
 
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
+    const updatedOptions = { ...selectedOptions, Age: newValue };
+    updateSelectedOptions(updatedOptions);
+    console.log(updatedOptions);
   };
 
   const mark = [
