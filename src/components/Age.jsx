@@ -3,12 +3,15 @@ import { useState } from "react";
 import { Slider } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
 function Age() {
   const navigate = useNavigate();
   const [sliderValue, setSliderValue] = useState(0);
+
   const FormPage = () => {
     navigate("/formPage");
   };
+
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
   };
@@ -24,16 +27,25 @@ function Age() {
     },
     {
       value: 120,
-      label: "Amoghs Age  ",
+      label: "Amoghs Age",
     },
   ];
+
   return (
-    <>
-      <div className="text-center" style={{ marginLeft: 50, marginTop: 50 }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        fontSize: "30px",
+      }}
+    >
+      <div style={{ textAlign: "center" }}>
         <Slider
           value={sliderValue}
           onChange={handleSliderChange}
-          style={{ width: 500 }}
+          style={{ width: 900 }}
           valueLabelDisplay="auto"
           color="secondary"
           defaultValue={20}
@@ -50,7 +62,7 @@ function Age() {
           NEXT
         </Button>
       </div>
-    </>
+    </div>
   );
 }
 
