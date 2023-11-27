@@ -10,14 +10,19 @@ import Appointment from './components/Appointment.jsx'
 import Home from './components/Home.jsx'
 import About from './components/About.jsx'
 import Feedback from './components/Feedback.jsx'
+import ChipComponent from './components/Chips.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
-      <Route path='' element={<Home/>}/>
-      <Route path='book-appointment' element={<Appointment/>}/>
+      <Route index element={<Home/>}/>
+      <Route path='book-appointment' element={<Appointment/>}>
+        <Route path='form' element={<ChipComponent/>}/>
+      </Route>
       <Route path='about' element={<About/>}/>
+
       <Route path='feedback' element={<Feedback/>}/>
+
 
       
     </Route>
