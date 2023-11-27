@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Typography, Grid } from "@mui/material";
+import { Button, Typography, Grid, Card, CardContent } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Info() {
@@ -11,26 +11,31 @@ function Info() {
 
   return (
     <div
-      className="container"
-      style={{ fontSize: "20px", fontFamily: "'roboto', sans-serif" }}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        backgroundColor: "#f0f0f0",
+      }}
     >
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Typography className="mt-3" variant="h4" gutterBottom>
+      <Card style={{ width: "70%", padding: "20px", textAlign: "left" }}>
+        <CardContent>
+          <Typography variant="h4" gutterBottom>
             Doctor Adviser Form
           </Typography>
-          <Typography style={{ fontSize: "20px" }} variant="body1" paragraph>
+          <Typography variant="body1" paragraph>
             Take a short (3 min) symptom assessment. The information you provide
             is safe and won’t be shared. Your results will include:
           </Typography>
           <ul>
             <li>
-              <Typography style={{ fontSize: "20px" }} variant="body1">
+              <Typography variant="body1">
                 Possible causes of symptoms.
               </Typography>
             </li>
             <li>
-              <Typography style={{ fontSize: "20px" }} variant="body1">
+              <Typography variant="body1">
                 Recommendations on what to do next.
               </Typography>
             </li>
@@ -38,7 +43,7 @@ function Info() {
           <Typography className="mt-3" variant="h4" gutterBottom>
             Point to be Stated
           </Typography>
-          <p className="mt-2 mb-4">
+          <p>
             Remember, a symptom checker serves as a helpful tool but should not
             replace professional medical advice. It should complement medical
             consultation and aid users in understanding potential health
@@ -49,19 +54,12 @@ function Info() {
             onClick={redirectToNamePage}
             variant="contained"
             color="success"
+            className="mt-4"
           >
             Next
           </Button>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <img
-            src="https://imgs.search.brave.com/XuthvWW4tsyJpAmw5n46_r9KCEPR53kNu5GlxVuKkVA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzgxLzk5LzM0/LzM2MF9GXzgxOTkz/NDAyX3ZiWWFJN2c3/RFl3OVhBVUcxSlE3/UmtBcEdBc1ZTV0dF/LmpwZw"
-            alt="Doctor Adviser"
-            style={{ width: "100%", height: "auto", borderRadius: 8 }}
-          />
-        </Grid>
-      </Grid>
+        </CardContent>
+      </Card>
     </div>
   );
 }
