@@ -1,5 +1,6 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import {
   AppBar,
@@ -13,12 +14,13 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
-
-
 function Navbar() {
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const iconStyle = { "--fa-animation-duration": "0.5s" };
-
+  const iconStyle = { "--fa-animation-duration": "0.5s", color: "red" };
+  const redirectToHome = () => {
+    navigate("/");
+  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -28,15 +30,15 @@ function Navbar() {
       <Typography
         color={"darkcyan"}
         component={"div"}
-        sx={{ flexGrow: 1 , my:2}}
+        sx={{ flexGrow: 1, my: 2 }}
         variant="h5"
       >
         <sup>
           Trust<sub>Cure</sub>
-          <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
+          <i className="fa-solid fa-heart fa-beat" style={{ iconStyle }}></i>
         </sup>
       </Typography>
-      <Divider/>
+      <Divider />
       {/* <IconButton
         color="inherit"
         aria-label="open drawer"
@@ -70,10 +72,12 @@ function Navbar() {
             sx={{ flexGrow: 1 }}
             variant="h5"
           >
-            <sup>
-              Trust<sub>Cure</sub>
-              <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
-            </sup>
+            <div style={{ color: "white" }} onClick={redirectToHome}>
+              <sup>
+                Trust<sub>Cure</sub>
+                <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
+              </sup>
+            </div>
           </Typography>
           <IconButton
             color="inherit"
@@ -87,13 +91,19 @@ function Navbar() {
           <Box component={"div"} sx={{ display: { xs: "none", sm: "block" } }}>
             <ul className="navigation-menu">
               <li>
-                <Link to="/">Home</Link>
+                <Link style={{ color: "white" }} to="/">
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link style={{ color: "white" }} to="/about">
+                  About
+                </Link>
               </li>
               <li>
-                <Link to="/feedback">FeedBack</Link>
+                <Link style={{ color: "white" }} to="/feedback">
+                  FeedBack
+                </Link>
               </li>
             </ul>
           </Box>
@@ -108,19 +118,17 @@ function Navbar() {
           sx={{
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
-                boxSizing:'border-box',
-                width:'270px',
+              boxSizing: "border-box",
+              width: "270px",
             },
           }}
         >
           {drawer}
         </Drawer>
       </Box>
-      <Toolbar/>
+      <Toolbar />
     </Box>
   );
 }
 
 export default Navbar;
-
-

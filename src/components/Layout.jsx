@@ -1,20 +1,18 @@
-// import React from 'react'
-// import { Outlet } from 'react-router-dom'
+import React from "react";
 import Navbar from "./Navbar";
-
-// import '../styles/layout.css'
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
-// eslint-disable-next-line react/prop-types
+import "../styles/layout.css";
+
 function Layout() {
   return (
-    <>
-      <Navbar />
-
-      {/* <div>{children}</div> */}
-    <Outlet/>
-    <Footer/>
-    </>
+    <div className="wrapper">
+      <div className="content">
+        <Navbar />
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
   );
 }
 
