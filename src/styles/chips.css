@@ -47,6 +47,27 @@
     color: white;
     transition: all 500ms ease-in-out;
 }
+
+.body-parts-container {
+    min-height: fit-content;
+    display: flex-column;
+}
+
+.body-parts-container ul {
+    display: flex;
+    justify-content: center;
+    background-color: beige;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 50px 20px;
+    margin: 40px;
+    box-sizing: border-box;
+    border: 1px dashed black;
+}
+.body-parts-container h3 {
+    padding-top: 20px;
+    padding-left: 50px;
+}
 .chip-show-container ul {
   display: flex;
   justify-content: center;
@@ -73,4 +94,24 @@
     padding-left: 50px;
 
 }
+@media only screen and (max-width: 600px) {
+    .selected-chip-container ul {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .selected-chip-container Button {
+      margin-right: 20px;
+    }
+  
+    .body-parts-container ul {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .chip-show-container ul {
+      padding: 20px;
+      margin: 20px;
+    }
+  }
 

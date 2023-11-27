@@ -6,7 +6,7 @@ import Chip from "@mui/material/Chip";
 import { useState } from "react";
 
 import "../styles/chips.css";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -34,8 +34,14 @@ export default function ChipsArray() {
     { key: 17, label: "Others" },
   ]);
   const [symptoms, setSymptoms] = useState([]);
+  const [activeBodyPart, setActiveBodyPart] = useState([]);
+  const [activeSymptoms, setActiveSymptoms] = useState([]);
 
   let diseases = [
+  
+
+  
+
     {
       Stomach: [
         { key: 18, label: "Stomach Pain" },
@@ -191,6 +197,28 @@ export default function ChipsArray() {
       ],
     },
   ];
+
+  const getSymptomForBodyPart = (bodyPart)=> {
+    const selectedDisease = diseases.find(
+        (disease)=>Object.keys(disease)[0]===bodyPart
+    )
+    return selectedDisease?selectedDisease[bodyPart]: []
+  }
+
+//   const [activeSymptoms, setActiveSymptoms] = useState(diseases)
+  const handleBodyPart = (partSelected)=>()=>{
+    
+    setActiveBodyPart((prevPart)=>[...prevPart,partSelected])
+console.log(activeBodyPart)
+
+const symptomsForBodyPart = getSymptomForBodyPart(partSelected.label);
+setActiveSymptoms(symptomsForBodyPart.map((symptom)=>({...symptom})));
+document.getElementById('choose-symptoms').innerHTML = activeBodyPart && 'Please Select Symptoms'
+  }
+// const handleBodyPart=(part)=>{
+//     setActiveBodyPart(part)
+// }
+
   const handleDelete = (chipToDelete) => () => {
     setSymptoms((symptoms) =>
       symptoms.filter((symptom) => symptom.key !== chipToDelete.key)
@@ -240,8 +268,8 @@ export default function ChipsArray() {
   };
 
   return (
-    <div className="chip-container">
-      <div className="selected-chip-container">
+    <Box component={'div'} className="chip-container">
+      <Box component={'div'} className="selected-chip-container">
         <h3>Selected Symptoms</h3>
         <form action="/predict" onSubmit={handleSubmit} method="post">
           <ul>
@@ -261,13 +289,10 @@ export default function ChipsArray() {
           </ul>
           <Button type="submit">Submit</Button>
         </form>
-      </div>
-      <div className="body-parts-container">
-        
-      </div>
-      <div className="chip-show-container">
-        <h3>Please Select Your Symptoms</h3>
-        <ul>
+      </Box>
+      <Box component={'div'} className="body-parts-container">
+        <h3>Body Parts</h3>
+      <ul>
           {chipData.map((data) => {
             return (
               <ListItem key={data.key}>
@@ -275,7 +300,7 @@ export default function ChipsArray() {
                   size="medium"
                   className="showChips"
                   color="secondary"
-                  onClick={handleClick(data)}
+                  onClick={handleBodyPart(data)}
                   label={data.label}
                   //   onDelete={handleDelete(data)}
                 />
@@ -283,7 +308,25 @@ export default function ChipsArray() {
             );
           })}
         </ul>
-      </div>
+      </Box>
+      <Box component={'div'} className="chip-show-container">
+        <h3 id="choose-symptoms">Please Select A Body Part First</h3>
+        <ul>
+          {activeSymptoms.map((symptom)=>{
+            return (
+                <ListItem key={symptom.key}>
+                    <Chip 
+                    size="medium"
+                    color='secondary'
+                    onClick={handleClick(symptom)}
+                    label={symptom.label}
+                    />
+
+                </ListItem>
+            )
+          })}
+        </ul>
+      </Box>
       {/* <Paper
       sx={{
         display: 'flex',
@@ -296,6 +339,6 @@ export default function ChipsArray() {
       component="ul" */}
       {/* > */}
       {/* </Paper> */}
-    </div>
+    </Box>
   );
 }
