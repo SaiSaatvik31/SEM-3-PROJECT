@@ -1,16 +1,14 @@
 import React from "react";
-
-// import Layout from "./Layout"
-
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-function Appointment() {
+function Info() {
   const navigate = useNavigate();
   const redirectToNamePage = () => {
     navigate("/forWhom");
   };
   return (
     <>
+      <Header />
       <div className="container">
         <div className="d-flex flex-row">
           <div>
@@ -40,4 +38,4 @@ function Appointment() {
   );
 }
 
-export default Appointment;
+export default Info;
