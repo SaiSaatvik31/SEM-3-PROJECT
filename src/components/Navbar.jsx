@@ -17,7 +17,7 @@ import { useState } from "react";
 function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const iconStyle = { "--fa-animation-duration": "0.5s" };
+  const iconStyle = { "--fa-animation-duration": "0.5s", color: "red" };
   const redirectToHome = () => {
     navigate("/");
   };
@@ -35,7 +35,7 @@ function Navbar() {
       >
         <sup>
           Trust<sub>Cure</sub>
-          <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
+          <i className="fa-solid fa-heart fa-beat" style={{ iconStyle }}></i>
         </sup>
       </Typography>
       <Divider />
@@ -72,7 +72,7 @@ function Navbar() {
             sx={{ flexGrow: 1 }}
             variant="h5"
           >
-            <div onClick={redirectToHome}>
+            <div style={{ color: "white" }} onClick={redirectToHome}>
               <sup>
                 Trust<sub>Cure</sub>
                 <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
@@ -91,13 +91,19 @@ function Navbar() {
           <Box component={"div"} sx={{ display: { xs: "none", sm: "block" } }}>
             <ul className="navigation-menu">
               <li>
-                <Link to="/">Home</Link>
+                <Link style={{ color: "white" }} to="/">
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link style={{ color: "white" }} to="/about">
+                  About
+                </Link>
               </li>
               <li>
-                <Link to="/feedback">FeedBack</Link>
+                <Link style={{ color: "white" }} to="/feedback">
+                  FeedBack
+                </Link>
               </li>
             </ul>
           </Box>
