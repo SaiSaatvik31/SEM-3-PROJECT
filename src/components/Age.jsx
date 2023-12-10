@@ -11,7 +11,7 @@ function Age({ selectedOptions, updateSelectedOptions }) {
   const [sliderValue, setSliderValue] = useState(0);
 
   const FormPage = () => {
-    navigate("/formPage");
+    navigate("/formPage", { state: selectedOptions });
   };
 
   const handleSliderChange = (event, newValue) => {

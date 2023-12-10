@@ -72,7 +72,10 @@ function Navbar() {
             sx={{ flexGrow: 1 }}
             variant="h5"
           >
-            <div style={{ color: "white" }} onClick={redirectToHome}>
+            <div
+              style={{ color: "white", cursor: "pointer" }}
+              onClick={redirectToHome}
+            >
               <sup>
                 Trust<sub>Cure</sub>
                 <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
