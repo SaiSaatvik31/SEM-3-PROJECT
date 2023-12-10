@@ -2,7 +2,7 @@
 import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 // import Paper from "@mui/material/Paper";
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import "../styles/chips.css";
@@ -12,7 +12,28 @@ const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-export default function ChipsArray() {
+export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
+  console.log(selectedOptions);
+  const navigate = useNavigate();
+  const navigateToUserInfo = (e) => {
+    e.preventDefault();
+    fetch("/book-appointment/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: symptoms }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from the server
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    navigate("/userInfo", { state: selectedOptions });
+  };
   const [chipData, setChipData] = useState([
     { key: 0, label: "Stomach" },
     { key: 1, label: "Skin" },
@@ -38,10 +59,6 @@ export default function ChipsArray() {
   const [activeSymptoms, setActiveSymptoms] = useState([]);
 
   let diseases = [
-  
-
-  
-
     {
       Stomach: [
         { key: 18, label: "Stomach Pain" },
@@ -198,78 +215,60 @@ export default function ChipsArray() {
     },
   ];
 
-  const getSymptomForBodyPart = (bodyPart)=> {
+  const getSymptomForBodyPart = (bodyPart) => {
     const selectedDisease = diseases.find(
-        (disease)=>Object.keys(disease)[0]===bodyPart
-    )
-    return selectedDisease?selectedDisease[bodyPart]: []
-  }
+      (disease) => Object.keys(disease)[0] === bodyPart
+    );
+    return selectedDisease ? selectedDisease[bodyPart] : [];
+  };
 
-//   const [activeSymptoms, setActiveSymptoms] = useState(diseases)
-  const handleBodyPart = (partSelected)=>()=>{
-    
-    setActiveBodyPart((prevPart)=>[...prevPart,partSelected])
-console.log(activeBodyPart)
+  //   const [activeSymptoms, setActiveSymptoms] = useState(diseases)
+  const handleBodyPart = (partSelected) => () => {
+    setActiveBodyPart((prevPart) => [...prevPart, partSelected]);
+    console.log(activeBodyPart);
 
-const symptomsForBodyPart = getSymptomForBodyPart(partSelected.label);
-setActiveSymptoms(symptomsForBodyPart.map((symptom)=>({...symptom})));
-document.getElementById('choose-symptoms').innerHTML = activeBodyPart && 'Please Select Symptoms'
-  }
-// const handleBodyPart=(part)=>{
-//     setActiveBodyPart(part)
-// }
+    const symptomsForBodyPart = getSymptomForBodyPart(partSelected.label);
+    setActiveSymptoms(symptomsForBodyPart.map((symptom) => ({ ...symptom })));
+    document.getElementById("choose-symptoms").innerHTML =
+      activeBodyPart && "Please Select Symptoms";
+  };
+  // const handleBodyPart=(part)=>{
+  //     setActiveBodyPart(part)
+  // }
 
   const handleDelete = (chipToDelete) => () => {
-    setSymptoms((symptoms) =>
-      symptoms.filter((symptom) => symptom.key !== chipToDelete.key)
+    setSymptoms((prevSymptoms) =>
+      prevSymptoms.filter((symptom) => symptom.key !== chipToDelete.key)
     );
-    console.log(symptoms);
+
+    // Update selectedOptions with the updated symptoms
+    const updatedOptions = {
+      ...selectedOptions,
+      symptoms: symptoms.filter((symptom) => symptom.key !== chipToDelete.key),
+    };
+    updateSelectedOptions(updatedOptions);
+    console.log(updatedOptions);
   };
 
   const handleClick = (chipSelected) => () => {
     if (!symptoms.some((symptom) => symptom.key === chipSelected.key)) {
-      setSymptoms((previousSymptoms) => [...previousSymptoms, chipSelected]);
-      //   symptoms.push(chipSelected);
-      console.log(symptoms);
-      // diseases.chipSelected.map((disease)=>{
-      //     console.log(disease.value)
-      //     setChipData(disease.value)
-      // })
-      // Assuming diseases is an array of objects
-      const selectedDisease = diseases.find(
-        (disease) => Object.keys(disease)[0] === chipSelected.label
-      );
+      setSymptoms((prevSymptoms) => [...prevSymptoms, chipSelected]);
 
-      if (selectedDisease) {
-        const symptomsForDisease = selectedDisease[chipSelected.label];
-        setChipData(symptomsForDisease.map((symptom) => ({ ...symptom })));
-        console.log(chipData);
-      }
+      // Update selectedOptions with the new symptoms
+      const updatedOptions = {
+        ...selectedOptions,
+        symptoms: [...symptoms, chipSelected],
+      };
+      updateSelectedOptions(updatedOptions);
+      console.log(updatedOptions);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("/book-appointment/predict", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data: symptoms }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response from the server
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
+  const handleSubmit = (e) => {};
 
   return (
-    <Box component={'div'} className="chip-container">
-      <Box component={'div'} className="selected-chip-container">
+    <Box component={"div"} className="chip-container">
+      <Box component={"div"} className="selected-chip-container">
         <h3>Selected Symptoms</h3>
         <form action="/predict" onSubmit={handleSubmit} method="post">
           <ul>
@@ -287,12 +286,14 @@ document.getElementById('choose-symptoms').innerHTML = activeBodyPart && 'Please
               );
             })}
           </ul>
-          <Button type="submit">Submit</Button>
+          <Button onClick={navigateToUserInfo} type="submit">
+            Submit
+          </Button>
         </form>
       </Box>
-      <Box component={'div'} className="body-parts-container">
+      <Box component={"div"} className="body-parts-container">
         <h3>Body Parts</h3>
-      <ul>
+        <ul>
           {chipData.map((data) => {
             return (
               <ListItem key={data.key}>
@@ -309,21 +310,20 @@ document.getElementById('choose-symptoms').innerHTML = activeBodyPart && 'Please
           })}
         </ul>
       </Box>
-      <Box component={'div'} className="chip-show-container">
+      <Box component={"div"} className="chip-show-container">
         <h3 id="choose-symptoms">Please Select A Body Part First</h3>
         <ul>
-          {activeSymptoms.map((symptom)=>{
+          {activeSymptoms.map((symptom) => {
             return (
-                <ListItem key={symptom.key}>
-                    <Chip 
-                    size="medium"
-                    color='secondary'
-                    onClick={handleClick(symptom)}
-                    label={symptom.label}
-                    />
-
-                </ListItem>
-            )
+              <ListItem key={symptom.key}>
+                <Chip
+                  size="medium"
+                  color="secondary"
+                  onClick={handleClick(symptom)}
+                  label={symptom.label}
+                />
+              </ListItem>
+            );
           })}
         </ul>
       </Box>

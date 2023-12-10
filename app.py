@@ -26,5 +26,6 @@ def predict():
     output = snakes.iloc[prediction][1] 
     output1 = snakes.iloc[prediction][5]
     return jsonify({"value" : output1})
+
 if __name__ == '__main__':
     app.run(debug=True)

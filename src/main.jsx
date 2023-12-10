@@ -16,6 +16,7 @@ import Name from "./components/name.jsx";
 import Age from "./components/Age.jsx";
 import Form from "./components/Form.jsx";
 import ChipsArray from "./components/Chips.jsx";
+import UserInfo from "./components/userInfo.jsx";
 
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -26,40 +27,51 @@ const MainApp = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
-        <Route path="" element={<Home />} />
-        <Route path="book-appointment" element={<Appointment />} />
-        <Route path="about" element={<About />} />
-        <Route path="feedback" element={<Feedback />} />
-        <Route
-          path="/forWhom"
-          element={
-            <ForWhom
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
-            />
-          }
-        />
-        <Route
-          path="/name"
-          element={
-            <Name
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
-            />
-          }
-        />
-        <Route
-          path="/Age"
-          element={
-            <Age
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
-            />
-          }
-        />
-        <Route path="/formPage" element={<ChipsArray />} />
-      </Route>
+      <>
+        <Route path="/" element={<Layout />}>
+          <Route path="" element={<Home />} />
+          <Route path="book-appointment" element={<Appointment />} />
+          <Route path="about" element={<About />} />
+          <Route path="feedback" element={<Feedback />} />
+          <Route
+            path="/forWhom"
+            element={
+              <ForWhom
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+          <Route
+            path="/name"
+            element={
+              <Name
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+          <Route
+            path="/Age"
+            element={
+              <Age
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+          <Route
+            path="/formPage"
+            element={
+              <ChipsArray
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+        </Route>
+        <Route path="/userInfo" element={<UserInfo />} />
+      </>
     )
   );
 
