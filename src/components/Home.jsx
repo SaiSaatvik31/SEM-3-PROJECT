@@ -19,6 +19,9 @@ function Home() {
         <Link to="/book-appointment">
           <Button variant="outlined">BOOK APPOINTMENT</Button>
         </Link>
+        <Link to="/formPage">
+          <Button variant="outlined">Form Page</Button>
+        </Link>
       </div>
     </section>
   );
