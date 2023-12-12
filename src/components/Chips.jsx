@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 // import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 
 import "../styles/chips.css";
@@ -15,25 +16,6 @@ const ListItem = styled("li")(({ theme }) => ({
 export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   console.log(selectedOptions);
   const navigate = useNavigate();
-  const navigateToUserInfo = (e) => {
-    e.preventDefault();
-    fetch("/book-appointment/predict", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data: symptoms }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response from the server
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    navigate("/userInfo", { state: selectedOptions });
-  };
   const [chipData, setChipData] = useState([
     { key: 0, label: "Stomach" },
     { key: 1, label: "Skin" },
@@ -63,12 +45,12 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       Stomach: [
         { key: 18, label: "Stomach Pain" },
         { key: 19, label: "Acidity" },
-        { key: 20, label: "Swelling of Stomach" },
+        { key: 20, label: "Swelling Of Stomach" },
         { key: 21, label: "Pain During Bowel Movements" },
         { key: 22, label: "Excessive Hunger" },
         { key: 23, label: "Belly Pain" },
         { key: 24, label: "Stomach Bleeding" },
-        { key: 25, label: "Distention of Abdomen" },
+        { key: 25, label: "Distention Of Abdomen" },
       ],
     },
     {
@@ -77,8 +59,8 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 27, label: "Skin Rash" },
         { key: 28, label: "Nodal Skin Eruptions" },
         { key: 29, label: "Bruising" },
-        { key: 30, label: "Red spots" },
-        { key: 31, label: "Skin Peelings" },
+        { key: 30, label: "Red Spots Over Body" },
+        { key: 31, label: "Skin Peeling" },
         { key: 32, label: "Yellowish Skin" },
       ],
     },
@@ -92,7 +74,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     },
     {
       Excretion: [
-        { key: 37, label: "Burning Micturition" },
+        { key: 37, label: "Burning Urination" },
         { key: 38, label: "Spotting Urination" },
         { key: 39, label: "Dark Urine" },
         { key: 40, label: "Yellow Urine" },
@@ -101,8 +83,8 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 43, label: "Irritation in Anus" },
         { key: 44, label: "Bladder Discomfort" },
         { key: 45, label: "Foul Smell of Urine" },
-        { key: 46, label: "Continuos Feel of Urine" },
-        { key: 47, label: "Passage of Gases" },
+        { key: 46, label: "Continuous Feel of Urine" },
+        { key: 47, label: "Passage Of Gases" },
         { key: 48, label: "Polyuria" },
         { key: 49, label: "Blood in Sputum" },
         { key: 50, label: "Constipation" },
@@ -146,7 +128,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     {
       Heart: [
         { key: 72, label: "Fast Heart Rate" },
-        { key: 73, label: "Palpitation" },
+        { key: 73, label: "Palpitations" },
       ],
     },
     {
@@ -157,16 +139,17 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       ],
     },
     {
-      Mouth: [{ key: 77, label: "Ulcers on Tongue" }],
+      Mouth: [{ key: 77, label: "Ulcers On Tongue" }],
     },
     {
       Weight: [
-        { key: 78, label: "Overweight" },
-        { key: 79, label: "Underweight" },
+        { key: 78, label: "Weight Gain" },
+        { key: 79, label: "Weight Loss" },
       ],
     },
     {
-      Throat: [{ key: 90, label: "Pain in Throat" }],
+      Throat: [{ key: 90, label: "Pain In Throat" },
+    {key : 120, label : "Throat Irritation"}],
     },
     {
       Fever: [
@@ -203,13 +186,13 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 113, label: "Increased Appetite" },
         { key: 114, label: "Swollen Legs" },
         { key: 115, label: "Breathelessness" },
+        { key: 117, label: "Irregular Sugar Level" },
       ],
     },
     {
       Others: [
         { key: 116, label: "Extra-Marital Contacts" },
-        { key: 117, label: "Diabetes" },
-        { key: 118, label: "BP" },
+        // { key: 118, label: "BP" },
         { key: 119, label: "Abnormal Menstruation" },
       ],
     },
@@ -237,11 +220,10 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   // }
 
   const handleDelete = (chipToDelete) => () => {
-    setSymptoms((prevSymptoms) =>
-      prevSymptoms.filter((symptom) => symptom.key !== chipToDelete.key)
+    setSymptoms((symptoms) =>
+      symptoms.filter((symptom) => symptom.key !== chipToDelete.key)
     );
-
-    // Update selectedOptions with the updated symptoms
+    console.log(symptoms);
     const updatedOptions = {
       ...selectedOptions,
       symptoms: symptoms.filter((symptom) => symptom.key !== chipToDelete.key),
@@ -264,8 +246,45 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     }
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //const selectedSymptoms = symptoms.map((symptom) => symptom.key);
+    // Show loading indicator while waiting for response
+    console.log(symptoms);
+    try {
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: symptoms }),
+      });
 
+      const data = await response.json();
+
+      // Update UI with received data
+      const diseaseNameElement = document.getElementById("value");
+      diseaseNameElement.innerText = data.value;
+      console.log(diseaseNameElement.innerText);
+      const updatedOptions = {
+        ...selectedOptions,
+        speciality: diseaseNameElement.innerText,
+      };
+      updateSelectedOptions(updatedOptions);
+      console.log(updatedOptions);
+      navigate("/userInfo", { state: updatedOptions });
+      // Update other elements if needed
+
+      // Hide loading indicator
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  <div>
+    Rey idiot
+    <h1 id="value1">hello</h1>
+  </div>;
   return (
     <Box component={"div"} className="chip-container">
       <Box component={"div"} className="selected-chip-container">
@@ -286,9 +305,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
               );
             })}
           </ul>
-          <Button onClick={navigateToUserInfo} type="submit">
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </form>
       </Box>
       <Box component={"div"} className="body-parts-container">
@@ -327,6 +344,16 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
           })}
         </ul>
       </Box>
+      <div>
+        Amogh
+        <br />
+        <b id="value">hello</b>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
       {/* <Paper
       sx={{
         display: 'flex',

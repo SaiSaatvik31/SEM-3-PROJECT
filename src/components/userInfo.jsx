@@ -1,17 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
+
 function UserInfo() {
   const location = useLocation();
   const navigate = useNavigate();
   const [img, setImg] = useState("");
 
-  const onHandle = () => {
-    return location.state.symptoms.map((symptom) => (
-      <li key={symptom.key}>{symptom.label}</li>
-    ));
-  };
+  // Animate the symptom list
+  const [symptoms, setSymptoms] = useState([]);
 
+  useEffect(() => {
+    const animateSymptoms = () => {
+      const animatedSymptoms = location.state.symptoms.map((symptom) => ({
+        ...symptom,
+        visible: false,
+      }));
+      setSymptoms(animatedSymptoms);
+
+      let index = 0;
+      const timer = setInterval(() => {
+        if (index < animatedSymptoms.length) {
+          const newSymptoms = [...animatedSymptoms];
+          newSymptoms[index].visible = true;
+          setSymptoms(newSymptoms);
+          index++;
+        } else {
+          clearInterval(timer);
+        }
+      }, 100);
+    };
+    animateSymptoms();
+  }, [location.state.symptoms]);
+
+  // Update user image based on gender
   useEffect(() => {
     if (location.state.gender === "FEMALE") {
       setImg(
@@ -22,18 +44,29 @@ function UserInfo() {
         "https://cdn.pixabay.com/photo/2023/04/26/09/25/ai-generated-7951983_1280.png"
       );
     } else {
-      setImg("");
+      setImg(
+        "https://www.seekpng.com/png/detail/215-2159746_generic-user-icon-png.png"
+      );
     }
   }, [location.state.gender]);
 
   return (
     <>
-      <div className="m-5 p-5 d-flex flex-row justify-content-between">
+      <div
+        className="m-5 p-5 d-flex flex-row justify-content-between"
+        style={{
+          background: `linear-gradient(to right, #dfe9f3, #f3f9fc)`,
+          borderRadius: "10px",
+        }}
+      >
         <div className="w-full">
-          <h1 className="head" style={{ fontWeight: "bold", fontSize: "35px" }}>
+          <h1
+            className="head animate__animated animate__fadeInLeft"
+            style={{ fontWeight: "bold", fontSize: "35px" }}
+          >
             YOUR FORM HAS BEEN SUCCESSFULLY SUBMITTED
           </h1>
-          <div style={{ fontSize: "30px" }} className="mt-3">
+          <div style={{ fontSize: "20px" }} className="mt-3">
             <p>Name of the person is: {location.state.name}</p>
             <p>Gender: {location.state.gender}</p>
             <p>Age of the person is: {location.state.Age}</p>
@@ -41,11 +74,25 @@ function UserInfo() {
               For whom the person is filling the Form: {location.state.forWhom}
             </p>
             <p>Symptoms are:</p>
-            <ul>{onHandle()}</ul>
+            <ul style={{ fontSize: "18px" }}>
+              {symptoms.map((symptom) => (
+                <li
+                  key={symptom.key}
+                  style={{ opacity: symptom.visible ? 1 : 0 }}
+                >
+                  {symptom.label}
+                </li>
+              ))}
+            </ul>
+            <p>We recommend you to consult {location.state.speciality}</p>
           </div>
         </div>
-        <div>
-          <img className="w-50 pl-5" src={img} alt="User" />
+        <div className="position-relative">
+          <img
+            className="w-50 shadow animate__animated animate__zoomIn"
+            src={img}
+            alt="User"
+          />
         </div>
       </div>
     </>
