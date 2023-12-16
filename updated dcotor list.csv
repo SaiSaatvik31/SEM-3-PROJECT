@@ -1,0 +1,43 @@
+,0,,,,1,,,Doctor name1,,Doctor name2,,Doctor name3,,Doctor name4
+0,(vertigo) Paroymsal  Positional Vertigo,,,,ENT Specialist,,,Dr. Shashi Das,,Dr. Hira Fatima,,Dr. Kavya Sharma,,Dr. Jhanvi Rawat
+1,AIDS,,,,Infectious disease Specialist,,, Dr. Nandini Singh,,Dr. Priya Sharma,,Dr. Rajesh Patel,,Dr. Rohan Gupta
+2,Acne,,,,dermatologist,,,Dr. Kavita Rao,,Dr. Andrew Malik,,Dr. Kamal Nayan,,Dr. Tripti Dimri
+3,Alcoholic hepatitis,,,,Gastroenteologist,,,Dr. Prateek Mehta,,Dr. Shreya Saxena,,Dr. Riya Shah,,Dr. Girija Reddy
+4,Allergy,,,,allergist,,,Dr.Krishna Sai,,Dr. Divya Patel,,Dr. Kriti Malhotra,,Dr. Abdul Khayum
+5,Arthritis,,,,Rheumatologist,,,Dr. Amogh Mishra,,Dr. Saanvi Kapoor,,Dr. Zara Chawla,,Dr. RaghuChandra
+6,Bronchial Asthma,,,,Pulmanologist,,,Dr. Kabir Oberoi,,Dr. Saatvik Chowdhry,,Dr. Mira Nair,,Dr. Thanush Reddy
+7,Cervical spondylosis,,,,Orthopedician,,,Dr. Aarush Joshi,,Dr. Priyanka Sharma,,Dr. Krish Desai,,Dr. Jhanvi Jain
+8,Chicken pox,,,,Infectious disease Specialist,,,Dr. Nandini Singh,,Dr. Priya Sharma,,Dr. Rajesh Patel,,Dr. Rohan Gupta
+9,Chronic cholestasis,,,,Orthopedician,,,Dr. Aarush Joshi,,Dr. Priyanka Sharma,,Dr. Krish Desai,,Dr. Jhanvi Jain
+10,Common Cold,,,,General physician,,,Dr. Pranay Srigiri,,Dr. Zoya Singh,,Dr. Ishita Iyer,,Dr. Sanya Verma
+11,Dengue,,,,Infectious disease Specialist,,,Dr. Nandini Singh,,Dr. Priya Sharma,,Dr. Rajesh Patel,,Dr. Rohan Gupta
+12,Diabetes ,,,,ENT Specialist,,,Dr. Shashi Das,,Dr. Hira Fatima,,Dr. Kavya Sharma,,Dr. Jhanvi Rawat
+13,Dimorphic hemmorhoids(piles),,,,Colorectal Surgeon,,,Dr. Karthik Mishra,,Dr. Aarav Singhania,,Dr. Pranav Desai,,Dr. Tanmay Bhat
+14,Drug Reaction,,,,Allergist,,,Dr.Krishna Sai,,Dr. Divya Patel,,Dr. Kriti Malhotra,,Dr. Abdul Khayum
+15,Fungal infection,,,,dermatologist,,,Dr. Kavita Rao,,Dr. Andrew Malik,,Dr. Kamal Nayan,,Dr. Tripti Dimri
+16,GERD,,,,Gastroenteologist,,,Dr. Prateek Mehta,,Dr. Shreya Saxena,,Dr. Riya Shah,,Dr. Girija Reddy
+17,Gastroenteritis,,,,Gastroenteologist,,,Dr. Prateek Mehta,,Dr. Shreya Saxena,,Dr. Riya Shah,,Dr. Girija Reddy
+18,Heart attack,,,,cardeologist,,,Dr. Bhavesh Khanna,,Dr. Dewang Rawat,,Dr. Mohd. Faizan,,Dr. Iqbal rafiq
+19,Hepatitis B,,,,hepatologist,,,Dr. Vaishnavi Singh,,Dr. Mohan Kapoor,,Dr. Ojas Deshpande,,Dr. Uddhav Bansal
+20,Hepatitis C,,,,hepatologist,,,Dr. Vaishnavi Singh,,Dr. Mohan Kapoor,,Dr. Ojas Deshpande,,Dr. Uddhav Bansal
+21,Hepatitis D,,,,hepatologist,,,Dr. Vaishnavi Singh,,Dr. Mohan Kapoor,,Dr. Ojas Deshpande,,Dr. Uddhav Bansal
+22,Hepatitis E,,,,hepatologist,,,Dr. Vaishnavi Singh,,Dr. Mohan Kapoor,,Dr. Ojas Deshpande,,Dr. Uddhav Bansal
+23,Hypertension ,,,,cardeologist/physical therapist,,,Dr. Bhavesh Khanna,,Dr. Dewang Rawat,,Dr. Mohd. Faizan,,Dr. Iqbal rafiq
+24,Hyperthyroidism,,,,ENT Specialist,,,Dr. Shashi Das,,Dr. Hira Fatima,,Dr. Kavya Sharma,,Dr. Jhanvi Rawat
+25,Hypoglycemia,,,,ENT Specialist,,,Dr. Shashi Das,,Dr. Hira Fatima,,Dr. Kavya Sharma,,Dr. Jhanvi Rawat
+26,Hypothyroidism,,,,ENT Specialist,,,Dr. Shashi Das,,Dr. Hira Fatima,,Dr. Kavya Sharma,,Dr. Jhanvi Rawat
+27,Impetigo,,,,dermatologist,,,Dr. Kavita Rao,,Dr. Andrew Malik,,Dr. Kamal Nayan,,Dr. Tripti Dimri
+28,Jaundice,,,,Gastroenteologist,,,Dr. Prateek Mehta,,Dr. Shreya Saxena,,Dr. Riya Shah,,Dr. Girija Reddy
+29,Malaria,,,,Infectious disease Specialist,,,Dr. Nandini Singh,,Dr.Priya Sharma,,Dr. Rajesh Patel,,Dr. Rohan Gupta
+30,Migraine,,,,neurologist,,,Dr. Bhavin Shahnani,,Dr. Devendra Rana,,Dr. Ekansh Varma,,Dr. Gaurav Khatri
+31,Osteoarthristis,,,,Rheumatologist,,,Dr. Amogh Mishra,,Dr. Saanvi Kapoor,,Dr. Zara Chawla,,Dr. RaghuChandra
+32,Paralysis (brain hemorrhage),,,,neurologist,,,Dr. Bhavin Shahnani,,Dr. Devendra Rana,,Dr. Ekansh Varma,,Dr. Gaurav Khatri
+33,Peptic ulcer diseae,,,,Gastroenteologist,,,Dr. Prateek Mehta,,Dr. Shreya Saxena,,Dr. Riya Shah,,Dr. Girija Reddy
+34,Pneumonia,,,,Pulmanologist,,,Dr. Kabir Oberoi,,Dr. Saatvik Chowdhry,,Dr. Mira Nair,,Dr. Thanush Reddy
+35,Psoriasis,,,,dermatologist,,,Dr. Kavita Rao,,Dr. Andrew Malik,,Dr. Kamal Nayan,,Dr. Tripti Dimri
+36,Tuberculosis,,,,Pulmanologist,,,Dr. Kabir Oberoi,,Dr. Saatvik Chowdhry,,Dr. Mira Nair,,Dr. Thanush Reddy
+37,Typhoid,,,,Infectious disease Specialist,,,Dr. Nandini Singh,,Dr.Priya Sharma,,Dr. Rajesh Patel,,Dr. Rohan Gupta
+38,Urinary tract infection,,,,urologist,,,Dr. Ishaan Tiwari,,Dr. Jaidev Tumiki,,Dr. Lakshya Nair,,Dr. Mira Patel
+39,Varicose veins,,,,vascular surgeon,,,Dr. Tanisha Banerjee,,Dr.  Omkar Sehti,,Dr. Preetam Gongula,,Dr. GiriSai 
+40,hepatitis A,,,,hepatologist,,,Dr. Vaishnavi Singh,,Dr. Mohan Kapoor,,Dr. Ojas Deshpande,,Dr. Uddhav Bansal
+41,spill,,,,General physician,,,Dr. Pranay Srigiri,,Dr. Zoya Singh,,Dr. Ishita Iyer,,Dr. Sanya Verma

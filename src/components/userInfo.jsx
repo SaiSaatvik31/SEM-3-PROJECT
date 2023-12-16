@@ -1,34 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
-
+import Table from "./table";
 function UserInfo() {
   const location = useLocation();
   const navigate = useNavigate();
   const [img, setImg] = useState("");
 
   // Animate the symptom list
-  const [symptoms, setSymptoms] = useState([]);
+  const [symptoms, setSymptoms] = useState([""]);
+
+  const callSpecialist = () => {
+    if (location.state.Age <= 6) {
+      return <p>We recommend you to consult Pediatrician</p>;
+    } else {
+      return <p>We recommend you to consult {location.state.speciality}</p>;
+    }
+  };
 
   useEffect(() => {
     const animateSymptoms = () => {
-      const animatedSymptoms = location.state.symptoms.map((symptom) => ({
-        ...symptom,
-        visible: false,
-      }));
-      setSymptoms(animatedSymptoms);
+      if (location.state.symptoms && location.state.symptoms.length > 0) {
+        const animatedSymptoms = location.state.symptoms.map((symptom) => ({
+          ...symptom,
+          visible: false,
+        }));
+        setSymptoms(animatedSymptoms);
 
-      let index = 0;
-      const timer = setInterval(() => {
-        if (index < animatedSymptoms.length) {
-          const newSymptoms = [...animatedSymptoms];
-          newSymptoms[index].visible = true;
-          setSymptoms(newSymptoms);
-          index++;
-        } else {
-          clearInterval(timer);
-        }
-      }, 100);
+        let index = 0;
+        const timer = setInterval(() => {
+          if (index < animatedSymptoms.length) {
+            const newSymptoms = [...animatedSymptoms];
+            newSymptoms[index].visible = true;
+            setSymptoms(newSymptoms);
+            index++;
+          } else {
+            clearInterval(timer);
+          }
+        }, 100);
+      }
     };
     animateSymptoms();
   }, [location.state.symptoms]);
@@ -53,46 +63,52 @@ function UserInfo() {
   return (
     <>
       <div
-        className="m-5 p-5 d-flex flex-row justify-content-between"
+        className="m-5 p-5"
         style={{
           background: `linear-gradient(to right, #dfe9f3, #f3f9fc)`,
           borderRadius: "10px",
         }}
       >
-        <div className="w-full">
-          <h1
-            className="head animate__animated animate__fadeInLeft"
-            style={{ fontWeight: "bold", fontSize: "35px" }}
-          >
-            YOUR FORM HAS BEEN SUCCESSFULLY SUBMITTED
-          </h1>
-          <div style={{ fontSize: "20px" }} className="mt-3">
-            <p>Name of the person is: {location.state.name}</p>
-            <p>Gender: {location.state.gender}</p>
-            <p>Age of the person is: {location.state.Age}</p>
-            <p>
-              For whom the person is filling the Form: {location.state.forWhom}
-            </p>
-            <p>Symptoms are:</p>
-            <ul style={{ fontSize: "18px" }}>
-              {symptoms.map((symptom) => (
-                <li
-                  key={symptom.key}
-                  style={{ opacity: symptom.visible ? 1 : 0 }}
-                >
-                  {symptom.label}
-                </li>
-              ))}
-            </ul>
-            <p>We recommend you to consult {location.state.speciality}</p>
+        <div className="d-flex flex-row justify-content-between">
+          <div className="w-full">
+            <h1
+              className="head animate__animated animate__fadeInLeft"
+              style={{ fontWeight: "bold", fontSize: "35px" }}
+            >
+              YOUR FORM HAS BEEN SUCCESSFULLY SUBMITTED
+            </h1>
+            <div style={{ fontSize: "20px" }} className="mt-3">
+              <p>Name of the person is: {location.state.name}</p>
+              <p>Gender: {location.state.gender}</p>
+              <p>Age of the person is: {location.state.Age}</p>
+              <p>
+                For whom the person is filling the Form:{" "}
+                {location.state.forWhom}
+              </p>
+              <p>Symptoms are:</p>
+              <ul style={{ fontSize: "18px" }}>
+                {symptoms.map((symptom) => (
+                  <li
+                    key={symptom.key}
+                    style={{ opacity: symptom.visible ? 1 : 0 }}
+                  >
+                    {symptom.label}
+                  </li>
+                ))}
+              </ul>
+              {callSpecialist()}
+            </div>
+          </div>
+          <div className="position-relative">
+            <img
+              className="w-50 shadow animate__animated animate__zoomIn"
+              src={img}
+              alt="User"
+            />
           </div>
         </div>
-        <div className="position-relative">
-          <img
-            className="w-50 shadow animate__animated animate__zoomIn"
-            src={img}
-            alt="User"
-          />
+        <div>
+          <Table doctorList={location.state.doct_list} hospitalList={location.state.hospitals_list} department={location.state.speciality} />
         </div>
       </div>
     </>
