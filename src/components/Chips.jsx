@@ -148,8 +148,10 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       ],
     },
     {
-      Throat: [{ key: 90, label: "Pain In Throat" },
-    {key : 120, label : "Throat Irritation"}],
+      Throat: [
+        { key: 90, label: "Pain In Throat" },
+        { key: 120, label: "Throat Irritation" },
+      ],
     },
     {
       Fever: [
@@ -257,20 +259,29 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: symptoms }),
+        body: JSON.stringify(
+          { data: symptoms },
+          { gender: selectedOptions.Age }
+        ),
       });
 
       const data = await response.json();
 
       // Update UI with received data
+
       const diseaseNameElement = document.getElementById("value");
       diseaseNameElement.innerText = data.value;
+
       console.log(diseaseNameElement.innerText);
-      const updatedOptions = {
+      let updatedOptions = {
         ...selectedOptions,
         speciality: diseaseNameElement.innerText,
+        department: data.output,
+        doct_list: data.doctor_list,
+        hospitals_list: data.hospitals_list,
       };
       updateSelectedOptions(updatedOptions);
+
       console.log(updatedOptions);
       navigate("/userInfo", { state: updatedOptions });
       // Update other elements if needed
