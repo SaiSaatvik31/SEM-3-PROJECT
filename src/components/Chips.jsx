@@ -206,6 +206,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 123, label: "Weakness in Limbs"},
         { key: 124, label: "Back Pain"},
         { key: 125, label: "Joint Pain"}
+        ]
     }
   ];
 
