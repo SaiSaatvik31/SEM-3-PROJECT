@@ -56,7 +56,7 @@ def predict():
         elif i==4:
             h.append("Apollo Hospitals")
         elif i==5:
-            h.append("Kamineni Hospitals")
+            h.append("Kamineni Hospital")
     
     
 
