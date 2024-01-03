@@ -1,13 +1,2 @@
-Department,Encoding
-General Physician,5
-Psychiatrist,9
-Ophthalmologist,7
-Allergist,0
-ENT Specialist,3
-Infectious Disease Specialist,6
-Dermatologist,2
-Gastroenterologist,4
-Rheumatologist,11
-Pulmonologist,10
-Orthopedician,8
-Cardiologist,1
+Department,General Physician,Psychiatrist,Ophthalmologist,Allergist,ENT Specialist,Infectious Disease Specialist,Dermatologist,Gastroenterologist,Rheumatologist,Pulmonologist,Orthopedician,Cardiologist
+Encoding,5,9,7,0,3,6,2,4,11,10,8,1
