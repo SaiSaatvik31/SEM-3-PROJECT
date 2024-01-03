@@ -18,7 +18,8 @@ import Form from "./components/Form.jsx";
 import ChipsArray from "./components/Chips.jsx";
 import UserInfo from "./components/userInfo.jsx";
 import SlotPage from "./components/slotPage.jsx";
-import LoginPage from "./components/LoginPage.jsx";
+import Register from "./components/Register.jsx";
+import Login from "./components/login.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -30,7 +31,8 @@ const MainApp = () => {
     createRoutesFromElements(
       <>
         <Route path="/" element={<Layout />}>
-          <Route path="/loginPage" element={<LoginPage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/loginPage" element={<Login />} />
           <Route path="" element={<Home />} />
           <Route path="book-appointment" element={<Appointment />} />
           <Route path="about" element={<About />} />

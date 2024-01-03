@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
-function LoginPage() {
+import axios from "axios";
+function Register() {
   const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
   const handleValidation = () => {
     if (userName !== "" && password !== "") {
       setMessage("Successfully Logged In.. Redirecting in 2 seconds..");
@@ -16,6 +19,13 @@ function LoginPage() {
   };
   const handleLogin = () => {
     navigate("/loginPage");
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/register", { userName, email, password })
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -28,7 +38,7 @@ function LoginPage() {
 
           <div className="login-container">
             <h1>Login</h1>
-            <form action="">
+            <form onSubmit={handleSubmit}>
               {/* New input for username */}
               <input
                 type="text"
@@ -48,9 +58,9 @@ function LoginPage() {
                 id="userid"
                 required
                 placeholder="abc12@gmail.com"
-                value={userName}
+                value={email}
                 onChange={(e) => {
-                  setUserName(e.target.value);
+                  setEmail(e.target.value);
                 }}
               />
               {/* Existing input for password */}
@@ -65,7 +75,7 @@ function LoginPage() {
                   setPassword(e.target.value);
                 }}
               />
-              <Link to="/home">
+              <Link to="/">
                 <button onClick={handleValidation}>Register</button>
               </Link>
               <p
@@ -91,4 +101,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Register;
