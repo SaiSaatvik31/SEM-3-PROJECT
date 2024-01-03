@@ -1,4 +1,2 @@
-Hospital_Type,Encoding
-Clinic,0
-Corporate,1
-Pre_Corporate,2
+Hospital_Type,Clinic,Corporate,Pre_Corporate
+Encoding,0,1,2
