@@ -50,13 +50,13 @@ def predict():
         l.append(snakes.iloc[prediction][i])
         t.append(str(doc_wtl[snakes.iloc[prediction][i]][0]))
         if i == 2:
-            h.append("Pre_Corporate")
+            h.append("Trust Cure Hospitals")
         elif i==3:
-            h.append("Pre_Corporate")
+            h.append("Trust Cure Hospitals")
         elif i==4:
-            h.append("Corporate")
+            h.append("Apollo Hospitals")
         elif i==5:
-            h.append("Clinic")
+            h.append("Kamineni Hospitals")
     
     
 
