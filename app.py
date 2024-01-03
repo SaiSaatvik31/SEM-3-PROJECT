@@ -79,6 +79,13 @@ def pre_time():
     doc = data['name']
     print(doc)
     hos = data['hospital']
+    if hos == "Trust Cure Hospitals":
+        hos = "Pre_Corporate"
+    elif hos == "Apollo Hospitals":
+        hos = "Corporate"
+    elif hos == "Kamineni Hospital":
+        hos = "Clinic"
+
     print(hos)
     dep = data['department']
     int_features = []
