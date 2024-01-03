@@ -39,7 +39,7 @@ export default function BasicModal({ stateObj, name, hospital, time }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: name, hospital: hospital, department: stateObj.speciality }),
+      body: JSON.stringify({ name: name, hospital: hospital, department: stateObj.speciality, data: stateObj.symptoms }),
     });
     navigate("/userInfo", { state: final_options });
   };
