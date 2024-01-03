@@ -198,6 +198,15 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 119, label: "Abnormal Menstruation" },
       ],
     },
+    {
+      Bones: [
+        { key: 120, label: "Loss Of Balance" },
+        { key: 121, label: "Swelling Joints" },
+        { key: 122, label: "Neck Pain" },
+        { key: 123, label: "Weakness in Limbs"},
+        { key: 124, label: "Back Pain"},
+        { key: 125, label: "Joint Pain"}
+    }
   ];
 
   const getSymptomForBodyPart = (bodyPart) => {
