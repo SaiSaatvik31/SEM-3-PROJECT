@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
-import Table from "./table";
 function UserInfo() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -9,7 +11,27 @@ function UserInfo() {
 
   // Animate the symptom list
   const [symptoms, setSymptoms] = useState([""]);
-
+  const symptomsList = () => {
+    if (location.state.Age <= 6) {
+      return;
+    } else {
+      return (
+        <>
+          <p>Symptoms are:</p>
+          <ul style={{ fontSize: "18px" }}>
+            {symptoms.map((symptom) => (
+              <li
+                key={symptom.key}
+                style={{ opacity: symptom.visible ? 1 : 0 }}
+              >
+                {symptom.label}
+              </li>
+            ))}
+          </ul>
+        </>
+      );
+    }
+  };
   const callSpecialist = () => {
     if (location.state.Age <= 6) {
       return <p>We recommend you to consult Pediatrician</p>;
@@ -62,6 +84,8 @@ function UserInfo() {
 
   return (
     <>
+      <Navbar />
+      <Outlet />
       <div
         className="m-5 p-5"
         style={{
@@ -85,17 +109,7 @@ function UserInfo() {
                 For whom the person is filling the Form:{" "}
                 {location.state.forWhom}
               </p>
-              <p>Symptoms are:</p>
-              <ul style={{ fontSize: "18px" }}>
-                {symptoms.map((symptom) => (
-                  <li
-                    key={symptom.key}
-                    style={{ opacity: symptom.visible ? 1 : 0 }}
-                  >
-                    {symptom.label}
-                  </li>
-                ))}
-              </ul>
+              {symptomsList()}
               {callSpecialist()}
             </div>
           </div>
@@ -107,10 +121,8 @@ function UserInfo() {
             />
           </div>
         </div>
-        <div>
-          <Table doctorList={location.state.doct_list} hospitalList={location.state.hospitals_list} department={location.state.speciality} />
-        </div>
       </div>
+      <Footer />
     </>
   );
 }

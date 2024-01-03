@@ -283,7 +283,8 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       updateSelectedOptions(updatedOptions);
 
       console.log(updatedOptions);
-      navigate("/userInfo", { state: updatedOptions });
+      navigate("/slotPage", { state: updatedOptions });
+
       // Update other elements if needed
 
       // Hide loading indicator
