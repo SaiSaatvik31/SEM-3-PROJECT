@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -16,13 +17,31 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ stateObj }) {
+export default function BasicModal({ stateObj, name, hospital, time }) {
   const navigate = useNavigate();
+  const [updatedList, setUpdatedList] = useState(stateObj);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleClick = () => {
-    navigate("/userInfo", { state: stateObj });
+    let final_options = {
+      ...updatedList,
+      doct_name: name,
+      hospital: hospital,
+      time: time,
+    };
+    setUpdatedList(final_options);
+    console.log(final_options);
+    console.log(stateObj);
+    console.log(updatedList);
+    const response = fetch("/amg", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: name, hospital: hospital }),
+    });
+    navigate("/userInfo", { state: final_options });
   };
   return (
     <div>
@@ -35,7 +54,10 @@ export default function BasicModal({ stateObj }) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Amogh
+            {name}
+          </Typography>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {hospital}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             In China as well as France, the first people to perform dentistry

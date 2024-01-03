@@ -28,6 +28,7 @@ function SlotPage() {
       hospital: location.state.hospitals_list[i],
       rating: 4.8,
       review: "Excellent",
+      time: location.state.time_list[i],
     });
   }
   const slotPageStyle = {
@@ -57,6 +58,7 @@ function SlotPage() {
                 <TableCell align="left">Speciality</TableCell>
                 <TableCell align="left">Hospital</TableCell>
                 <TableCell align="center">Ratings</TableCell>
+                <TableCell align="right">Estimated Time</TableCell>
                 <TableCell align="right">Book Appointment</TableCell>
               </TableRow>
             </TableHead>
@@ -77,8 +79,14 @@ function SlotPage() {
                       <Stars stars={doctor.rating} review={doctor.review} />
                     </Box>
                   </TableCell>
+                  <TableCell align="right">{doctor.time}</TableCell>
                   <TableCell align="right">
-                    <Modal stateObj={updatedList} />
+                    <Modal
+                      stateObj={updatedList}
+                      name={doctor.name}
+                      hospital={doctor.hospital}
+                      time={doctor.time}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

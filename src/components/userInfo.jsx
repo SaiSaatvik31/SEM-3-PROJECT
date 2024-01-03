@@ -111,6 +111,9 @@ function UserInfo() {
               </p>
               {symptomsList()}
               {callSpecialist()}
+              <p>Doctor:{location.state.doct_name}</p>
+              <p>Hospital Name:{location.state.hospital}</p>
+              <p>Your Estimated Waiting Time:{location.state.time}</p>
             </div>
           </div>
           <div className="position-relative">
