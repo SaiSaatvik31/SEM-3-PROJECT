@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 
-app = Flask(_name_,static_folder='./dist/assets',template_folder='./dist')
+app = Flask(__name__,static_folder='./dist/assets',template_folder='./dist')
 
 model=pickle.load(open('The_Palmist_new1.pkl','rb'))
 tmodel=pickle.load(open('The_TimeMachine.pkl','rb'))
@@ -29,7 +29,6 @@ def predict():
     data = request.get_json()
     int_features = []
     print(data)
-    #symptoms = data.get("symptoms")
     x=[]
     for i in data['data']:
         int_features.append(i['label'])
@@ -82,6 +81,15 @@ def pre_time():
     hos = data['hospital']
     print(hos)
     dep = data['department']
+    int_features = []
+    print(data)
+    x=[]
+    for i in data['data']:
+        int_features.append(i['label'])
+    print(1)
+    for i in int_features:
+        x.append(b[i][0])
+    print(2)
     for i in x:
         a[i][0]=1
     c = pd.read_csv("Dep_ie.csv")
