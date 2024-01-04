@@ -289,6 +289,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         doct_list: data.doctor_list,
         hospitals_list: data.hospitals_list,
         time_list: data.time,
+        rating: data.rating,
       };
       updateSelectedOptions(updatedOptions);
 

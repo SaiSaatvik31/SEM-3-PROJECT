@@ -20,6 +20,7 @@ import UserInfo from "./components/userInfo.jsx";
 import SlotPage from "./components/slotPage.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/login.jsx";
+import OtherDoc from "./components/otherDoc.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -33,6 +34,7 @@ const MainApp = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/register" element={<Register />} />
           <Route path="/loginPage" element={<Login />} />
+          <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="" element={<Home />} />
           <Route path="book-appointment" element={<Appointment />} />
           <Route path="about" element={<About />} />
