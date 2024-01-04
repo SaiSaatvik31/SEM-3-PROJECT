@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import {
   Button,
   Table,
@@ -17,23 +18,48 @@ import {
 } from "@mui/material";
 import Modal from "./Modal";
 
-function SlotPage() {
+function otherDoc() {
+  const [data, setData] = useState({});
+  const [combinedArray, setCombinedArray] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/otherDoctors", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        });
+
+        const fetchedData = await response.json();
+        console.log(fetchedData);
+        console.log("hellll");
+        setData(fetchedData);
+        let combinedArray = [];
+        for (let i = 0; i < 48; i++) {
+          combinedArray.push({
+            name: fetchedData.other_doctor_names[i],
+            speciality: fetchedData.speciality[i],
+            hospital: fetchedData.hospitals_name[i],
+            rating: 4.8,
+            review: "Excellent",
+          });
+        }
+        setCombinedArray(combinedArray);
+        console.log(combinedArray);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const navigate = useNavigate();
   const location = useLocation();
-  const [updatedList, setUpdatedList] = useState(location.state);
 
-  let combinedArray = [];
-  console.log("hello");
-  for (let i = 0; i < location.state.doct_list.length; i++) {
-    combinedArray.push({
-      name: location.state.doct_list[i],
-      speciality: location.state.speciality,
-      hospital: location.state.hospitals_list[i],
-      rating: location.state.rating[i],
-      review: "Excellent",
-      time: location.state.time_list[i],
-    });
-  }
+  console.log("hiiii");
+
   const slotPageStyle = {
     display: "flex",
     flexDirection: "column",
@@ -48,9 +74,7 @@ function SlotPage() {
   const footerStyle = {
     flexShrink: 0, // Prevents the footer from being resized
   };
-  const handleClick = () => {
-    navigate("/otherDoctors");
-  };
+
   return (
     <>
       <Outlet />
@@ -86,19 +110,11 @@ function SlotPage() {
                     </Box>
                   </TableCell>
                   <TableCell align="right">{doctor.time} minutes</TableCell>
-                  <TableCell align="right">
-                    <Modal
-                      stateObj={updatedList}
-                      name={doctor.name}
-                      hospital={doctor.hospital}
-                      time={doctor.time}
-                    />
-                  </TableCell>
+                  <TableCell align="right"></TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-          <Button onClick={handleClick}>HELLO</Button>
         </div>
         <Footer style={footerStyle} />
       </div>
@@ -106,4 +122,4 @@ function SlotPage() {
   );
 }
 
-export default SlotPage;
+export default otherDoc;

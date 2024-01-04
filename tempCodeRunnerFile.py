@@ -1,2 +1,7 @@
-
- 
+ # doc2.append("Cardiologist"*4)
+        # doc2.append("Dermatologist"*4)
+        # doc2.append("ENT Specialist"*4)
+        # doc2.append("Gastroenterologist"*4)
+        # doc2.append("General Physician"*4)
+        # doc2.append("Infectious Disease Specialist"*4)
+        # doc2.append("Ophthalmologist"*4)

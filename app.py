@@ -45,10 +45,30 @@ def predict():
     l=[]
     h=[]
     t=[]
-    doc_wtl = pd.read_csv("Doc_wtl.csv")
+    r=[]
+    n=[]
+    doc_wtl = pd.read_csv("Doc_wtl_n.csv")
+    ut = doc_wtl['Time'].max()
+    lt = doc_wtl['Time'].min()
+    dt = ut - lt
+    #len(df['Time'])
+    for i in range(len(doc_wtl['Time'])):
+        st = doc_wtl['Time'][i] - lt
+        if dt == 0:
+            dft = 0
+        else:
+            dft = st/dt
+        dft = 1 - dft
+        dfr = doc_wtl['Rating'][i]/5
+        doc_wtl['Norm'][i] = dft*0.6 + dfr*0.4
+    doc_wtl.sort_values(by = 'Norm', ascending = 0)
+
     for i in range(2,6):
         l.append(snakes.iloc[prediction][i])
-        t.append(str(doc_wtl[snakes.iloc[prediction][i]][0]))
+        a12 = doc_wtl[doc_wtl['Doc_Name']== snakes.iloc[prediction][i]].index.values[0]
+        t.append(str(doc_wtl['Time'][a12]))
+        r.append(str(doc_wtl['Rating'][a12]))
+        n.append(str(doc_wtl['Norm'][a12]))
         if i == 2:
             h.append("Trust Cure Hospitals")
         elif i==3:
@@ -57,15 +77,47 @@ def predict():
             h.append("Apollo Hospitals")
         elif i==5:
             h.append("Kamineni Hospital")
-    
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n }
+    n_dtf = pd.DataFrame(n_dic)
+    n_dtf.sort_values(by = 'Norm', ascending = 0,inplace = True)
+    n_dtf = n_dtf.astype(str)
+
     
 
     print(output)
     print(x)
     print(prediction)
-    return {"value" : output,"doctor_list":l,"hospitals_list":h,"time":t} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
+    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
 
 
+@app.route('/otherDoctors',methods=['POST','GET'])
+def otherDoc():
+    snakes = pd.read_csv("snakes5.csv")
+    doctor_names = snakes.iloc[:, 2:].values.flatten().tolist()
+    print(doctor_names)
+    doc1=[]
+    doc2=[]
+    for i in range(0,48,4):
+        doc1.append("Trust Cure Hospitals")
+        doc1.append("Trust Cure Hospitals")
+        doc1.append("Apollo Hospitals")
+        doc1.append("Kamineni Hospitals")
+    for i in range(1):
+            doc2.extend(["Allergist"]*4)
+            doc2.extend(["Cardiologist"]*4)
+            doc2.extend(["ENT Specialist"]*4)
+            doc2.extend(["Gastroenterologist"]*4)
+            doc2.extend(["General Physician"]*4)
+            doc2.extend(["Infectious Disease Specialist"]*4)
+            doc2.extend(["Ophthalmologist"]*4)
+            doc2.extend(["Orthopedician"]*4)
+            doc2.extend(["Psychiatrist"]*4)
+            doc2.extend(["Pulmonologist"]*4)
+            doc2.extend(["Rheumatologist"]*4)
+
+    print(doc1)
+    print(doc2)
+    return {"other_doctor_names":doctor_names,"hospitals_name":doc1,"speciality":doc2}
 
 
 
@@ -85,7 +137,6 @@ def pre_time():
         hos = "Corporate"
     elif hos == "Kamineni Hospital":
         hos = "Clinic"
-
     print(hos)
     dep = data['department']
     int_features = []
@@ -110,9 +161,11 @@ def pre_time():
     a['Hospital_Type'][0] = q
     pre_t=tmodel.predict(a)
     print(pre_t)
-    doc_wtl = pd.read_csv("Doc_wtl.csv")
-    doc_wtl[doc]= doc_wtl[doc]+pre_t[0]
-    doc_wtl.to_csv("doc_wtl.csv")
+    doc_wtl = pd.read_csv("Doc_wtl_n.csv")
+    x1 = doc_wtl[doc_wtl['Doc_Name']==doc].index.values[0]
+    doc_wtl['Time'][x1]= doc_wtl["Time"][x1]+pre_t[0]
+    print(doc_wtl['Time'][x1])
+    doc_wtl.to_csv("doc_wtl_n.csv")
     return {}
     
 if __name__ == '__main__':
