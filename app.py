@@ -105,6 +105,7 @@ def otherDoc():
     for i in range(1):
             doc2.extend(["Allergist"]*4)
             doc2.extend(["Cardiologist"]*4)
+            doc2.extend(["Dermatologist"]*4)
             doc2.extend(["ENT Specialist"]*4)
             doc2.extend(["Gastroenterologist"]*4)
             doc2.extend(["General Physician"]*4)
