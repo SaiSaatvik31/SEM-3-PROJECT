@@ -19,7 +19,13 @@ function Stars({ stars, review }) {
   });
 
   return (
-    <span style={{ display: "flex", textAlign: "center" }}>{ratingStars}</span>
+    <>
+      <span style={{ display: "flex", textAlign: "center" }}>
+        {ratingStars}
+      </span>
+
+      <span className="ml-3"> {stars}</span>
+    </>
   );
 }
 

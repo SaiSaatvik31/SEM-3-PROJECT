@@ -3,7 +3,8 @@ import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 // import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
-
+import { CSSTransition } from "react-transition-group";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 import "../styles/chips.css";
@@ -16,6 +17,7 @@ const ListItem = styled("li")(({ theme }) => ({
 export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   console.log(selectedOptions);
   const navigate = useNavigate();
+  const [showSymptoms, setShowSymptoms] = useState(false);
   const [chipData, setChipData] = useState([
     { key: 0, label: "Stomach" },
     { key: 1, label: "Skin" },
@@ -198,17 +200,8 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 119, label: "Abnormal Menstruation" },
       ],
     },
-    {
-      Bones: [
-        { key: 120, label: "Loss Of Balance" },
-        { key: 121, label: "Swelling Joints" },
-        { key: 122, label: "Neck Pain" },
-        { key: 123, label: "Weakness in Limbs" },
-        { key: 124, label: "Back Pain" },
-        { key: 125, label: "Joint Pain" },
-      ],
-    },
   ];
+
   const getSymptomForBodyPart = (bodyPart) => {
     const selectedDisease = diseases.find(
       (disease) => Object.keys(disease)[0] === bodyPart
@@ -219,12 +212,9 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   //   const [activeSymptoms, setActiveSymptoms] = useState(diseases)
   const handleBodyPart = (partSelected) => () => {
     setActiveBodyPart((prevPart) => [...prevPart, partSelected]);
-    console.log(activeBodyPart);
-
     const symptomsForBodyPart = getSymptomForBodyPart(partSelected.label);
     setActiveSymptoms(symptomsForBodyPart.map((symptom) => ({ ...symptom })));
-    document.getElementById("choose-symptoms").innerHTML =
-      activeBodyPart && "Please Select Symptoms";
+    setShowSymptoms(true); // Show the symptoms container
   };
   // const handleBodyPart=(part)=>{
   //     setActiveBodyPart(part)
@@ -278,13 +268,9 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
       // Update UI with received data
 
-      const diseaseNameElement = document.getElementById("value");
-      diseaseNameElement.innerText = data.value;
-
-      console.log(diseaseNameElement.innerText);
       let updatedOptions = {
         ...selectedOptions,
-        speciality: diseaseNameElement.innerText,
+        speciality: data.value,
         department: data.output,
         doct_list: data.doctor_list,
         hospitals_list: data.hospitals_list,
@@ -303,28 +289,33 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       console.error("Error:", error);
     }
   };
+  <h1 id="value1">hello</h1>;
 
-  <div>
-    Rey idiot
-    <h1 id="value1">hello</h1>
-  </div>;
   return (
     <Box component={"div"} className="chip-container">
       <Box component={"div"} className="selected-chip-container">
         <h3>Selected Symptoms</h3>
         <form action="/predict" onSubmit={handleSubmit} method="post">
           <ul>
+            {/* Mapping through symptoms */}
             {symptoms.map((symptom) => {
               return (
-                <ListItem key={symptom.key}>
+                <motion.li
+                  className="m-2"
+                  key={symptom.key}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <Chip
+                    key={symptom.key}
                     className="selectedChips"
                     color="primary"
-                    //   onClick={handleClick(data)}
                     label={symptom.label}
                     onDelete={handleDelete(symptom)}
                   />
-                </ListItem>
+                </motion.li>
               );
             })}
           </ul>
@@ -352,31 +343,38 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       </Box>
       <Box component={"div"} className="chip-show-container">
         <h3 id="choose-symptoms">Please Select A Body Part First</h3>
-        <ul>
-          {activeSymptoms.map((symptom) => {
-            return (
-              <ListItem key={symptom.key}>
-                <Chip
-                  size="medium"
-                  color="secondary"
-                  onClick={handleClick(symptom)}
-                  label={symptom.label}
-                />
-              </ListItem>
-            );
-          })}
-        </ul>
+        <AnimatePresence>
+          {showSymptoms && (
+            <motion.ul
+              key="symptom-list"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {activeSymptoms.map((symptom) => {
+                return (
+                  <motion.li
+                    className="ml-3 mb-2"
+                    key={symptom.key}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  >
+                    <Chip
+                      size="medium"
+                      color="secondary"
+                      onClick={handleClick(symptom)}
+                      label={symptom.label}
+                    />
+                  </motion.li>
+                );
+              })}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </Box>
-      <div>
-        Amogh
-        <br />
-        <b id="value">hello</b>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </div>
+
       {/* <Paper
       sx={{
         display: 'flex',

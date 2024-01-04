@@ -98,7 +98,14 @@ function SlotPage() {
               ))}
             </TableBody>
           </Table>
-          <Button onClick={handleClick}>HELLO</Button>
+          <Button
+            variant="contained"
+            color="success"
+            className="mt-3"
+            onClick={handleClick}
+          >
+            Choose Other Doctors
+          </Button>
         </div>
         <Footer style={footerStyle} />
       </div>
