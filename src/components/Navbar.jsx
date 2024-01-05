@@ -15,6 +15,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
 function Navbar() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/register");
+  };
+  const token = localStorage.getItem("token");
+  const userName = token ? JSON.parse(atob(token.split(".")[1])).name : null;
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const iconStyle = { "--fa-animation-duration": "0.5s", color: "red" };
@@ -108,6 +114,29 @@ function Navbar() {
                   FeedBack
                 </Link>
               </li>
+              {userName ? (
+                <div className="mr-5">
+                  <li>
+                    <a href="#">{userName}</a>
+                    <ul className="dropdown">
+                      <li className="p-2">
+                        <a href="/profile">Profile</a>
+                      </li>
+                      <li className="p-2">
+                        <a onClick={handleLogout} href="/login">
+                          Logout
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </div>
+              ) : (
+                <li>
+                  <Link style={{ color: "white" }} to="/register">
+                    Login/Register
+                  </Link>
+                </li>
+              )}
             </ul>
           </Box>
         </Toolbar>

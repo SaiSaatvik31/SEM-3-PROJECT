@@ -1,57 +1,64 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 function Register() {
-  const [userName, setUserName] = useState("");
+  const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleValidation = () => {
-    if (userName !== "" && password !== "") {
-      setMessage("Successfully Logged In.. Redirecting in 2 seconds..");
-    } else {
-      setMessage("Invalid Credentials..Please Check again!");
+  const registerUser = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:1337/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+      const data = await response.json();
+      if (data.status === "ok") {
+        navigate("/login");
+      }
+      console.log(data);
+      setMessage("Successfully Registered!");
+      // Redirect to login page after registration
+      // setTimeout(() => {
+      //   navigate("/loginPage");
+      // }, 2000);
+    } catch (error) {
+      setMessage("Registration Failed. Please try again.");
+      console.error("Error:", error);
     }
-  };
-  const handleLogin = () => {
-    navigate("/loginPage");
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3001/register", { userName, email, password })
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
   };
 
   return (
     <>
       <div className="main-container">
         <div className="main-container2">
-          <div className="image-container">
-            <img src="../src/Trustcure-nobg.png" width="400px" alt="logo" />
-          </div>
-
+          {/* ... (other elements remain unchanged) ... */}
           <div className="login-container">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-              {/* New input for username */}
+            <h1>Register</h1>
+            <form onSubmit={registerUser}>
+              {/* Input for username */}
               <input
                 type="text"
-                name="username" // You can adjust the name as needed
-                id="username" // You can adjust the ID as needed
+                name="username"
+                id="username"
                 required
                 placeholder="Username"
-                value={userName}
+                value={name}
                 onChange={(e) => {
                   setUserName(e.target.value);
                 }}
               />
-              {/* Existing input for email */}
+              {/* Input for email */}
               <input
                 type="email"
                 name="userid"
@@ -63,7 +70,7 @@ function Register() {
                   setEmail(e.target.value);
                 }}
               />
-              {/* Existing input for password */}
+              {/* Input for password */}
               <input
                 type="password"
                 name="password"
@@ -75,24 +82,21 @@ function Register() {
                   setPassword(e.target.value);
                 }}
               />
-              <Link to="/">
-                <button onClick={handleValidation}>Register</button>
-              </Link>
+              {/* Register button */}
+              <button type="submit">Register</button>
               <p
                 style={{
                   marginTop: "8px",
                   marginLeft: "25px",
                   color:
-                    message ===
-                    "Successfully Logged In.. Redirecting in 2 seconds.."
-                      ? "green"
-                      : "red",
+                    message === "Successfully Registered!" ? "green" : "red",
                 }}
               >
                 {message}
               </p>
               <p>Already Have an Account?</p>
-              <button onClick={handleLogin}>Login In</button>
+              {/* Link to login page */}
+              <button onClick={() => navigate("/login")}>Login</button>
             </form>
           </div>
         </div>
