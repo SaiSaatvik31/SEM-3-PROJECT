@@ -7,11 +7,33 @@ import "../styles/home.css";
 // import { Button } from '@mui/material';
 import { Button } from "@mui/material";
 import Banner from "../banner_big.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home() {
-  // const [btnColor, setBtnColor] = useState('primary');
+  const navigate = useNavigate();
+
+  async function populateQuote() {
+    const req = await fetch("http://localhost:1337/api/", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    });
+    const data = await req.json();
+    console.log(data);
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      localStorage.removeItem("token");
+    } else {
+      populateQuote();
+    }
+  }, [navigate]);
+
   document.title = "Home";
+
   return (
     <section className="home" style={{ backgroundImage: `url(${Banner})` }}>
       <div className="headerContainer">
