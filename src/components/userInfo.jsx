@@ -99,7 +99,7 @@ function UserInfo() {
               className="head animate__animated animate__fadeInLeft"
               style={{ fontWeight: "bold", fontSize: "35px" }}
             >
-              YOUR FORM HAS BEEN SUCCESSFULLY SUBMITTED
+              YOUR SLOT HAS BEEN SUCCESSFULLY BOOKED
             </h1>
             <div style={{ fontSize: "20px" }} className="mt-3">
               <p>Name of the person is: {location.state.name}</p>
@@ -113,7 +113,8 @@ function UserInfo() {
               {callSpecialist()}
               <p>Doctor:{location.state.doct_name}</p>
               <p>Hospital Name:{location.state.hospital}</p>
-              <p>Your Estimated Waiting Time:{location.state.time} minutes</p>
+              <p>Your Estimated Waiting Time: {location.state.time} minutes</p>
+              <p>Please Arrive to the Hospital Atleast 5 minutes before your Slot Time</p>
             </div>
           </div>
           <div className="position-relative">
