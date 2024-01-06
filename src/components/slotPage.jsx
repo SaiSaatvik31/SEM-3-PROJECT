@@ -64,7 +64,7 @@ function SlotPage() {
                 <TableCell align="left">Speciality</TableCell>
                 <TableCell align="left">Hospital</TableCell>
                 <TableCell align="center">Ratings</TableCell>
-                <TableCell align="right">Estimated Time</TableCell>
+                <TableCell align="right">Estimated Waiting Time</TableCell>
                 <TableCell align="right">Book Appointment</TableCell>
               </TableRow>
             </TableHead>

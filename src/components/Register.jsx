@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import register from "../styles/register.css";
 function Register() {
   const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -42,11 +42,9 @@ function Register() {
     <>
       <div className="main-container">
         <div className="main-container2">
-          {/* ... (other elements remain unchanged) ... */}
           <div className="login-container">
             <h1>Register</h1>
             <form onSubmit={registerUser}>
-              {/* Input for username */}
               <input
                 type="text"
                 name="username"
@@ -58,7 +56,6 @@ function Register() {
                   setUserName(e.target.value);
                 }}
               />
-              {/* Input for email */}
               <input
                 type="email"
                 name="userid"
@@ -70,7 +67,6 @@ function Register() {
                   setEmail(e.target.value);
                 }}
               />
-              {/* Input for password */}
               <input
                 type="password"
                 name="password"
@@ -83,7 +79,9 @@ function Register() {
                 }}
               />
               {/* Register button */}
-              <button type="submit">Register</button>
+              <button className="mb-3" type="submit">
+                Register
+              </button>
               <p
                 style={{
                   marginTop: "8px",
@@ -94,9 +92,11 @@ function Register() {
               >
                 {message}
               </p>
-              <p>Already Have an Account?</p>
+              <p className="text-center m-2">Already Have an Account?</p>
               {/* Link to login page */}
-              <button onClick={() => navigate("/login")}>Login</button>
+              <button className="mt-3" onClick={() => navigate("/login")}>
+                Login
+              </button>
             </form>
           </div>
         </div>
