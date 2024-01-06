@@ -47,7 +47,19 @@ function Register() {
       <div className="main-container">
         <div className="main-container2">
           <div className="image-container">
-            <img src="../src/Trustcure-nobg.png" width="400px" alt="logo" />
+            <div className="d-flex flex-column justify-content-end">
+              <div className="ml-5 d-flex justify-content-center">
+                <img
+                  style={{ mixBlendMode: "multiply" }}
+                  src="../src/Trustcurelogo-1.png"
+                  width="300px"
+                  alt="logo"
+                />
+              </div>
+            </div>
+            <div className="ml-5 d-flex justify-content-center">
+              <img src="../src/Trustcure-nobg.png" alt="logo" />
+            </div>
           </div>
 
           <div className="login-container">
