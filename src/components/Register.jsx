@@ -79,12 +79,12 @@ function Register() {
                 }}
               />
               {/* Register button */}
-              <button className="mb-3" type="submit">
+              <button className="mb-4" type="submit">
                 Register
               </button>
               <p
                 style={{
-                  marginTop: "8px",
+                  marginTop: "10px",
                   marginLeft: "25px",
                   color:
                     message === "Successfully Registered!" ? "green" : "red",
