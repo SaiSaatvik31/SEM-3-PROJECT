@@ -2,6 +2,7 @@
 
 // import { Link } from 'react-router-dom'
 import "../styles/home.css";
+import "../styles/animTxt.css";
 // import Layout from './Layout';
 // import { useState } from 'react';
 // import { Button } from '@mui/material';
@@ -33,17 +34,51 @@ function Home() {
   }, [navigate]);
 
   document.title = "Home";
+  const dynamicStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100px",
+  };
 
   return (
     <section className="home" style={{ backgroundImage: `url(${Banner})` }}>
-      <div className="headerContainer">
-        <h1>Doctor Appointment Website</h1>
-        <Link to="/book-appointment">
-          <Button variant="outlined">BOOK APPOINTMENT</Button>
-        </Link>
-        <Link to="/formPage">
-          <Button variant="outlined">Form Page</Button>
-        </Link>
+      <div className="content">
+        <div className="headerContainer">
+          <h1>Doctor Appointment Website</h1>
+          <div className="buttons">
+            <Link to="/book-appointment">
+              <Button variant="outlined">BOOK APPOINTMENT</Button>
+            </Link>
+            <Link to="/formPage">
+              <Button variant="outlined">Form Page</Button>
+            </Link>
+          </div>
+        </div>
+        <div style={dynamicStyle} className="wrapper">
+          <div className="static-txts">
+            <h2>Why TrustCure?</h2>
+            <p>We offer You:</p>
+          </div>
+          <ul className="dynamic-txts">
+            <li>
+              <span>Slot Bookings</span>
+            </li>
+            <li>
+              <span>Symptom Detector</span>
+            </li>
+            <li>
+              <span>Virtual Waiting Room</span>
+            </li>
+            <li>
+              <span>Advance Bookings</span>
+            </li>
+            <li>
+              <span>Many More...</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   );

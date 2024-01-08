@@ -20,7 +20,11 @@ function Navbar() {
     navigate("/register");
   };
   const token = localStorage.getItem("token");
+  console.log(token);
+
   const userName = token ? JSON.parse(atob(token.split(".")[1])).name : null;
+  const docName = token ? JSON.parse(atob(token.split(".")[1])).id : null;
+  console.log(docName);
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const iconStyle = { "--fa-animation-duration": "0.5s", color: "red" };

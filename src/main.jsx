@@ -23,6 +23,7 @@ import Login from "./components/login.jsx";
 import OtherDoc from "./components/otherDoc.jsx";
 import Doctor from "./components/doctor.jsx";
 import Admin from "./components/admin.jsx";
+import DocLogin from "./components/doctorLogin.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -34,6 +35,7 @@ const MainApp = () => {
     createRoutesFromElements(
       <>
         <Route path="/" element={<Layout />}>
+          <Route path="/docLogin" element={<DocLogin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/doctor" element={<Doctor />} />
           <Route path="/admin" element={<Admin />} />

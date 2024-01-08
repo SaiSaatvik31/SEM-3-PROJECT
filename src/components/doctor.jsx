@@ -3,7 +3,8 @@ import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-
+import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 const Item = styled(Paper)(({ theme, index }) => ({
   // Gradient background with dynamic color choices
   background: `linear-gradient(to right, ${theme.palette.primary.main}, ${
@@ -31,6 +32,26 @@ const array = [
   "Emergency",
 ];
 export default function doctor() {
+  const navigate = useNavigate();
+  async function populateQuote() {
+    const req = await fetch("http://localhost:1337/api/doctor", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    });
+    const data = await req.json();
+    console.log(data);
+    console.log(data.doctor_name);
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      localStorage.removeItem("token");
+    } else {
+      populateQuote();
+    }
+  }, [navigate]);
   return (
     <div className="m-5">
       <Box sx={{ flexGrow: 1 }}>
