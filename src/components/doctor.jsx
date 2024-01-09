@@ -34,7 +34,7 @@ const array = [
 export default function doctor() {
   const navigate = useNavigate();
   async function populateQuote() {
-    const req = await fetch("http://localhost:1337/api/doctor", {
+    const req = await fetch("/api/doctor", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },
