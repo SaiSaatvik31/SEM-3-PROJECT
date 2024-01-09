@@ -253,7 +253,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     // Show loading indicator while waiting for response
     console.log(symptoms);
     try {
-      const response = await fetch("/predict", {
+      const response = await fetch("/flask/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

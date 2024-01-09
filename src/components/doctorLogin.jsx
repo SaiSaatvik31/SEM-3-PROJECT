@@ -37,7 +37,7 @@ function DocLogin() {
       m_user = `A${adm_num}`;
       adm_num += 1;
     }
-    const response = await fetch("http://localhost:1337/api/docLogin", {
+    const response = await fetch("/api/docLogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

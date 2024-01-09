@@ -24,7 +24,7 @@ function otherDoc() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/otherDoctors", {
+        const response = await fetch("/flask/otherDoctors", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

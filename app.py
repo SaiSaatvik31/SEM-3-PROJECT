@@ -3,10 +3,11 @@ from flask import Flask,request, url_for, redirect, render_template,jsonify
 import pickle
 import numpy as np
 import pandas as pd
+from flask_cors import CORS
 
 
-app = Flask(__name__,static_folder='./dist/assets',template_folder='./dist')
-
+app = Flask(__name__)
+CORS(app)
 model=pickle.load(open('The_Palmist_new1.pkl','rb'))
 tmodel=pickle.load(open('The_TimeMachine.pkl','rb'))
 #a = pd.read_csv("test.csv")
@@ -15,13 +16,10 @@ prediction = -1
 output = 0
 x=[]
 
-@app.route('/')
-def hello_world():
-    print("okay")
-    return render_template("index.html")
 
 
-@app.route('/predict',methods=['POST','GET'])
+
+@app.route('/flask/predict',methods=['POST','GET'])
 def predict():
     print("hello")
     a = pd.read_csv("test.csv")
@@ -90,7 +88,7 @@ def predict():
     return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
 
 
-@app.route('/otherDoctors',methods=['POST','GET'])
+@app.route('/flask/otherDoctors',methods=['POST','GET'])
 def otherDoc():
     snakes = pd.read_csv("snakes5.csv")
     doctor_names = snakes.iloc[:, 2:].values.flatten().tolist()
@@ -123,7 +121,7 @@ def otherDoc():
 
 
 
-@app.route('/amg',methods=['POST','GET'])
+@app.route('/flask/amg',methods=['POST','GET'])
 def pre_time():
     print("hello")
     b = pd.read_csv("updated test.emt_1.csv")

@@ -34,7 +34,7 @@ export default function BasicModal({ stateObj, name, hospital, time }) {
     console.log(final_options);
     console.log(stateObj);
     console.log(updatedList);
-    const response = fetch("/amg", {
+    const response = fetch("/flask/amg", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
