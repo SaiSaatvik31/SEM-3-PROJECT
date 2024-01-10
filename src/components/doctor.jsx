@@ -2,7 +2,7 @@ import * as React from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 const Item = styled(Paper)(({ theme, index }) => ({

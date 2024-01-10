@@ -56,29 +56,6 @@ function Home() {
             </Link>
           </div>
         </div>
-        <div style={dynamicStyle} className="wrapper">
-          <div className="static-txts">
-            <h2>Why TrustCure?</h2>
-            <p>We offer You:</p>
-          </div>
-          <ul className="dynamic-txts">
-            <li>
-              <span>Slot Bookings</span>
-            </li>
-            <li>
-              <span>Symptom Detector</span>
-            </li>
-            <li>
-              <span>Virtual Waiting Room</span>
-            </li>
-            <li>
-              <span>Advance Bookings</span>
-            </li>
-            <li>
-              <span>Many More...</span>
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
   );

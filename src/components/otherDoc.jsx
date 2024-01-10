@@ -109,6 +109,7 @@ function otherDoc() {
                       <Stars stars={doctor.rating} review={doctor.review} />
                     </Box>
                   </TableCell>
+                  
                   <TableCell align="right">{doctor.time} minutes</TableCell>
                   <TableCell align="right"></TableCell>
                 </TableRow>
