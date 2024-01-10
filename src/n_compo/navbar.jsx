@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-
+import { useNavigate } from "react-router-dom";
 const navbarVariants = {
   hidden: { opacity: 0, y: -50 },
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, delay: 0.2 } },
 };
 
 function Navbar() {
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -30,12 +31,17 @@ function Navbar() {
           animate="visible"
           variants={navbarVariants}
         >
-          <ul className="flex uppercase">
+          <ul className="flex uppercase font-bold">
             <li className="p-4 cursor-pointer">Home</li>
             <li className="p-4 cursor-pointer">About</li>
             <li className="p-4 cursor-pointer">FeedBack</li>
 
-            <button className=" hover:scale-110 duration-500 text-dark bg-[#00df9a] w-[150px] rounded-md font-medium  mx-auto  text-dark mt-3  ">
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
+              className=" hover:scale-110 duration-500 text-dark bg-[#00df9a] w-[150px] rounded-md font-medium  mx-auto  text-dark mt-3  "
+            >
               Login
             </button>
           </ul>
@@ -66,7 +72,12 @@ function Navbar() {
             <li className="p-4 border-r cursor-pointer border-l m-3">Home</li>
             <li className="p-4 border-r cursor-pointer border-l m-3">About</li>
             <li className="p-4 border-r border-l m-3">FeedBack</li>
-            <button className="bg-[#00df9a]">
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
+              className="bg-[#00df9a]"
+            >
               <li className="p-4 border-r border-l m-3">Login</li>
             </button>
           </ul>

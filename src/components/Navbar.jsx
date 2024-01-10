@@ -29,7 +29,7 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const iconStyle = { "--fa-animation-duration": "0.5s", color: "red" };
   const redirectToHome = () => {
-    navigate("/");
+    navigate("/landingPage");
   };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
