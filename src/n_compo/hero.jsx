@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Typed from "react-typed";
-
+import M_model from "./m_model";
 const variants = {
   hidden: { opacity: 0, y: 50, scale: 0.9 }, // Add scale for initial shrinking
   visible: {
@@ -60,16 +60,8 @@ function Hero() {
           initial="hidden"
           animate="typeFade"
         />
-        <motion.button
-          className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 mx-auto py-3 text-dark mt-3"
-          variants={variants}
-          initial="hidden"
-          animate="buttonSlide"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          Book Now
-        </motion.button>
+
+        <M_model />
       </motion.div>
     </div>
   );
