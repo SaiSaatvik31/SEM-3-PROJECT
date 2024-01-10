@@ -24,6 +24,7 @@ import OtherDoc from "./components/otherDoc.jsx";
 import Doctor from "./components/doctor.jsx";
 import Admin from "./components/admin.jsx";
 import DocLogin from "./components/doctorLogin.jsx";
+import LandingPage from "./components/landingPage.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -82,6 +83,7 @@ const MainApp = () => {
             }
           />
         </Route>
+        <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
       </>

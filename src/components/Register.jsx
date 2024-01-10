@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import register from "../styles/register.css";
 function Register() {
   const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
