@@ -25,6 +25,7 @@ import Doctor from "./components/doctor.jsx";
 import Admin from "./components/admin.jsx";
 import DocLogin from "./components/doctorLogin.jsx";
 import LandingPage from "./components/landingPage.jsx";
+import Adv_booking from "./components/adv_booking.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -43,6 +44,7 @@ const MainApp = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="" element={<Home />} />
+          <Route path="/advBook" element={<Adv_booking />} />
           <Route path="book-appointment" element={<Appointment />} />
           <Route path="about" element={<About />} />
           <Route path="feedback" element={<Feedback />} />

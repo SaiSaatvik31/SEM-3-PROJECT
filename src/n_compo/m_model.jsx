@@ -65,22 +65,26 @@ export default function M_model() {
             Please can you login/Register to Continue
           </Typography>
           <div className="flex flex-row mt-3">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => {
                 navigate("/login");
               }}
               className="bg-[#00df9a] w-[100px] col-6 rounded-md font-medium px-6 mx-auto  py-3 text-dark mt-3"
             >
               Login
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => {
                 navigate("/register");
               }}
               className="bg-[#00df9a] w-[100px] col-6 rounded-md font-medium px-6 mx-auto py-3 text-dark mt-3 mr=5"
             >
               Register
-            </button>
+            </motion.button>
           </div>
         </Box>
       </Modal>
