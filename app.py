@@ -8,8 +8,8 @@ from flask_cors import CORS
 
 app = Flask(__name__,static_folder='./dist/assets',template_folder='./dist')
 
-model=pickle.load(open('The_Palmist_new1.pkl','rb'))
-tmodel=pickle.load(open('The_TimeMachine.pkl','rb'))
+model=pickle.load(open('The_Palmist_new3.pkl','rb'))
+tmodel=pickle.load(open('The_TimeMachine_fin.pkl','rb'))
 #a = pd.read_csv("test.csv")
 #b = pd.read_csv("updated test.emt_1.csv")
 prediction = -1
@@ -43,14 +43,14 @@ def predict():
         a[i][0]=1
     print(3)
     prediction=model.predict(a)[0]
-    snakes = pd.read_csv("snakes5.csv")
+    snakes = pd.read_csv("snakes_fin.csv")
     output = snakes.iloc[prediction][1] 
     l=[]
     h=[]
     t=[]
     r=[]
     n=[]
-    doc_wtl = pd.read_csv("Doc_wtl_n.csv")
+    doc_wtl = pd.read_csv("Doc_wtl_n1.csv")
     ut = doc_wtl['Time'].max()
     lt = doc_wtl['Time'].min()
     dt = ut - lt
@@ -125,8 +125,8 @@ def pre_time():
     print(2)
     for i in x:
         a[i][0]=1
-    c = pd.read_csv("Dep_ie.csv")
-    d = pd.read_csv("Hst_ie.csv")
+    c = pd.read_csv("Dep_ie_fin.csv")
+    d = pd.read_csv("Hst_ie_fin.csv")
     print("nice")
     print(dep)
     p = c[dep][0]
