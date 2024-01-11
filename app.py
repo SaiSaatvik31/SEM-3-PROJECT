@@ -137,7 +137,7 @@ def pre_time():
     pre_t=tmodel.predict(a)
     print(pre_t)
     doc_wtl = pd.read_csv("Doc_wtl_n.csv")
-    x1 = doc_wtl[doc_wtl['Doc_Name']=='Dr. Zoya Singh'].index.values[0]
+    x1 = doc_wtl[doc_wtl['Doc_Name']==doc].index.values[0]
     doc_wtl['Time'][x1]= doc_wtl["Time"][x1]+pre_t[0]
     print(doc_wtl['Time'][x1])
     doc_wtl.to_csv("doc_wtl_n.csv")
