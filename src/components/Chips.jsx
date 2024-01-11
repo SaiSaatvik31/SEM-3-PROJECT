@@ -22,7 +22,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     { key: 0, label: "Stomach" },
     { key: 1, label: "Skin" },
     { key: 2, label: "General" },
-    { key: 3, label: "Bones" },
+    // { key: 3, label: "Bones" },
     { key: 4, label: "Muscle" },
     { key: 5, label: "Excretion" },
     { key: 6, label: "Eyes" },
@@ -190,7 +190,6 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         { key: 113, label: "Increased Appetite" },
         { key: 114, label: "Swollen Legs" },
         { key: 115, label: "Breathelessness" },
-        { key: 117, label: "Irregular Sugar Level" },
       ],
     },
     {
