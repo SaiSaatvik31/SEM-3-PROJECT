@@ -6,8 +6,8 @@ import pandas as pd
 from flask_cors import CORS
 
 
-app = Flask(__name__,static_folder='./dist/assets',template_folder='./dist')
-
+app = Flask(__name__)
+CORS(app)
 model=pickle.load(open('The_Palmist_new3.pkl','rb'))
 tmodel=pickle.load(open('The_TimeMachine_fin.pkl','rb'))
 #a = pd.read_csv("test.csv")
@@ -15,11 +15,6 @@ tmodel=pickle.load(open('The_TimeMachine_fin.pkl','rb'))
 prediction = -1
 output = 0
 x=[]
-
-@app.route('/')
-def hello_world():
-    print("okay")
-    return render_template("index.html")
 
 
 
@@ -43,7 +38,7 @@ def predict():
         a[i][0]=1
     print(3)
     prediction=model.predict(a)[0]
-    snakes = pd.read_csv("snakes_fin.csv")
+    snakes = pd.read_csv("Snakes_fin.csv")
     output = snakes.iloc[prediction][1] 
     l=[]
     h=[]
@@ -93,11 +88,40 @@ def predict():
     return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
 
 
+@app.route('/flask/otherDoctors',methods=['POST','GET'])
+def otherDoc():
+    snakes = pd.read_csv("Snakes_fin.csv")
+    doctor_names = snakes.iloc[:, 2:].values.flatten().tolist()
+    print(doctor_names)
+    doc1=[]
+    doc2=[]
+    for i in range(0,48,4):
+        doc1.append("Trust Cure Hospitals")
+        doc1.append("Trust Cure Hospitals")
+        doc1.append("Apollo Hospitals")
+        doc1.append("Kamineni Hospitals")
+    for i in range(1):
+            doc2.extend(["Allergist"]*4)
+            doc2.extend(["Cardiologist"]*4)
+            doc2.extend(["Dermatologist"]*4)
+            doc2.extend(["ENT Specialist"]*4)
+            doc2.extend(["Gastroenterologist"]*4)
+            doc2.extend(["General Physician"]*4)
+            doc2.extend(["Infectious Disease Specialist"]*4)
+            doc2.extend(["Ophthalmologist"]*4)
+            doc2.extend(["Orthopedician"]*4)
+            doc2.extend(["Psychiatrist"]*4)
+            doc2.extend(["Pulmonologist"]*4)
+            doc2.extend(["Rheumatologist"]*4)
+
+    print(doc1)
+    print(doc2)
+    return {"other_doctor_names":doctor_names,"hospitals_name":doc1,"speciality":doc2}
 
 
 
 
-@app.route('/amg',methods=['POST','GET'])
+@app.route('/flask/amg',methods=['POST','GET'])
 def pre_time():
     print("hello")
     b = pd.read_csv("updated test.emt_1.csv")
@@ -136,11 +160,11 @@ def pre_time():
     a['Hospital_Type'][0] = q
     pre_t=tmodel.predict(a)
     print(pre_t)
-    doc_wtl = pd.read_csv("Doc_wtl_n.csv")
+    doc_wtl = pd.read_csv("Doc_wtl_n1.csv")
     x1 = doc_wtl[doc_wtl['Doc_Name']==doc].index.values[0]
     doc_wtl['Time'][x1]= doc_wtl["Time"][x1]+pre_t[0]
     print(doc_wtl['Time'][x1])
-    doc_wtl.to_csv("doc_wtl_n.csv")
+    doc_wtl.to_csv("doc_wtl_n1.csv")
     return {}
     
 if __name__ == '__main__':
