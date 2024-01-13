@@ -114,7 +114,11 @@ function UserInfo() {
               <p>Doctor:{location.state.doct_name}</p>
               <p>Hospital Name:{location.state.hospital}</p>
               <p>Your Estimated Waiting Time: {location.state.time} minutes</p>
-              <p>Please Arrive to the Hospital Atleast 5 minutes before your Slot Time</p>
+              <p>Your Booking Choice:{location.state.book_type}</p>
+              <p>
+                Please Arrive to the Hospital Atleast 5 minutes before your Slot
+                Time
+              </p>
             </div>
           </div>
           <div className="position-relative">

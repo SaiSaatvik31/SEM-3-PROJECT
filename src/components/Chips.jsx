@@ -279,7 +279,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       updateSelectedOptions(updatedOptions);
 
       console.log(updatedOptions);
-      navigate("/slotPage", { state: updatedOptions });
+      navigate("/bookSelec", { state: updatedOptions });
 
       // Update other elements if needed
 

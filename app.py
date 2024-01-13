@@ -5,19 +5,16 @@ import numpy as np
 import pandas as pd
 from flask_cors import CORS
 
-
 app = Flask(__name__)
 CORS(app)
 model=pickle.load(open('The_Palmist_new3.pkl','rb'))
 tmodel=pickle.load(open('The_TimeMachine_fin.pkl','rb'))
 #a = pd.read_csv("test.csv")
 #b = pd.read_csv("updated test.emt_1.csv")
+
 prediction = -1
 output = 0
 x=[]
-
-
-
 
 @app.route('/flask/predict',methods=['POST','GET'])
 def predict():
@@ -117,9 +114,6 @@ def otherDoc():
     print(doc1)
     print(doc2)
     return {"other_doctor_names":doctor_names,"hospitals_name":doc1,"speciality":doc2}
-
-
-
 
 @app.route('/flask/amg',methods=['POST','GET'])
 def pre_time():

@@ -9,9 +9,10 @@ import "../styles/animTxt.css";
 import { Button } from "@mui/material";
 import Banner from "../banner_big.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
-function Home() {
+import { useEffect, useState } from "react";
+import M_model from "../n_compo/m_model";
+function Home({ selectedOptions, updateSelectedOptions }) {
+  const [updatedList, setUpdatedOptions] = useState(selectedOptions);
   const navigate = useNavigate();
 
   async function populateQuote() {
@@ -26,12 +27,24 @@ function Home() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (!token) {
       localStorage.removeItem("token");
     } else {
+      const userName = token
+        ? JSON.parse(atob(token.split(".")[1])).email
+        : null;
+
+      let updatedData = { ...updatedList, email: userName };
+      setUpdatedOptions(updatedData);
+
+      if (updatedData.email !== selectedOptions.email) {
+        updateSelectedOptions(updatedData);
+      }
+
       populateQuote();
     }
-  }, [navigate]);
+  }, [navigate, selectedOptions.email]);
 
   document.title = "Home";
   const dynamicStyle = {
@@ -48,14 +61,15 @@ function Home() {
         <div className="headerContainer">
           <h1>Doctor Appointment Website</h1>
           <div className="buttons">
-            <Link to="/book-appointment">
-              <Button variant="outlined">BOOK APPOINTMENT</Button>
-            </Link>
+            <M_model />
             <Link to="/formPage">
-              <Button variant="outlined">Form Page</Button>
+              <div className="ml-4 mt-4">
+                <Button variant="outlined">Form Page </Button>
+              </div>
             </Link>
           </div>
         </div>
+        {/* /book-appointment */}
       </div>
     </section>
   );

@@ -26,6 +26,8 @@ import Admin from "./components/admin.jsx";
 import DocLogin from "./components/doctorLogin.jsx";
 import LandingPage from "./components/landingPage.jsx";
 import Adv_booking from "./components/adv_booking.jsx";
+import BookSelec from "./components/bookSelec.jsx";
+import Profile from "./components/profile.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -38,13 +40,22 @@ const MainApp = () => {
       <>
         <Route path="/" element={<Layout />}>
           <Route path="/docLogin" element={<DocLogin />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/doctor" element={<Doctor />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/otherDoctors" element={<OtherDoc />} />
-          <Route path="" element={<Home />} />
-          <Route path="/advBook" element={<Adv_booking />} />
+          <Route
+            path=""
+            element={
+              <Home
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+
           <Route path="book-appointment" element={<Appointment />} />
           <Route path="about" element={<About />} />
           <Route path="feedback" element={<Feedback />} />
@@ -85,6 +96,24 @@ const MainApp = () => {
             }
           />
         </Route>
+        <Route
+          path="/advBook"
+          element={
+            <Adv_booking
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
+            />
+          }
+        />
+        <Route
+          path="/bookSelec"
+          element={
+            <BookSelec
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
+            />
+          }
+        />
         <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
