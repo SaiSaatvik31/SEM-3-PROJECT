@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import pic from "../main_pic.png";
+import pic from "../pro-logo.png";
 import {
   Card,
   CardContent,
@@ -136,7 +136,9 @@ function Profile() {
                       <br />
                       {element.day ? `Booking Day: ${element.day}` : null}
                       <br />
-                      {element.time ? `Booking Day: ${element.time}` : null}
+                      {element.time ? `Booking Time: ${element.time}` : null}
+                      <br />
+                      {element.date ? `Booking Date: ${element.date}` : null}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

@@ -54,6 +54,8 @@ app.post('/api/slotPage',async (req,res)=>{
     )
     const token=localStorage.getItem('token');
     console.log(token);
+    console.log(token);
+    console.log(token);
     res.json({status:'ok'})
   }
   catch(err){
@@ -127,7 +129,8 @@ app.post('/api/advBookMain',async (req,res)=>{
     doct_name:req.body.doct_name,
     email:req.body.email,
     time:req.body.time,
-    day:req.body.day
+    day:req.body.day,
+    date:req.body.date
   })
   }
 

@@ -42,7 +42,9 @@ export default function Adv_book_m({
     console.log("checking");
     console.log(updatedData);
     setUpdatedList(updatedData);
-
+    const i_date = updatedData.selectedDate;
+    const dateObject = new Date(i_date);
+    const formattedDate = dateObject.toISOString().split("T")[0];
     const response = await fetch("/api/advBookMain", {
       method: "POST",
       headers: {
@@ -59,6 +61,7 @@ export default function Adv_book_m({
         email: updatedData.email,
         time: updatedData.time,
         day: updatedData.bookedDay,
+        date: formattedDate,
       }),
     });
   };
