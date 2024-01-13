@@ -39,7 +39,29 @@ export default function BasicModal({ stateObj, name, hospital, time }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: name, hospital: hospital, department: stateObj.speciality, data: stateObj.symptoms }),
+      body: JSON.stringify({
+        name: name,
+        hospital: hospital,
+        department: stateObj.speciality,
+        data: stateObj.symptoms,
+      }),
+    });
+    const response_mongo = fetch("/api/slotPage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        hospital: final_options.hospital,
+        doct_name: final_options.doct_name,
+        book_type: final_options.book_type,
+        forWhom: final_options.forWhom,
+        name: final_options.name,
+        gender: final_options.gender,
+        Age: final_options.Age,
+        symptoms: final_options.symptoms,
+        email: final_options.email,
+      }),
     });
     navigate("/userInfo", { state: final_options });
   };

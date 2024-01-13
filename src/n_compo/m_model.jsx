@@ -35,13 +35,20 @@ const style = {
 export default function M_model() {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    let user = localStorage.getItem("token");
+    if (user) {
+      navigate("/book-appointment");
+    } else {
+      setOpen(true);
+    }
+  };
   const handleClose = () => setOpen(false);
 
   return (
     <div>
       <motion.button
-        className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 mx-auto py-3 text-dark mt-3"
+        className={`bg-[#00df9a] w-[200px] rounded-md font-medium px-6 mx-auto py-3 mt-3`}
         variants={variants}
         initial="hidden"
         animate="buttonSlide"

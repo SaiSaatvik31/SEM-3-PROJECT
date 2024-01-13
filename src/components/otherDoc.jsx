@@ -58,8 +58,6 @@ function otherDoc() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log("hiiii");
-
   const slotPageStyle = {
     display: "flex",
     flexDirection: "column",
@@ -68,11 +66,11 @@ function otherDoc() {
 
   const mainContentStyle = {
     flex: 1,
-    paddingBottom: "60px", // Adjust the padding to accommodate the footer's height
+    paddingBottom: "60px",
   };
 
   const footerStyle = {
-    flexShrink: 0, // Prevents the footer from being resized
+    flexShrink: 0,
   };
 
   return (
@@ -109,7 +107,7 @@ function otherDoc() {
                       <Stars stars={doctor.rating} review={doctor.review} />
                     </Box>
                   </TableCell>
-                  
+
                   <TableCell align="right">{doctor.time} minutes</TableCell>
                   <TableCell align="right"></TableCell>
                 </TableRow>
