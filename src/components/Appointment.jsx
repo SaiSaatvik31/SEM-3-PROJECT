@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 // import { Outlet } from "react-router-dom"
 
-
 // import Layout from "./Layout"
 function Info() {
   const navigate = useNavigate();
@@ -17,8 +16,7 @@ function Info() {
     // <>
     // <Outlet/>
     // </>
-    
-  
+
     <div
       style={{
         display: "flex",
@@ -40,12 +38,12 @@ function Info() {
           <ul>
             <li>
               <Typography variant="body1">
-                Possible causes of symptoms.
+                {`1) Recommended consultation of doctors.`}
               </Typography>
             </li>
             <li>
               <Typography variant="body1">
-                Recommendations on what to do next.
+                {`2) Recommendations on what to do next.`}
               </Typography>
             </li>
           </ul>

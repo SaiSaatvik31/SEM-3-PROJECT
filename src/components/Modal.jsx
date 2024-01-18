@@ -17,11 +17,17 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ stateObj, name, hospital, time }) {
+export default function BasicModal({ stateObj, name, hospital, time, slot }) {
   const navigate = useNavigate();
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [slotTime, setSlotTime] = useState([]);
   const [updatedList, setUpdatedList] = useState(stateObj);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    let time = slot.split(",");
+    setSlotTime(time);
+  };
   const handleClose = () => setOpen(false);
   const handleClick = () => {
     let final_options = {
@@ -29,7 +35,11 @@ export default function BasicModal({ stateObj, name, hospital, time }) {
       doct_name: name,
       hospital: hospital,
       time: time,
+      slot: slot,
+      booked_time: selectedTime,
     };
+    console.log("heyy!");
+    console.log(final_options);
     setUpdatedList(final_options);
     console.log(final_options);
     console.log(stateObj);
@@ -61,6 +71,9 @@ export default function BasicModal({ stateObj, name, hospital, time }) {
         Age: final_options.Age,
         symptoms: final_options.symptoms,
         email: final_options.email,
+        slot: final_options.booked_time,
+        time: final_options.time,
+        day: final_options.dayName,
       }),
     });
     navigate("/userInfo", { state: final_options });
@@ -97,6 +110,20 @@ export default function BasicModal({ stateObj, name, hospital, time }) {
             the proper maintenance and treatment of teeth. Ambroise Paré was a
             French barber surgeon who performed de
           </Typography>
+          {/* {slot.map((element, index) => (
+            <Button key={index}>{element}</Button>
+          ))} */}
+          {slotTime.map((time, index) => (
+            <Button
+              onClick={() => {
+                setSelectedTime(time);
+              }}
+              key={index}
+            >
+              {time}
+            </Button>
+          ))}
+          <p>Selected Time:{selectedTime}</p>
           <Button
             onClick={handleClick}
             className="mt-5"

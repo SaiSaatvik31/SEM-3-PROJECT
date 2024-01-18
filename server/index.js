@@ -39,6 +39,9 @@ app.post('/api/register', async (req, res) => {
 });
 app.post('/api/slotPage',async (req,res)=>{
   console.log(req.body);
+  await client.connect();
+    const database = client.db('trustcure');
+    const collection = database.collection('doctors');
   try{
     await booking.create({
       name:req.body.name,
@@ -49,14 +52,19 @@ app.post('/api/slotPage',async (req,res)=>{
       symptoms:req.body.symptoms,
       hospital:req.body.hospital,
       doct_name:req.body.doct_name,
-      email:req.body.email
+      email:req.body.email,
+      slot:req.body.slot,
+      waiting_time:req.body.time,
+      day:req.body.day
     }
     )
+    var day=req.body.day;
+    var slotTime=req.body.slot;
+    collection.updateOne({doctor_name:req.body.doct_name},{$push:{[`schedule.${day}.slot.${slotTime}.patient_list`]:{patient_name:req.body.name,waiting_time:req.body.time}}},{upsert:true})
+    console.log("checking");
     const token=localStorage.getItem('token');
-    console.log(token);
-    console.log(token);
-    console.log(token);
     res.json({status:'ok'})
+
   }
   catch(err){
     console.log(err)
@@ -116,6 +124,19 @@ app.post('/api/docLogin',async (req,res)=>{
 //     const doc=await 
 //   }
 // })
+app.post('/api/virtual',async (req,res)=>{
+  try{
+    await client.connect();
+    const database = client.db('trustcure');
+    const collection = database.collection('doctors');
+    const data=await collection.find({doctor_name:req.body.value}).toArray();
+    const m_data=data[0];
+    return res.json({m_data});
+  }
+  catch(err){
+    console.log(err);
+  }
+})
 app.post('/api/advBookMain',async (req,res)=>{
   try{
   console.log(req.body);
@@ -130,7 +151,7 @@ app.post('/api/advBookMain',async (req,res)=>{
     email:req.body.email,
     time:req.body.time,
     day:req.body.day,
-    date:req.body.date
+    date:req.body.date,
   })
   }
 
@@ -164,6 +185,11 @@ app.post('/api/login', async (req, res) => {
 });
 app.post('/api/profile',async (req,res)=>{
       const data=await booking.find({email:req.body.email},{_id:0,__v:0})
+      return res.json({data:data})
+})
+app.post('/api/bookRemind',async (req,res)=>{
+      const data=await booking.find({email:req.body.name}).countDocuments()
+      console.log(data);
       return res.json({data:data})
 })
 app.get('/api/doctor',async (req,res)=>{

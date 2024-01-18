@@ -32,8 +32,11 @@ function SlotPage() {
       rating: location.state.rating[i],
       review: "Excellent",
       time: location.state.time_list[i],
+      slot: location.state.slot[i],
     });
   }
+  console.log("0");
+  console.log(combinedArray);
   const slotPageStyle = {
     display: "flex",
     flexDirection: "column",
@@ -42,11 +45,11 @@ function SlotPage() {
 
   const mainContentStyle = {
     flex: 1,
-    paddingBottom: "60px", // Adjust the padding to accommodate the footer's height
+    paddingBottom: "60px",
   };
 
   const footerStyle = {
-    flexShrink: 0, // Prevents the footer from being resized
+    flexShrink: 0,
   };
   const handleClick = () => {
     navigate("/otherDoctors");
@@ -65,6 +68,7 @@ function SlotPage() {
                 <TableCell align="left">Hospital</TableCell>
                 <TableCell align="center">Ratings</TableCell>
                 <TableCell align="right">Estimated Waiting Time</TableCell>
+                <TableCell align="right">Time Slot</TableCell>
                 <TableCell align="right">Book Appointment</TableCell>
               </TableRow>
             </TableHead>
@@ -86,12 +90,14 @@ function SlotPage() {
                     </Box>
                   </TableCell>
                   <TableCell align="right">{doctor.time} minutes</TableCell>
+                  <TableCell align="right">{doctor.slot}</TableCell>
                   <TableCell align="right">
                     <Modal
                       stateObj={updatedList}
                       name={doctor.name}
                       hospital={doctor.hospital}
                       time={doctor.time}
+                      slot={doctor.slot}
                     />
                   </TableCell>
                 </TableRow>
@@ -106,6 +112,10 @@ function SlotPage() {
           >
             Choose Other Doctors
           </Button>
+          <p>
+            *(Please Note that the Estimated waiting time is shown from the
+            start of the slot time. )
+          </p>
         </div>
         <Footer style={footerStyle} />
       </div>

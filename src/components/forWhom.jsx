@@ -1,6 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Avatar, Tab } from "@mui/material";
+import {
+  Button,
+  Avatar,
+  Tab,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  CardActions,
+} from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 function ForWhom({ selectedOptions, updateSelectedOptions }) {
   const navigate = useNavigate();
@@ -18,52 +28,62 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
   };
 
   return (
-    <div className="container text-center mt-5">
-      <div className="row">
-        <div className="col-md-6 mb-4">
-          <Button
-            onClick={() => namePage("FOR ME")}
-            variant="contained"
-            color="primary"
-            size="large"
-            fullWidth
-          >
-            <Avatar
-              alt="Image"
-              src="YOUR_IMAGE_SRC_HERE"
-              variant="rounded"
-              sx={{ marginRight: 1 }}
-            ></Avatar>
-            FOR ME
-          </Button>
-        </div>
-        <div className="col-md-6 mb-4">
-          <Button
-            onClick={() => namePage("SOMEONE ELSE")}
-            variant="contained"
-            color="primary"
-            size="large"
-            fullWidth
-          >
-            <Avatar
-              alt="Image"
-              src="YOUR_IMAGE_SRC_HERE"
-              sx={{ marginRight: 1 }}
-            ></Avatar>
-            SOMEONE ELSE
-          </Button>
-        </div>
-        <div className="col-12">
-          <Button
-            variant="outlined"
-            onClick={handleBack}
-            startIcon={<ArrowBackIcon />}
-          >
-            Back
-          </Button>
-        </div>
-      </div>
-    </div>
+    <Grid
+      container
+      spacing={3}
+      justifyContent="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Grid item xs={12} md={6}>
+        <Card elevation={4} className="p-5">
+          <CardContent align="center">
+            <Typography variant="h4" sx={{ mb: 2 }}>
+              For Whom the appointment is For?
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={() => namePage("FOR ME")}
+                >
+                  <Box display="flex" alignItems="center">
+                    <Avatar src="YOUR_IMAGE_SRC_HERE" sx={{ mr: 2 }} />
+                    <Typography variant="h6">FOR ME</Typography>
+                  </Box>
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  onClick={() => namePage("SOMEONE ELSE")}
+                >
+                  <Box display="flex" alignItems="center">
+                    <Avatar src="YOUR_IMAGE_SRC_HERE" sx={{ mr: 2 }} />
+                    <Typography variant="h6">SOMEONE ELSE</Typography>
+                  </Box>
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <Button
+              variant="outlined"
+              onClick={handleBack}
+              startIcon={<ArrowBackIcon />}
+            >
+              Back
+            </Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    </Grid>
   );
 }
 

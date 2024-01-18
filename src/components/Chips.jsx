@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-
 import "../styles/chips.css";
 import { Box, Button } from "@mui/material";
+import ModelViewer from "./ModelViewer[1]";
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -275,9 +275,11 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         hospitals_list: data.hospitals_list,
         time_list: data.time,
         rating: data.rating,
+        slot: data.slot,
+        dayName: data.dayName,
       };
       updateSelectedOptions(updatedOptions);
-
+      console.log("checking:");
       console.log(updatedOptions);
       navigate("/bookSelec", { state: updatedOptions });
 
@@ -291,41 +293,50 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   <h1 id="value1">hello</h1>;
 
   return (
-    <Box component={"div"} className="chip-container">
-      <Box component={"div"} className="selected-chip-container">
-        <h3>Selected Symptoms</h3>
-        <form action="/predict" onSubmit={handleSubmit} method="post">
-          <ul>
-            {/* Mapping through symptoms */}
-            {symptoms.map((symptom) => {
-              return (
-                <motion.li
-                  className="m-2"
-                  key={symptom.key}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -50 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Chip
+    <>
+      <Box component={"div"} className="chip-container  ">
+        <div className="flex flex-row">
+          {/* ModelViewer should have a responsive width */}
+          <ModelViewer className="col-12 col-md-1 " />
+
+          <Box
+            component={"div"}
+            className="col-12 col-md-8 selected-chip-container"
+          >
+            <h3 className="font-bold">Selected Symptoms</h3>
+
+            <form action="/predict" onSubmit={handleSubmit} method="post">
+              <ul>
+                {/* Mapping through symptoms */}
+                {symptoms.map((symptom) => (
+                  <motion.li
+                    className="m-2"
                     key={symptom.key}
-                    className="selectedChips"
-                    color="primary"
-                    label={symptom.label}
-                    onDelete={handleDelete(symptom)}
-                  />
-                </motion.li>
-              );
-            })}
-          </ul>
-          <Button type="submit">Submit</Button>
-        </form>
-      </Box>
-      <Box component={"div"} className="body-parts-container">
-        <h3>Body Parts</h3>
-        <ul>
-          {chipData.map((data) => {
-            return (
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -50 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Chip
+                      key={symptom.key}
+                      className="selectedChips"
+                      color="primary"
+                      label={symptom.label}
+                      onDelete={handleDelete(symptom)}
+                    />
+                  </motion.li>
+                ))}
+              </ul>
+
+              <Button type="submit">Submit</Button>
+            </form>
+          </Box>
+        </div>
+
+        <Box component={"div"} className="body-parts-container">
+          <h3 className="font-bold">Body Parts</h3>
+          <ul>
+            {chipData.map((data) => (
               <ListItem key={data.key}>
                 <Chip
                   size="medium"
@@ -333,32 +344,36 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
                   color="secondary"
                   onClick={handleBodyPart(data)}
                   label={data.label}
-                  //   onDelete={handleDelete(data)}
                 />
               </ListItem>
-            );
-          })}
-        </ul>
-      </Box>
-      <Box component={"div"} className="chip-show-container">
-        <h3 id="choose-symptoms">Please Select A Body Part First</h3>
-        <AnimatePresence>
-          {showSymptoms && (
-            <motion.ul
-              key="symptom-list"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {activeSymptoms.map((symptom) => {
-                return (
+            ))}
+          </ul>
+        </Box>
+
+        <Box component={"div"} className="chip-show-container ">
+          <h3 className="font-bold" id="choose-symptoms">
+            Please Select A Body Part First
+          </h3>
+          <AnimatePresence>
+            {showSymptoms && (
+              <motion.ul
+                key="symptom-list"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                {activeSymptoms.map((symptom) => (
                   <motion.li
                     className="ml-3 mb-2"
                     key={symptom.key}
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -50 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30,
+                    }}
                   >
                     <Chip
                       size="medium"
@@ -367,25 +382,12 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
                       label={symptom.label}
                     />
                   </motion.li>
-                );
-              })}
-            </motion.ul>
-          )}
-        </AnimatePresence>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </Box>
       </Box>
-
-      {/* <Paper
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        p: 0.5,
-        m: 0,
-    }}
-      component="ul" */}
-      {/* > */}
-      {/* </Paper> */}
-    </Box>
+    </>
   );
 }

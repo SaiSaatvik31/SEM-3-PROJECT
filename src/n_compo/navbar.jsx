@@ -10,7 +10,9 @@ const navbarVariants = {
 function Navbar() {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-
+  const token = localStorage.getItem("token");
+  const userName = token ? JSON.parse(atob(token.split(".")[1])).name : null;
+  console.log(userName);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -35,15 +37,18 @@ function Navbar() {
             <li className="p-4 cursor-pointer">Home</li>
             <li className="p-4 cursor-pointer">About</li>
             <li className="p-4 cursor-pointer">FeedBack</li>
-
-            <button
-              onClick={() => {
-                navigate("/login");
-              }}
-              className=" hover:scale-110 duration-500 text-dark bg-[#00df9a] w-[150px] rounded-md font-medium  mx-auto  text-dark mt-3  "
-            >
-              Login
-            </button>
+            {userName ? (
+              <li className="p-3 cursor-pointer">{`Hey! ${userName}`}</li>
+            ) : (
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
+                className=" hover:scale-110 duration-500 text-dark bg-[#00df9a] w-[150px] rounded-md font-medium  mx-auto  text-dark mt-3  "
+              >
+                Login
+              </button>
+            )}
           </ul>
         </motion.div>
       </div>
@@ -72,14 +77,18 @@ function Navbar() {
             <li className="p-4 border-r cursor-pointer border-l m-3">Home</li>
             <li className="p-4 border-r cursor-pointer border-l m-3">About</li>
             <li className="p-4 border-r border-l m-3">FeedBack</li>
-            <button
-              onClick={() => {
-                navigate("/login");
-              }}
-              className="bg-[#00df9a]"
-            >
-              <li className="p-4 border-r border-l m-3">Login</li>
-            </button>
+            {token ? (
+              "hello"
+            ) : (
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
+                className="bg-[#00df9a]"
+              >
+                <li className="p-4 border-r border-l m-3">Login</li>
+              </button>
+            )}
           </ul>
         </div>
       )}

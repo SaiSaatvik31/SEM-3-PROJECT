@@ -1,12 +1,14 @@
 .chip-container {
-  height: 91vh;
+  height: 120vh;
   display: flex-column;
-  /* display: flex; */
+  background-image: linear-gradient(to right, #f0f8ff, #c5cae9); 
 }
 
 .selected-chip-container {
   min-height: fit-content;
   display: flex-column;
+  border-radius: 10px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
 }
 
 .selected-chip-container h3 {
@@ -17,56 +19,66 @@
 .selected-chip-container ul {
   display: flex;
   justify-content: center;
-  background-color: beige;
   flex-wrap: wrap;
   list-style: none;
   padding: 50px 20px;
   margin: 40px;
   box-sizing: border-box;
-  border: 1px dashed black;
+  border: 1px dashed transparent; /* Remove solid border */
+  background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); /* Gradient matching the container */
 }
-.selected-chip-container Button {
-    float: right;
-    color: white;
-    background-color: darkslategrey;
-    margin-right: 40px;
+.selected-chip-container  Button {
+  float: right;
+  color: #04254c; 
+  background-color: #b2ebf2; /* Lighter blue with gradient */
+  background-image: linear-gradient(to right, #b2ebf2, #81d4fa);
+  border: none;
+  border-radius: 5px; 
+  padding: 8px 15px;
+  margin-right: 40px;
 }
 .selected-chip-container Button:hover {
-    color: black;
-    background-color: rgb(147, 241, 241);
+  color: #fff;
+  background-color: #04254c; 
+  cursor: pointer;
 }
 .selected-chip-container .selectedChips {
-    background-color: coral;
-    color: black;
-    font-size: 14px;
-    padding: 8px;
+  background-color: #81d4fa; /* Lighter blue with gradient */
+  background-image: linear-gradient(to right, #81d4fa, #b2ebf2);
+  color: #04254c;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px; 
 }
 .selected-chip-container .selectedChips:hover {
-    /* background-color: coral; */
-    background-color: #9c27b0;
+    background-color: black;
     color: white;
     transition: all 500ms ease-in-out;
 }
 
 .body-parts-container {
-    min-height: fit-content;
-    display: flex-column;
+  min-height: fit-content;
+  display: flex-column;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
-
+.body-parts-container Button:hover{
+  background-color:#c73713 ;
+}
 .body-parts-container ul {
-    display: flex;
-    justify-content: center;
-    background-color: beige;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 50px 20px;
-    margin: 40px;
-    box-sizing: border-box;
-    border: 1px dashed black;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 50px 20px;
+  margin: 40px;
+  box-sizing: border-box;
+  border: 1px dashed transparent;
+  background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9);
 }
 .body-parts-container h3 {
-    padding-top: 20px;
-    padding-left: 50px;
+  padding-top: 20px;
+  padding-left: 50px;
 }
 .chip-show-container ul {
   display: flex;
@@ -75,8 +87,8 @@
   list-style: none;
   padding: 30px;
   margin: 40px;
-  border: 1px dashed black;
-  background-color: beige   ;
+  border: 1px dashed transparent; /* Remove solid border */
+  background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9);
 }
 .chip-show-container .showChips{
     color: black;
@@ -85,8 +97,8 @@
     padding: 8px;
 }
 .chip-show-container .showChips:hover{
-    color: white;
     transition: all 400ms ease-in-out;
+    background-color: red;
     
 }
 .chip-show-container h3 {
