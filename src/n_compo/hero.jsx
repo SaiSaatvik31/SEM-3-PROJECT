@@ -7,7 +7,7 @@ const variants = {
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1, // Animate to full size
+    scale: 1, 
     transition: { duration: 1.2, delay: 0.2, ease: "easeOut" }, // Adjust duration and easing
   },
   titleScale: {

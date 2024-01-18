@@ -1,11 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Slider } from "@mui/material";
-import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-
+import { Card, CardContent, Slider, Button, Typography } from "@mui/material";
 function Age({ selectedOptions, updateSelectedOptions }) {
   const navigate = useNavigate();
   const [sliderValue, setSliderValue] = useState(0);
@@ -47,67 +43,51 @@ function Age({ selectedOptions, updateSelectedOptions }) {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        backgroundColor: "#f0f0f0",
+        backgroundImage: "linear-gradient(to bottom, #f4f4f4, #e5e5e5)", 
       }}
     >
       <Card
-        style={{
-          minWidth: "350px",
-          maxWidth: "800px",
-          display: "flex",
-          alignItems: "center",
-          height: "70%",
+        sx={{
+          minWidth: 350,
+          maxWidth: 800,
+          bgcolor: "#fff",
+          boxShadow: 2,
+          borderRadius: 10,
+          padding: 10,
         }}
       >
         <CardContent
-          style={{ textAlign: "center", padding: "40px", width: "100%" }}
+          sx={{
+            p: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          <h1
-            style={{
-              marginBottom: "30px",
-              fontFamily: "Arial, sans-serif",
-              fontSize: "28px",
-            }}
-          >
+          <Typography variant="h3" sx={{ mb: 3 }}>
             What's Your Age?
-          </h1>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
+          </Typography>
+          <Slider
+            value={sliderValue}
+            onChange={handleSliderChange}
+            sx={{ width: 700, mt: 3 }}
+            valueLabelDisplay="auto"
+            color="primary"
+            defaultValue={20}
+            max={120}
+            marks={mark}
+          />
+          <Typography variant="h5" sx={{ mt: 3, mb: 2 }}>
+            Your Age is: {sliderValue}
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ width: 200, mt: 3 }} // Adjust button width and spacing
+            onClick={FormPage}
           >
-            <Slider
-              value={sliderValue}
-              onChange={handleSliderChange}
-              style={{ width: "700px", margin: "0 auto" }}
-              valueLabelDisplay="auto"
-              color="secondary"
-              defaultValue={20}
-              max={120}
-              marks={mark}
-            />
-            <p
-              style={{
-                marginTop: "20px",
-                fontWeight: "bold",
-                fontSize: "24px",
-              }}
-            >
-              Your Age is: {sliderValue}
-            </p>
-            <Button
-              className="mt-3"
-              onClick={FormPage}
-              variant="contained"
-              color="primary"
-              style={{ marginTop: "30px" }}
-            >
-              NEXT
-            </Button>
-          </div>
+            NEXT
+          </Button>
         </CardContent>
       </Card>
     </div>

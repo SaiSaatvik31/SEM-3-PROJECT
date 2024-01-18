@@ -11,7 +11,9 @@ const patient=new mongoose.Schema({
   email:String,
   time:String,
   day:String,
-  date:String
+  date:String,
+  slot:String,
+  waiting_time:String
 },{collection:'patients-booking'})
 const data=mongoose.model('patients-booking',patient)
 module.exports=data

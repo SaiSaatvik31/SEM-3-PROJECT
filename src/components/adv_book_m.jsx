@@ -67,7 +67,6 @@ export default function Adv_book_m({
   };
   const handleOpen = () => {
     let time = doc_avail.split(",");
-    console.log(data);
     setSlot(time);
     setOpen(true);
   };

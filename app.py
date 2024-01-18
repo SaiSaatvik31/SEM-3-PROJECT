@@ -3,6 +3,7 @@ from flask import Flask,request, url_for, redirect, render_template,jsonify
 import pickle
 import numpy as np
 import pandas as pd
+from datetime import datetime,timedelta
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -18,6 +19,9 @@ x=[]
 
 @app.route('/flask/predict',methods=['POST','GET'])
 def predict():
+    current_date=datetime.now()
+    day_name=current_date.strftime("%A")
+    print("day_name:",day_name)
     print("hello")
     a = pd.read_csv("test.csv")
     b = pd.read_csv("updated test.emt_1.csv")
@@ -42,6 +46,7 @@ def predict():
     t=[]
     r=[]
     n=[]
+    s_t=[]
     doc_wtl = pd.read_csv("Doc_wtl_n1.csv")
     ut = doc_wtl['Time'].max()
     lt = doc_wtl['Time'].min()
@@ -64,6 +69,7 @@ def predict():
         t.append(str(doc_wtl['Time'][a12]))
         r.append(str(doc_wtl['Rating'][a12]))
         n.append(str(doc_wtl['Norm'][a12]))
+        s_t.append(str(doc_wtl[f"{day_name}"][a12]))
         if i == 2:
             h.append("Trust Cure Hospitals")
         elif i==3:
@@ -72,7 +78,9 @@ def predict():
             h.append("Apollo Hospitals")
         elif i==5:
             h.append("Kamineni Hospital")
-    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n }
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name}
+    print("helllo")
+    print(day_name)
     n_dtf = pd.DataFrame(n_dic)
     n_dtf.sort_values(by = 'Norm', ascending = 0,inplace = True)
     n_dtf = n_dtf.astype(str)
@@ -82,8 +90,8 @@ def predict():
     print(output)
     print(x)
     print(prediction)
-    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
-
+    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
+x
 
 @app.route('/flask/otherDoctors',methods=['POST','GET'])
 def otherDoc():

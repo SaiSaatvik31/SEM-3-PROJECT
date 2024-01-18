@@ -28,6 +28,7 @@ import LandingPage from "./components/landingPage.jsx";
 import Adv_booking from "./components/adv_booking.jsx";
 import BookSelec from "./components/bookSelec.jsx";
 import Profile from "./components/profile.jsx";
+import VirtualRoom from "./components/virtualRoom.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -38,6 +39,7 @@ const MainApp = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
+        <Route index element={<LandingPage />} />
         <Route path="/" element={<Layout />}>
           <Route path="/docLogin" element={<DocLogin />} />
           <Route path="/profile" element={<Profile />} />
@@ -46,8 +48,9 @@ const MainApp = () => {
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/otherDoctors" element={<OtherDoc />} />
+          <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route
-            path=""
+            path="/home"
             element={
               <Home
                 selectedOptions={selectedOptions}
@@ -86,16 +89,17 @@ const MainApp = () => {
               />
             }
           />
-          <Route
-            path="/formPage"
-            element={
-              <ChipsArray
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
-              />
-            }
-          />
         </Route>
+        <Route
+          path="/formPage"
+          element={
+            <ChipsArray
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
+            />
+          }
+        />
+
         <Route
           path="/advBook"
           element={
@@ -114,7 +118,6 @@ const MainApp = () => {
             />
           }
         />
-        <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
       </>

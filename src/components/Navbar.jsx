@@ -29,7 +29,7 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const iconStyle = { "--fa-animation-duration": "0.5s", color: "red" };
   const redirectToHome = () => {
-    navigate("/landingPage");
+    navigate("/");
   };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -61,7 +61,7 @@ function Navbar() {
 
       <ul className="mobile-navigation">
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
         <li>
           <Link to="/about">About Us</Link>
@@ -104,7 +104,7 @@ function Navbar() {
           <Box component={"div"} sx={{ display: { xs: "none", sm: "block" } }}>
             <ul className="navigation-menu">
               <li>
-                <Link style={{ color: "white" }} to="/">
+                <Link style={{ color: "white" }} to="/home">
                   Home
                 </Link>
               </li>
