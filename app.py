@@ -13,9 +13,7 @@ tmodel=pickle.load(open('The_TimeMachine_fin.pkl','rb'))
 #a = pd.read_csv("test.csv")
 #b = pd.read_csv("updated test.emt_1.csv")
 
-prediction = -1
-output = 0
-x=[]
+x=0
 
 @app.route('/flask/predict',methods=['POST','GET'])
 def predict():
@@ -39,6 +37,8 @@ def predict():
         a[i][0]=1
     print(3)
     prediction=model.predict(a)[0]
+    print(prediction) #logistic regression
+    print(model.predict(a))
     snakes = pd.read_csv("Snakes_fin.csv")
     output = snakes.iloc[prediction][1] 
     l=[]
