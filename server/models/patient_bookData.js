@@ -13,7 +13,8 @@ const patient=new mongoose.Schema({
   day:String,
   date:String,
   slot:String,
-  waiting_time:String
+  waiting_time:String,
+  booking_id:String
 },{collection:'patients-booking'})
 const data=mongoose.model('patients-booking',patient)
 module.exports=data

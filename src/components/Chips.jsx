@@ -296,12 +296,9 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     <>
       <Box component={"div"} className="chip-container  ">
         <div className="flex flex-row">
-          {/* ModelViewer should have a responsive width */}
-          <ModelViewer className="col-12 col-md-1 " />
-
           <Box
             component={"div"}
-            className="col-12 col-md-8 selected-chip-container"
+            className="col-12 col-md-12 selected-chip-container"
           >
             <h3 className="font-bold">Selected Symptoms</h3>
 

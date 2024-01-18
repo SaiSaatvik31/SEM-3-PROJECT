@@ -9,7 +9,7 @@ const booking=require('./models/patient_bookData');
 const { MongoClient } = require('mongodb');
 app.use(cors());
 app.use(express.json());
-let patient_id=1000
+let patient_id=1000;
 const uri = 'mongodb+srv://trustcureorg:ksksap@cluster7.hzgfnmh.mongodb.net/trustcure';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 // Connecting to MongoDB
@@ -21,6 +21,19 @@ mongoose.connect('mongodb+srv://trustcureorg:ksksap@cluster7.hzgfnmh.mongodb.net
 }).catch((err) => {
   console.error('MongoDB connection error:', err);
 });
+let Booking_id;
+
+async function initializeBookingId() {
+  const database = client.db('trustcure');
+  const collection = database.collection('patients-booking');
+
+  const result = await collection.findOne();
+  if (result) {
+    Booking_id = parseInt(result.booking_id, 10);
+  } else {
+    Booking_id = 2000;
+  }
+}
 
 app.post('/api/register', async (req, res) => {
   console.log(req.body);
@@ -43,6 +56,11 @@ app.post('/api/slotPage',async (req,res)=>{
     const database = client.db('trustcure');
     const collection = database.collection('doctors');
   try{
+    if (Booking_id === undefined) {
+      await initializeBookingId();
+    }
+
+    Booking_id += 1;
     await booking.create({
       name:req.body.name,
       gender:req.body.gender,
@@ -55,7 +73,8 @@ app.post('/api/slotPage',async (req,res)=>{
       email:req.body.email,
       slot:req.body.slot,
       waiting_time:req.body.time,
-      day:req.body.day
+      day:req.body.day,
+      booking_id:`B${Booking_id}`
     }
     )
     var day=req.body.day;
@@ -137,9 +156,23 @@ app.post('/api/virtual',async (req,res)=>{
     console.log(err);
   }
 })
+app.post('/api/cancellation',async (req,res)=>{
+  try{
+    const data=await booking.find({email:req.body.email});
+    return res.json({data:data})
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 app.post('/api/advBookMain',async (req,res)=>{
   try{
   console.log(req.body);
+  if (Booking_id === undefined) {
+    await initializeBookingId();
+  }
+
+  Booking_id += 1;
   await booking.create({
     name:req.body.name,
     gender:req.body.gender,
@@ -152,6 +185,7 @@ app.post('/api/advBookMain',async (req,res)=>{
     time:req.body.time,
     day:req.body.day,
     date:req.body.date,
+    booking_id:`B${Booking_id}`
   })
   }
 
@@ -159,6 +193,31 @@ app.post('/api/advBookMain',async (req,res)=>{
     console.log(err)
   }
 })
+app.post('/api/deleteSlot', async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db('trustcure');
+    const collection = database.collection('doctors');
+
+    await booking.deleteOne({ booking_id: req.body.id });
+
+    const updateQuery = {
+      $pull: {
+        [`schedule.${req.body.day}.slot.${req.body.slot}.patient_list`]: {
+          "patient_name": req.body.name,
+          "waiting_time": req.body.waitingTime
+        }
+      }
+    };
+
+    await collection.updateOne({ doctor_name: req.body.doct_name }, updateQuery);
+
+    res.json({ status: 'ok' });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: 'error' });
+  }
+});
 app.post('/api/login', async (req, res) => {
   try {
     const user = await User.findOne({

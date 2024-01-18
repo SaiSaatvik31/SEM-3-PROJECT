@@ -174,7 +174,7 @@ export default function VirtualRoom() {
                                 {patient.waiting_time}
                               </p>
                               <p className="text-white">
-                                Patient Waiting Time:{" "}
+                                Patient Visiting Time:{" "}
                                 {addMinutesToCurrentDate(
                                   parseInt(patient.waiting_time, 10),
                                   selectedSlot

@@ -29,6 +29,7 @@ import Adv_booking from "./components/adv_booking.jsx";
 import BookSelec from "./components/bookSelec.jsx";
 import Profile from "./components/profile.jsx";
 import VirtualRoom from "./components/virtualRoom.jsx";
+import Cancellation from "./components/cancellation.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -49,6 +50,7 @@ const MainApp = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="/virtualRoom" element={<VirtualRoom />} />
+          <Route path="/cancellation" element={<Cancellation />} />
           <Route
             path="/home"
             element={
