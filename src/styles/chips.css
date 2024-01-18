@@ -1,7 +1,7 @@
 .chip-container {
   height: 120vh;
   display: flex-column;
-  background-image: linear-gradient(to right, #f0f8ff, #c5cae9); 
+  /* background-image: linear-gradient(to right, #f0f8ff, #c5cae9);  */
 }
 
 .selected-chip-container {
@@ -14,6 +14,7 @@
 .selected-chip-container h3 {
   padding-top: 20px;
   padding-left: 50px;
+  color:#f0f8ff
 }
 
 .selected-chip-container ul {
@@ -79,6 +80,7 @@
 .body-parts-container h3 {
   padding-top: 20px;
   padding-left: 50px;
+  color:#f0f8ff
 }
 .chip-show-container ul {
   display: flex;
@@ -104,6 +106,7 @@
 .chip-show-container h3 {
     padding-top: 20px;
     padding-left: 50px;
+    color:#f0f8ff
 
 }
 @media only screen and (max-width: 600px) {

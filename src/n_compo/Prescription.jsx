@@ -12,10 +12,15 @@ function Prescription() {
                 Prescription
               </h1>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo perspiciatis ea porro, quaerat, consectetur quos
-                mollitia omnis assumenda voluptates eligendi ipsa animi quidem
-                provident! Veniam, consequatur. Sunt nam minima voluptatem.
+              "Welcome to our Prescription section, dedicated to ensuring your health and well-
+              being. Here, you can conveniently access and manage your digital prescriptions 
+              provided by our experienced healthcare professionals. Our user-friendly platform 
+              allows you to view, download, and even send your prescriptions to your preferred 
+              pharmacy seamlessly. We prioritize your convenience and strive to make the 
+              prescription process efficient and accessible. With our secure and easily navigable 
+              Prescription section, you can stay focused on your health while we take care of the rest. 
+              Your well-being is our priority, and this feature is designed to enhance your healthcare 
+              experience by providing quick and hassle-free access to your personalized medical prescriptions."
               </p>
             </div>
             <div className="flex justify-end">

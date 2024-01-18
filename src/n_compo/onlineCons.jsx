@@ -13,10 +13,16 @@ function OnlineCons() {
                 Online Consultation
               </h1>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo perspiciatis ea porro, quaerat, consectetur quos
-                mollitia omnis assumenda voluptates eligendi ipsa animi quidem
-                provident! Veniam, consequatur. Sunt nam minima voluptatem.
+              Welcome to our Online Consultation service, designed to provide you with convenient 
+              and accessible healthcare from the comfort of your own space. Our platform offers a 
+              seamless experience for booking virtual appointments with experienced doctors, 
+              allowing you to consult with medical professionals without the need for in-person 
+              visits. Whether you're seeking expert advice, follow-up consultations, or have non-
+              emergency health concerns, our Online Consultation feature empowers you to 
+              schedule and attend appointments at your convenience. Experience personalized and 
+              confidential healthcare consultations, ensuring that you receive the care you need, 
+              when you need it. Take a proactive step towards your well-being with our efficient and 
+              secure online platform for medical consultations.
               </p>
             </div>
           </div>
