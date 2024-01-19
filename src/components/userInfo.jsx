@@ -4,13 +4,22 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
+import { HashLoader } from "react-spinners";
+
 function UserInfo() {
+  let [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [img, setImg] = useState("");
 
   // Animate the symptom list
   const [symptoms, setSymptoms] = useState([""]);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   const symptomsList = () => {
     if (location.state.Age <= 6) {
       return;
@@ -87,50 +96,75 @@ function UserInfo() {
       <Navbar />
       <Outlet />
       <div
-        className="m-5 p-5"
-        style={{
-          background: `linear-gradient(to right, #dfe9f3, #f3f9fc)`,
-          borderRadius: "10px",
-        }}
+        className="container m-5 p-4 rounded-lg shadow-md"
+        style={{ background: "#f3f9fc" }}
       >
-        <div className="d-flex flex-row justify-content-between">
-          <div className="w-full">
-            <h1
-              className="head animate__animated animate__fadeInLeft"
-              style={{ fontWeight: "bold", fontSize: "35px" }}
-            >
-              YOUR SLOT HAS BEEN SUCCESSFULLY BOOKED
-            </h1>
-            <div style={{ fontSize: "20px" }} className="mt-3">
-              <p>Name of the person is: {location.state.name}</p>
-              <p>Gender: {location.state.gender}</p>
-              <p>Age of the person is: {location.state.Age}</p>
-              <p>
-                For whom the person is filling the Form:{" "}
-                {location.state.forWhom}
-              </p>
-              {symptomsList()}
-              {callSpecialist()}
-              <p>Doctor:{location.state.doct_name}</p>
-              <p>Hospital Name:{location.state.hospital}</p>
-              <p>Your Estimated Waiting Time: {location.state.time} minutes</p>
-              <p>Your Booking Choice:{location.state.book_type}</p>
-              <p>
-                Please Arrive to the Hospital Atleast 5 minutes before your Slot
-                Time
+        {loading ? (
+          <HashLoader
+            color="#00df9a"
+            loading={loading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <div className="row">
+            <div className="col-md-6">
+              <h2 className="mb-4">Your Appointment Information</h2>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
+                  <strong>Doctor:</strong> {location.state.doct_name}
+                </li>
+                <li className="list-group-item">
+                  <strong>Hospital:</strong> {location.state.hospital}
+                </li>
+                <li className="list-group-item">
+                  <strong>Appointment Time:</strong> {/* Display actual time */}
+                </li>
+                <li className="list-group-item">
+                  <strong>Estimated Waiting Time:</strong> {location.state.time}{" "}
+                  minutes
+                </li>
+                <li className="list-group-item">
+                  <strong>Booking Type:</strong> {location.state.book_type}
+                </li>
+              </ul>
+              <p className="small text-muted mt-3">
+                Please arrive at least 5 minutes before your slot time.
               </p>
             </div>
+            <div className="col-md-6">
+              <h2 className="mb-4">Your Personal Information</h2>
+              <div className="card mb-3">
+                <div className="card-body flex justify-center">
+                  <img
+                    className="card-img-top rounded-circle w-20"
+                    src={img}
+                    alt="User"
+                  />
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      <strong>Name:</strong> {location.state.name}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Gender:</strong> {location.state.gender}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Age:</strong> {location.state.Age}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Booking For:</strong> {location.state.forWhom}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              {symptomsList()}
+              {callSpecialist()}
+            </div>
           </div>
-          <div className="position-relative">
-            <img
-              className="w-50 shadow animate__animated animate__zoomIn"
-              src={img}
-              alt="User"
-            />
-          </div>
-        </div>
+        )}
       </div>
-      <Footer />
+      <Footer style={{ marginTop: "auto" }} />
     </>
   );
 }

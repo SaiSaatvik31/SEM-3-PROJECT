@@ -134,7 +134,7 @@ function Home({ selectedOptions, updateSelectedOptions }) {
         </Button>
         <h1>Book An Online Consulation Now:</h1>
         <Button>Book Consulation</Button>
-        <h1>View Your Prescription:</h1>
+        <h1>View Your previous Prescriptions:</h1>
         <Button>View Now</Button>
         <h1>Enter Virtual Room</h1>
         <Button
@@ -144,6 +144,8 @@ function Home({ selectedOptions, updateSelectedOptions }) {
         >
           Lets Go!!!
         </Button>
+        <h1>Cancel Your Bookings</h1>
+        <Button>Cancel Bookings</Button>
       </div>
     </>
   );
