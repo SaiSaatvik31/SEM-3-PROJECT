@@ -295,6 +295,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   return (
     <>
       <Box component={"div"} className="chip-container  ">
+        <ModelViewer height="300" width="400" />
         <div className="flex flex-row">
           <Box
             component={"div"}

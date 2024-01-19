@@ -96,9 +96,11 @@ app.post('/api/advBook', async (req, res) => {
     const database = client.db('trustcure');
     const collection = database.collection('doc_avail_new');
     const day = req.body.day;
+    console.log("hii")
+    console.log(req.body.speciality);
     const projection = { doc_name: 1, speciality: 1, doctor_desc: 1, hospital_name: 1, availability: 1, _id: 0 };
 
-    const dayValues = await collection.find({}, projection).toArray();
+    const dayValues = await collection.find({speciality:req.body.speciality}, projection).toArray();
 
     const doc_list = dayValues.map((item) => ({
       doc_name: item.doc_name,

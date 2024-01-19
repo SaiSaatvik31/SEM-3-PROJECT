@@ -32,12 +32,14 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
   };
   async function displayDoc(day) {
     try {
+      let speciality = updatedList.speciality;
+      console.log(speciality);
       const response = await fetch("/api/advBook", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ day: day }),
+        body: JSON.stringify({ day: day, speciality: speciality }),
       });
       const data = await response.json();
       console.log(data.doc_list);

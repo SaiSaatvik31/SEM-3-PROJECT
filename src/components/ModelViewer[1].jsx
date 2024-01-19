@@ -71,7 +71,7 @@ function ModelViewer() {
     // viewer.setBackgroundColor(0,0,0, 0)
     //viewer.clearColor(0,0,0,0)
 
-    await manager.addFromPath("src/scene-41[1].glb");
+    await manager.addFromPath("src/scene-53.glb");
     // (await viewer.addPlugin(TonemapPlugin)).config.clipBackground = true;
     gltfAnim.animationSpeed = 1;
     gltfAnim.loopAnimations = true;
