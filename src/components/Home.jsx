@@ -81,11 +81,6 @@ function Home({ selectedOptions, updateSelectedOptions }) {
             <h1>Doctor Appointment Website</h1>
             <div className="buttons">
               <M_model />
-              <Link to="/formPage">
-                <div className="ml-4 mt-4">
-                  <Button variant="outlined">Form Page </Button>
-                </div>
-              </Link>
             </div>
           </div>
         </div>
