@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "@mui/material";
+import { Button, Modal, CircularProgress } from "@mui/material";
 import Adv_book_m from "./adv_book_m";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 function Adv_booking({ selectedOptions, updateSelectedOptions }) {
   console.log(selectedOptions);
+  const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [day, setDay] = useState("");
   const [docData, setDocData] = useState([]);
@@ -32,6 +33,7 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
   };
   async function displayDoc(day) {
     try {
+      setLoading(true);
       let speciality = updatedList.speciality;
       console.log(speciality);
       const response = await fetch("/api/advBook", {
@@ -46,6 +48,8 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
       setDocData(data.doc_list);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   }
   const today = new Date();
@@ -91,30 +95,38 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {docData.map((doctor, index) => (
-                <TableRow key={index}>
-                  <TableCell>{doctor.doc_name}</TableCell>
-                  <TableCell align="center">{doctor.speciality}</TableCell>
-                  <TableCell align="center">
-                    {doctor.availability
-                      ? doctor.availability
-                      : "No Slot Available"}
-                  </TableCell>
-                  <TableCell align="center">
-                    {doctor.availability ? (
-                      <Adv_book_m
-                        doc_name={doctor.doc_name}
-                        speciality={doctor.speciality}
-                        doc_avail={doctor.availability}
-                        hospital={doctor.hospital}
-                        data={updatedList}
-                      />
-                    ) : (
-                      <Button disabled>No Slots</Button>
-                    )}
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={4} align="center">
+                    <CircularProgress />
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                docData.map((doctor, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{doctor.doc_name}</TableCell>
+                    <TableCell align="center">{doctor.speciality}</TableCell>
+                    <TableCell align="center">
+                      {doctor.availability
+                        ? doctor.availability
+                        : "No Slot Available"}
+                    </TableCell>
+                    <TableCell align="center">
+                      {doctor.availability ? (
+                        <Adv_book_m
+                          doc_name={doctor.doc_name}
+                          speciality={doctor.speciality}
+                          doc_avail={doctor.availability}
+                          hospital={doctor.hospital}
+                          data={updatedList}
+                        />
+                      ) : (
+                        <Button disabled>No Slots</Button>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </div>
