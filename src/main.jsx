@@ -27,9 +27,10 @@ import DocLogin from "./components/doctorLogin.jsx";
 import LandingPage from "./components/landingPage.jsx";
 import Adv_booking from "./components/adv_booking.jsx";
 import BookSelec from "./components/bookSelec.jsx";
-import Profile from "./components/profile.jsx";
 import VirtualRoom from "./components/virtualRoom.jsx";
 import Cancellation from "./components/cancellation.jsx";
+import RecBook from "./components/recBook.jsx";
+import Profile from "./components/Profile.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -43,11 +44,12 @@ const MainApp = () => {
         <Route index element={<LandingPage />} />
         <Route path="/" element={<Layout />}>
           <Route path="/docLogin" element={<DocLogin />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/recBook" element={<RecBook />} />
           <Route path="/register" element={<Register />} />
           <Route path="/doctor" element={<Doctor />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route path="/cancellation" element={<Cancellation />} />

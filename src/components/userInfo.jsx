@@ -12,7 +12,6 @@ function UserInfo() {
   const navigate = useNavigate();
   const [img, setImg] = useState("");
 
-  // Animate the symptom list
   const [symptoms, setSymptoms] = useState([""]);
   useEffect(() => {
     setLoading(true);
@@ -96,17 +95,19 @@ function UserInfo() {
       <Navbar />
       <Outlet />
       <div
-        className="container m-5 p-4 rounded-lg shadow-md"
+        className="container m-5 p-4 rounded-lg shadow-md "
         style={{ background: "#f3f9fc" }}
       >
         {loading ? (
-          <HashLoader
-            color="#00df9a"
-            loading={loading}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+          <div className="flex justify-center">
+            <HashLoader
+              color="#00df9a"
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
         ) : (
           <div className="row">
             <div className="col-md-6">
@@ -119,7 +120,7 @@ function UserInfo() {
                   <strong>Hospital:</strong> {location.state.hospital}
                 </li>
                 <li className="list-group-item">
-                  <strong>Appointment Time:</strong> {/* Display actual time */}
+                  <strong>Appointment Time:</strong>
                 </li>
                 <li className="list-group-item">
                   <strong>Estimated Waiting Time:</strong> {location.state.time}{" "}

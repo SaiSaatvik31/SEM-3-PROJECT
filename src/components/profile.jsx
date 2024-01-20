@@ -1,153 +1,81 @@
-import React, { useEffect, useState } from "react";
-import pic from "../pro-logo.png";
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardActionArea,
-  makeStyles,
-  Box,
-  Container,
-  Grid,
-  CardMedia,
-} from "@mui/material";
-import { borderLeft } from "@mui/system";
+import React, { useState, useEffect } from "react";
+import "../styles/profile.css";
+import goku from "../goku.jpg";
+import { motion } from "framer-motion";
 
 function Profile() {
-  const [patientData, setPatientData] = useState([]);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const email = token
-          ? JSON.parse(atob(token.split(".")[1])).email
-          : null;
-        console.log(email);
-        const response = await fetch("/api/profile", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
+    // Set a timeout to show content after 2 seconds
+    const timeout = setTimeout(() => {
+      setShowContent(true);
+    }, 2000);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setPatientData(data);
-        console.log("Data received:", data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchData();
-  }, [setPatientData]);
+    // Clear the timeout when the component is unmounted
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
-    <Container
-      className="min-h-screen"
-      maxWidth="w-full"
-      style={{
-        paddingTop: "50px",
-        paddingBottom: "50px",
-        backgroundColor: "#F5F5F5",
-      }}
-    >
-      <Grid container spacing={0}>
-        <Grid item xs={6}>
-          <Box display="flex" justifyContent="center" alignItems="left">
-            <CardMedia
-              style={{
-                marginTop: 30,
-                width: 450,
-                height: 300,
-                borderRadius: "10px",
-                overflow: "hidden",
-              }}
-              image={pic}
-              title="Profile Picture"
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={5}>
-          <Box alignItems="left" textAlign="left">
-            <h2
-              className="text-3xl"
-              style={{
-                fontSize: "4xl",
-                fontWeight: "bold",
-                marginBottom: "10px",
-              }}
+    <>
+      <div className="container">
+        <div className="home__rectangle"></div>
+        <div className={`perfil ${showContent ? "show-content" : ""}`}>
+          <div className="perfil__content text-center">
+            <img src={goku} className="perfil__img" alt="Goku" />
+          </div>
+        </div>
+        <div className="text-content mt-10 ">
+          <div className="mb-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 1 }}
+              transition={{ delay: 3, duration: 0.8 }}
             >
-              Profile
-            </h2>
-            <p
-              className="text-2xl"
-              style={{ fontSize: "2xl", marginBottom: "10px" }}
+              <p className="text-white text-3xl header-font">Profile</p>
+              <p className="text-white body-font">Name: Your Name</p>
+              <p className="text-white body-font">Age: Your Age</p>
+              <p className="text-white body-font">Gender: Your Gender</p>
+            </motion.div>
+          </div>
+          <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 1 }}
+              transition={{ delay: 3, duration: 0.8 }}
             >
-              Recent Bookings:
-            </p>
-            {patientData.data?.map((element, index) => (
-              <Card
-                key={index}
-                style={{
-                  marginBottom: "20px",
-                  backgroundColor:
-                    element.book_type == "Advance Booking"
-                      ? "#D3D3D3"
-                      : "#00df9a",
-                  borderRadius: "10px",
-                  padding: "20px",
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
-                }}
+              <p className="text-white text-3xl font-bold">Your Info</p>
+            </motion.div>
+
+            <div className="flex flex-col items-center">
+              <motion.button
+                className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 py-3 m-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ delay: 3, duration: 0.8 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <CardActionArea>
-                  <CardContent
-                    style={{
-                      color: "white",
-                      backgroundColor:
-                        element.book_type == "Advance Booking"
-                          ? "#D3D3D3"
-                          : "#00df9a",
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Patient Name: {element.name}
-                    </Typography>
-                    <Typography>
-                      Gender: {element.gender}
-                      <br />
-                      Age: {element.Age}
-                      <br />
-                      forWhom: {element.forWhom}
-                      <br />
-                      Book Type: {element.book_type}
-                      <br />
-                      Hospital: {element.hospital}
-                      <br />
-                      Doctor Name: {element.doct_name}
-                      <br />
-                      {element.day ? `Booking Day: ${element.day}` : null}
-                      <br />
-                      {element.time ? `Booking Time: ${element.time}` : null}
-                      <br />
-                      {element.date ? `Booking Date: ${element.date}` : null}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            ))}
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
+                Previous Bookings
+              </motion.button>
+              <motion.button
+                className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 py-3 m-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ delay: 3, duration: 0.8 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Cancel Your Bookings
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
+
 export default Profile;
