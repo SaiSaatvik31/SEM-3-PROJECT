@@ -26,12 +26,12 @@
   margin: 40px;
   box-sizing: border-box;
   border: 1px dashed transparent; /* Remove solid border */
-  background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); /* Gradient matching the container */
+  /* background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); Gradient matching the container */
 }
 .selected-chip-container  Button {
   float: right;
   color: #04254c; 
-  background-color: #b2ebf2; /* Lighter blue with gradient */
+  background-color: #00df9a; 
   background-image: linear-gradient(to right, #b2ebf2, #81d4fa);
   border: none;
   border-radius: 5px; 
@@ -44,8 +44,8 @@
   cursor: pointer;
 }
 .selected-chip-container .selectedChips {
-  background-color: #81d4fa; /* Lighter blue with gradient */
-  background-image: linear-gradient(to right, #81d4fa, #b2ebf2);
+  background-color: #00df9a; /* Lighter blue with gradient */
+  /* background-image: linear-gradient(to right, #81d4fa, #b2ebf2); */
   color: #04254c;
   font-size: 14px;
   padding: 8px;
@@ -75,7 +75,7 @@
   margin: 40px;
   box-sizing: border-box;
   border: 1px dashed transparent;
-  background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9);
+  /* background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); */
 }
 .body-parts-container h3 {
   padding-top: 20px;
@@ -90,7 +90,7 @@
   padding: 30px;
   margin: 40px;
   border: 1px dashed transparent; /* Remove solid border */
-  background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9);
+  /* background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); */
 }
 .chip-show-container .showChips{
     color: black;
