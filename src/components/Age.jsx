@@ -104,7 +104,7 @@ function Age({ selectedOptions, updateSelectedOptions }) {
           <motion.button
         className={`bg-[#00df9a] w-[200px] rounded-md font-medium px-6 mx-auto py-3 mt-3`}
         initial="hidden"
-        onclick={FormPage}
+        onClick={FormPage}
         animate="buttonSlide"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
