@@ -85,10 +85,18 @@ app.post('/api/slotPage',async (req,res)=>{
       amt:req.body.amt
     }
     )
+
+    // const doctor = req.body.doct_name
     var day=req.body.day;
     var slotTime=req.body.slot;
     collection.updateOne({doctor_name:req.body.doct_name},{$push:{[`schedule.${day}.slot.${slotTime}.patient_list`]:{patient_name:req.body.name,waiting_time:req.body.time}}},{upsert:true})
     console.log("checking");
+    
+     
+      
+      
+    
+    
     const token=localStorage.getItem('token');
     res.json({status:'ok'})
 
@@ -97,6 +105,24 @@ app.post('/api/slotPage',async (req,res)=>{
     console.log(err)
   }
   
+})
+
+
+app.post('/api/docAttendance', async(req, res)=>{
+  try{
+    await client.connect();
+    const database = client.db('trustcure');
+    const collection = database.collection('doctors');
+    const doc = req.body.doc_name
+    console.log(doc);
+    const doct = await collection.findOne({doctor_name:doc})
+    console.log(doct);
+    console.log("1",doct.status);
+    res.json({status:doct.status})
+  }
+  catch(err){
+    console.log(err);
+  }
 })
 app.post('/api/advBook', async (req, res) => {
   try {

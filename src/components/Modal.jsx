@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { color } from "@mui/system";
 const style = {
   position: "absolute",
   top: "50%",
@@ -30,13 +31,27 @@ export default function BasicModal({
   const [slotTime, setSlotTime] = useState([]);
   const [updatedList, setUpdatedList] = useState(stateObj);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
+  const [docStatus, setDocStatus] = useState('')
+  const handleOpen = async () => {
     setOpen(true);
+    console.log(name);
+    const docAttendance = await fetch('/api/docAttendance',{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        doc_name: name
+        
+      }),
+    })
+    const status = await docAttendance.json()
+    setDocStatus(status.status)
     let time = slot.split(",");
     setSlotTime(time);
   };
   const handleClose = () => setOpen(false);
-  const handleClick = () => {
+  const handleClick = async () => {
     let final_options = {
       ...updatedList,
       doct_name: name,
@@ -64,7 +79,7 @@ export default function BasicModal({
         data: stateObj.symptoms,
       }),
     });
-    const response_mongo = fetch("/api/slotPage", {
+    const response_mongo = await fetch("/api/slotPage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,11 +100,12 @@ export default function BasicModal({
         amt: final_options.amt,
       }),
     });
+   
     navigate("/userInfo", { state: final_options });
   };
   return (
     <div>
-      <Button onClick={handleOpen}>View Info</Button>
+      <Button  onClick={handleOpen}>View Info</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -135,6 +151,7 @@ export default function BasicModal({
           <p>Selected Time: {selectedTime}</p>
           <p>Doctor Consultation Fee: {amt} rs/-</p>
           <Button
+          disabled={docStatus!=='present'}
             onClick={handleClick}
             className="mt-5"
             variant="contained"
