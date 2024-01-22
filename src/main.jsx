@@ -31,6 +31,8 @@ import VirtualRoom from "./components/virtualRoom.jsx";
 import Cancellation from "./components/cancellation.jsx";
 import RecBook from "./components/recBook.jsx";
 import Profile from "./components/Profile.jsx";
+import OnlineCons from "./components/online_cons.jsx";
+import On_cons2 from "./components/on_cons2.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -53,6 +55,7 @@ const MainApp = () => {
           <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route path="/cancellation" element={<Cancellation />} />
+
           <Route
             path="/home"
             element={
@@ -108,6 +111,24 @@ const MainApp = () => {
           path="/advBook"
           element={
             <Adv_booking
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
+            />
+          }
+        />
+        <Route
+          path="/onlineConsultation"
+          element={
+            <OnlineCons
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
+            />
+          }
+        />
+        <Route
+          path="/bookOnline"
+          element={
+            <On_cons2
               selectedOptions={selectedOptions}
               updateSelectedOptions={updateSelectedOptions}
             />

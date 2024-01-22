@@ -43,6 +43,7 @@ def predict():
     output = snakes.iloc[prediction][1] 
     l=[]
     h=[]
+    amt=[]
     t=[]
     r=[]
     n=[]
@@ -72,13 +73,17 @@ def predict():
         s_t.append(str(doc_wtl[f"{day_name}"][a12]))
         if i == 2:
             h.append("Trust Cure Hospitals")
+            amt.append("500")
         elif i==3:
             h.append("Trust Cure Hospitals")
+            amt.append("540")
         elif i==4:
             h.append("Apollo Hospitals")
+            amt.append("600")
         elif i==5:
             h.append("Kamineni Hospital")
-    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name}
+            amt.append("450")
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt}
     print("helllo")
     print(day_name)
     n_dtf = pd.DataFrame(n_dic)
@@ -90,7 +95,7 @@ def predict():
     print(output)
     print(x)
     print(prediction)
-    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
+    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name,"amt":list(n_dtf["amt"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
 x
 
 @app.route('/flask/otherDoctors',methods=['POST','GET'])

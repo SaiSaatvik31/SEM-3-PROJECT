@@ -264,7 +264,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       });
 
       const data = await response.json();
-
+      console.log(data);
       // Update UI with received data
 
       let updatedOptions = {
@@ -277,6 +277,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         rating: data.rating,
         slot: data.slot,
         dayName: data.dayName,
+        amt: data.amt,
       };
       updateSelectedOptions(updatedOptions);
       console.log("checking:");
@@ -294,12 +295,12 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <>
-      <Box component={"div"} className="chip-container  ">
-        <ModelViewer height="300" width="400" />
+      <Box component={"div"} className="chip-container bg-dark">
         <div className="flex flex-row">
+          <ModelViewer height="300" width="400" />
           <Box
             component={"div"}
-            className="col-12 col-md-12 selected-chip-container"
+            className="col-8 col-md-8 selected-chip-container"
           >
             <h3 className="font-bold">Selected Symptoms</h3>
 

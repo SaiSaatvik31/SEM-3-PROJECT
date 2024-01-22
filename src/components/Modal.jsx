@@ -17,7 +17,14 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ stateObj, name, hospital, time, slot }) {
+export default function BasicModal({
+  stateObj,
+  name,
+  hospital,
+  time,
+  slot,
+  amt,
+}) {
   const navigate = useNavigate();
   const [selectedTime, setSelectedTime] = useState(null);
   const [slotTime, setSlotTime] = useState([]);
@@ -37,6 +44,7 @@ export default function BasicModal({ stateObj, name, hospital, time, slot }) {
       time: time,
       slot: slot,
       booked_time: selectedTime,
+      amt: amt,
     };
     console.log("heyy!");
     console.log(final_options);
@@ -74,6 +82,7 @@ export default function BasicModal({ stateObj, name, hospital, time, slot }) {
         slot: final_options.booked_time,
         time: final_options.time,
         day: final_options.dayName,
+        amt: final_options.amt,
       }),
     });
     navigate("/userInfo", { state: final_options });
@@ -123,7 +132,8 @@ export default function BasicModal({ stateObj, name, hospital, time, slot }) {
               {time}
             </Button>
           ))}
-          <p>Selected Time:{selectedTime}</p>
+          <p>Selected Time: {selectedTime}</p>
+          <p>Doctor Consultation Fee: {amt} rs/-</p>
           <Button
             onClick={handleClick}
             className="mt-5"

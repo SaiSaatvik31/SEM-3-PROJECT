@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const style = {
   position: "absolute",
   top: "50%",
@@ -17,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function Adv_book_m({
+export default function online_book_m({
   doc_name,
   speciality,
   doc_avail,
@@ -33,7 +34,22 @@ export default function Adv_book_m({
   const [color, setColor] = useState("secondary");
   const [text, setText] = useState("Book Slot");
   console.log(amt);
+  const handleCreateMeeting = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:1337/schedule_events",
+        {
+          participants: [{ email: "trustcureorg@gmail.com" }],
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error creating meeting:", error);
+    }
+  };
   const asyncFunction = async () => {
+    await handleCreateMeeting();
     let updatedData = {
       ...updatedList,
       doct_name: doc_name,
@@ -48,7 +64,8 @@ export default function Adv_book_m({
     const i_date = updatedData.selectedDate;
     const dateObject = new Date(i_date);
     const formattedDate = dateObject.toISOString().split("T")[0];
-    const response = await fetch("/api/advBookMain", {
+
+    const response = await fetch("/api/onlineBookMain", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

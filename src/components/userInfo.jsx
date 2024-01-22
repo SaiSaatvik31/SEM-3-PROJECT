@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
 import { HashLoader } from "react-spinners";
+import { timeout } from "webgi";
 
 function UserInfo() {
   let [loading, setLoading] = useState(false);
@@ -38,6 +39,13 @@ function UserInfo() {
           </ul>
         </>
       );
+    }
+  };
+  const time = () => {
+    if (location.state.book_type === "Advance Booking") {
+      return location.state.time;
+    } else {
+      return location.state.slot;
     }
   };
   const callSpecialist = () => {
@@ -121,6 +129,7 @@ function UserInfo() {
                 </li>
                 <li className="list-group-item">
                   <strong>Appointment Time:</strong>
+                  {time()}
                 </li>
                 <li className="list-group-item">
                   <strong>Estimated Waiting Time:</strong> {location.state.time}{" "}
@@ -128,6 +137,10 @@ function UserInfo() {
                 </li>
                 <li className="list-group-item">
                   <strong>Booking Type:</strong> {location.state.book_type}
+                </li>
+                <li className="list-group-item">
+                  <strong>Your Doctor Consultation Fee:</strong>{" "}
+                  {`${location.state.amt} rs/-`}
                 </li>
               </ul>
               <p className="small text-muted mt-3">

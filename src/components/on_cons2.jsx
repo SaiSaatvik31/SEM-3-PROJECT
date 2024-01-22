@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, CircularProgress } from "@mui/material";
-import Adv_book_m from "./adv_book_m";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "./Navbar";
@@ -10,15 +9,16 @@ import {
   TableCell,
   TableRow,
   TableBody,
-  Box,
 } from "@mui/material";
-function Adv_booking({ selectedOptions, updateSelectedOptions }) {
-  console.log(selectedOptions);
+import Online_book_m from "./online_book_m";
+
+function On_cons2() {
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [day, setDay] = useState("");
   const [docData, setDocData] = useState([]);
-  const [updatedList, setUpdatedList] = useState(selectedOptions);
+  const [updatedList, setUpdatedList] = useState(null);
+
   const handleDay = async (selectedDay) => {
     setDay(selectedDay);
     let updatedData = {
@@ -32,12 +32,33 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
     console.log(updatedList);
     await displayDoc(selectedDay);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const email = token ? JSON.parse(atob(token.split(".")[1])).email : null;
+
+    console.log(email);
+    const asyncFn = async () => {
+      const response = await fetch("/api/refBook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      setUpdatedList(data.data || {});
+      console.log(data);
+    };
+    asyncFn();
+  }, []);
+
   async function displayDoc(day) {
     try {
       setLoading(true);
-      let speciality = updatedList.speciality;
+      let speciality = updatedList ? updatedList.speciality : null;
       console.log(speciality);
-      const response = await fetch("/api/advBook", {
+      const response = await fetch("/api/bookOnline", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,15 +74,17 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
       setLoading(false);
     }
   }
+
   const today = new Date();
   const nextFiveDays = new Date(today);
   nextFiveDays.setDate(today.getDate() + 5);
+
   return (
     <>
       <Navbar />
       <div className="ml-5">
         <h1 className="text-3xl font-bold text-emerald-300 mt-5 ">
-          Advance Booking
+          Online Booking
         </h1>
         <br />
         <h2>Select a date from today to the next five days:</h2>
@@ -90,7 +113,7 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
               <TableRow>
                 <TableCell>Doctor Name</TableCell>
                 <TableCell align="center">Speciality</TableCell>
-                <TableCell align="center">Avaiable Slots</TableCell>
+                <TableCell align="center">Available Slots</TableCell>
                 <TableCell align="center">Book Appointment</TableCell>
               </TableRow>
             </TableHead>
@@ -113,7 +136,7 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
                     </TableCell>
                     <TableCell align="center">
                       {doctor.availability ? (
-                        <Adv_book_m
+                        <Online_book_m
                           doc_name={doctor.doc_name}
                           speciality={doctor.speciality}
                           doc_avail={doctor.availability}
@@ -135,4 +158,5 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
     </>
   );
 }
-export default Adv_booking;
+
+export default On_cons2;
