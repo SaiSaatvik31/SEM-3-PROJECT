@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime,timedelta
 from flask_cors import CORS
+from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
@@ -14,6 +15,11 @@ tmodel=pickle.load(open('The_TimeMachine_fin.pkl','rb'))
 #b = pd.read_csv("updated test.emt_1.csv")
 
 x=0
+
+client = MongoClient('mongodb+srv://trustcureorg:ksksap@cluster7.hzgfnmh.mongodb.net/?retryWrites=true&w=majority')
+db = client.trustcure
+doctors_collection = db.doctors
+time_collection = db.time
 
 @app.route('/flask/predict',methods=['POST','GET'])
 def predict():
@@ -83,7 +89,39 @@ def predict():
         elif i==5:
             h.append("Kamineni Hospital")
             amt.append("450")
-    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt}
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name}
+    url = 'https://docs.google.com/spreadsheets/d/1rZutJ4-S0YK-Yw3URsJN5BacnUO-Z8R2Lt8F88N32cU/export?format=csv&gid=243849322'
+    gf1 = pd.read_csv(url)
+    last_updated_time = time_collection.find_one()
+    last_updated_time = last_updated_time['time']
+    print(last_updated_time)
+    # time_document = last_updated_time_.next() if last_updated_time_.count()>0 else None
+    # print(time_document)
+    # time = time_document["time"] if time_document else None
+    # print(time)
+    gf2 = gf1[gf1['DateTime']>last_updated_time]
+    # print(gf2)
+    if not gf2.empty:
+
+        example = gf2['Doctor_ID'].index.values
+        last_index = example[-1] if example else None
+        time = gf2['DateTime'][last_index]
+        print(time)
+    # time = example['DateTime'][example[-1]]
+        latest_time = time_collection.update_one({},{"$set":{'time': time}})
+        if time != last_updated_time:
+            for i in example:
+        
+                # print(doctor_id)
+                doctor_doc = doctors_collection.find_one({"doctor_id": gf2['Doctor_ID'][i]})
+                if doctor_doc:
+                # Toggle status based on existing status
+                    new_status = "absent" if doctor_doc["status"] == "present" else "present"
+                    doctors_collection.update_one({"doctor_id": gf2['Doctor_ID'][i]}, {"$set": {"status": new_status}})
+                    print(new_status)
+                else:
+                    # Doctor ID not found, handle as needed (e.g., log a message)
+                    print(f"Doctor ID {gf2['Doctor_ID'][i]} not found in MongoDB collection.")
     print("helllo")
     print(day_name)
     n_dtf = pd.DataFrame(n_dic)
