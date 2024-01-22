@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const patient=new mongoose.Schema({
+const patient_main=new mongoose.Schema({
   name:String,
   gender:String,
   Age:Number,
@@ -16,6 +16,6 @@ const patient=new mongoose.Schema({
   waiting_time:String,
   booking_id:String,
   amt:String
-},{collection:'patients-booking'})
-const data=mongoose.model('patients-booking',patient)
+},{collection:'online-patients-booking'})
+const data=mongoose.model('patients-booking-main',patient_main)
 module.exports=data

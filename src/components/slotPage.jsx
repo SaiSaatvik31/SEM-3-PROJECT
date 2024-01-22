@@ -33,6 +33,7 @@ function SlotPage() {
       review: "Excellent",
       time: location.state.time_list[i],
       slot: location.state.slot[i],
+      amt: location.state.amt[i],
     });
   }
   console.log("0");
@@ -98,6 +99,7 @@ function SlotPage() {
                       hospital={doctor.hospital}
                       time={doctor.time}
                       slot={doctor.slot}
+                      amt={doctor.amt}
                     />
                   </TableCell>
                 </TableRow>

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import { useState } from "react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,14 +24,17 @@ export default function cancellation_m({
   name,
   waitingTime,
 }) {
+  const [isDeleted, setIsDeleted] = useState(false);
   const handleDelete = async () => {
     const response = await fetch("/api/deleteSlot", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, doct_name, day, slot,name,waitingTime }),
+      body: JSON.stringify({ id, doct_name, day, slot, name, waitingTime }),
     });
+    setOpen(false);
+    setIsDeleted(true);
   };
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -63,6 +66,11 @@ export default function cancellation_m({
           </Typography>
         </Box>
       </Modal>
+      {isDeleted && (
+        <div>
+          <p>Slot Deleted!</p>
+        </div>
+      )}
     </div>
   );
 }

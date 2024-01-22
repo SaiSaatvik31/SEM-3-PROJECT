@@ -47,7 +47,7 @@ function recBook() {
 
   return (
     <Container
-      className="min-h-screen"
+      className=""
       maxWidth="w-full"
       style={{
         paddingTop: "50px",
@@ -70,7 +70,17 @@ function recBook() {
               title="Profile Picture"
             />
           </Box>
+          <p
+            className="text-2xl mt-4"
+            style={{ fontSize: "2xl", marginBottom: "10px" }}
+          >
+            {`Online Consultation Bookings`}:
+          </p>
+          <Card className="mt-2">
+            <h1 className="">fdjbsdjdb</h1>
+          </Card>
         </Grid>
+
         <Grid item xs={5}>
           <Box alignItems="left" textAlign="left">
             <h2
@@ -87,7 +97,7 @@ function recBook() {
               className="text-2xl"
               style={{ fontSize: "2xl", marginBottom: "10px" }}
             >
-              Recent Bookings:
+              {`Recent Bookings (Advance/Normal)`}:
             </p>
             {patientData.data?.map((element, index) => (
               <Card
