@@ -41,6 +41,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   const [symptoms, setSymptoms] = useState([]);
   const [activeBodyPart, setActiveBodyPart] = useState([]);
   const [activeSymptoms, setActiveSymptoms] = useState([]);
+  const [useModal, setUseModal] = useState(true);
 
   let diseases = [
     {
@@ -283,7 +284,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       console.log("checking:");
       console.log(updatedOptions);
       navigate("/bookSelec", { state: updatedOptions });
-
+      
       // Update other elements if needed
 
       // Hide loading indicator
@@ -297,7 +298,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     <>
       <Box component={"div"} className="chip-container bg-dark">
         <div className="flex flex-row">
-          <ModelViewer height="300" width="400" />
+          <ModelViewer useModal={true} height="300" width="400" />
           <Box
             component={"div"}
             className="col-8 col-md-8 selected-chip-container"

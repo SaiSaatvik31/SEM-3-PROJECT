@@ -2,17 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../styles/profile.css";
 import goku from "../goku.jpg";
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 function Profile() {
   const [showContent, setShowContent] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    // Set a timeout to show content after 2 seconds
     const timeout = setTimeout(() => {
       setShowContent(true);
-    }, 2000);
+    }, 1000);
 
-    // Clear the timeout when the component is unmounted
     return () => clearTimeout(timeout);
   }, []);
 
@@ -45,18 +43,19 @@ function Profile() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 1 }}
               transition={{ delay: 3, duration: 0.8 }}
-            >
-              <p className="text-white text-3xl font-bold">Your Info</p>
-            </motion.div>
+            ></motion.div>
 
             <div className="flex flex-col items-center">
               <motion.button
-                className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 py-3 m-3"
+                className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 py-3 m-3 cursor-pointer"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 whileHover={{ scale: 1.1 }}
                 transition={{ delay: 3, duration: 0.8 }}
                 whileTap={{ scale: 0.9 }}
+                onClick={() => {
+                  navigate("/recBook");
+                }}
               >
                 Previous Bookings
               </motion.button>
@@ -67,6 +66,9 @@ function Profile() {
                 whileHover={{ scale: 1.1 }}
                 transition={{ delay: 3, duration: 0.8 }}
                 whileTap={{ scale: 0.9 }}
+                onClick={() => {
+                  navigate("/cancellation");
+                }}
               >
                 Cancel Your Bookings
               </motion.button>
