@@ -23,6 +23,7 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
+  pointer-events: none;
 }
 
 .perfil {
@@ -32,6 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
+  z-index: -1;
   top: 0;
   left: 0;
   opacity: 0;
