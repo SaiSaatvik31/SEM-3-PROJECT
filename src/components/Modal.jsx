@@ -105,7 +105,7 @@ export default function BasicModal({
   };
   return (
     <div>
-      <Button  onClick={handleOpen}>View Info</Button>
+      <Button  onClick={handleOpen}>BOOK NOW</Button>
       <Modal
         open={open}
         onClose={handleClose}
