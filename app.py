@@ -18,7 +18,7 @@ x=0
 
 client = MongoClient('mongodb+srv://trustcureorg:ksksap@cluster7.hzgfnmh.mongodb.net/?retryWrites=true&w=majority')
 db = client.trustcure
-doctors_collection = db.doctors
+doctors_collection = db.doc_avail_new
 time_collection = db.time
 
 @app.route('/flask/predict',methods=['POST','GET'])
@@ -89,7 +89,7 @@ def predict():
         elif i==5:
             h.append("Kamineni Hospital")
             amt.append("450")
-    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name}
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt}
     url = 'https://docs.google.com/spreadsheets/d/1rZutJ4-S0YK-Yw3URsJN5BacnUO-Z8R2Lt8F88N32cU/export?format=csv&gid=243849322'
     gf1 = pd.read_csv(url)
     last_updated_time = time_collection.find_one()
@@ -100,24 +100,25 @@ def predict():
     # time = time_document["time"] if time_document else None
     # print(time)
     gf2 = gf1[gf1['DateTime']>last_updated_time]
-    # print(gf2)
+    print(gf2.empty)
     if not gf2.empty:
 
         example = gf2['Doctor_ID'].index.values
-        last_index = example[-1] if example else None
+        last_index = example[-1] 
         time = gf2['DateTime'][last_index]
         print(time)
     # time = example['DateTime'][example[-1]]
         latest_time = time_collection.update_one({},{"$set":{'time': time}})
-        if time != last_updated_time:
-            for i in example:
+        # if time > last_updated_time:
+        print("#############")
+        for i in example:
         
                 # print(doctor_id)
-                doctor_doc = doctors_collection.find_one({"doctor_id": gf2['Doctor_ID'][i]})
+                doctor_doc = doctors_collection.find_one({"doc_id": gf2['Doctor_ID'][i]})
                 if doctor_doc:
                 # Toggle status based on existing status
                     new_status = "absent" if doctor_doc["status"] == "present" else "present"
-                    doctors_collection.update_one({"doctor_id": gf2['Doctor_ID'][i]}, {"$set": {"status": new_status}})
+                    doctors_collection.update_one({"doc_id": gf2['Doctor_ID'][i]}, {"$set": {"status": new_status}})
                     print(new_status)
                 else:
                     # Doctor ID not found, handle as needed (e.g., log a message)
@@ -127,7 +128,6 @@ def predict():
     n_dtf = pd.DataFrame(n_dic)
     n_dtf.sort_values(by = 'Norm', ascending = 0,inplace = True)
     n_dtf = n_dtf.astype(str)
-
     
 
     print(output)

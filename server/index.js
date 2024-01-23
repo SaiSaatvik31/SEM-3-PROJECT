@@ -112,10 +112,10 @@ app.post('/api/docAttendance', async(req, res)=>{
   try{
     await client.connect();
     const database = client.db('trustcure');
-    const collection = database.collection('doctors');
+    const collection = database.collection('doc_avail_new');
     const doc = req.body.doc_name
     console.log(doc);
-    const doct = await collection.findOne({doctor_name:doc})
+    const doct = await collection.findOne({doc_name:doc})
     console.log(doct);
     console.log("1",doct.status);
     res.json({status:doct.status})
