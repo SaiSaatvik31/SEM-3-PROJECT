@@ -76,9 +76,7 @@ function recBook() {
           >
             {`Online Consultation Bookings`}:
           </p>
-          <Card className="mt-2">
-            <h1 className="">fdjbsdjdb</h1>
-          </Card>
+          <Card className="mt-2"></Card>
         </Grid>
 
         <Grid item xs={5}>

@@ -31,22 +31,23 @@ export default function BasicModal({
   const [slotTime, setSlotTime] = useState([]);
   const [updatedList, setUpdatedList] = useState(stateObj);
   const [open, setOpen] = React.useState(false);
-  const [docStatus, setDocStatus] = useState('')
+  const [docStatus, setDocStatus] = useState("");
+  const [status, setStatus] = useState("success");
+  const [book, setBook] = useState("Book Appointment");
   const handleOpen = async () => {
     setOpen(true);
     console.log(name);
-    const docAttendance = await fetch('/api/docAttendance',{
+    const docAttendance = await fetch("/api/docAttendance", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        doc_name: name
-        
+        doc_name: name,
       }),
-    })
-    const status = await docAttendance.json()
-    setDocStatus(status.status)
+    });
+    const status = await docAttendance.json();
+    setDocStatus(status.status);
     let time = slot.split(",");
     setSlotTime(time);
   };
@@ -67,6 +68,8 @@ export default function BasicModal({
     console.log(final_options);
     console.log(stateObj);
     console.log(updatedList);
+    setBook("Appointment Booked");
+    setStatus("secondary");
     const response = fetch("/flask/amg", {
       method: "POST",
       headers: {
@@ -100,12 +103,13 @@ export default function BasicModal({
         amt: final_options.amt,
       }),
     });
-   
-    navigate("/userInfo", { state: final_options });
+  };
+  const handleNext = () => {
+    navigate("/userInfo", { state: updatedList });
   };
   return (
     <div>
-      <Button  onClick={handleOpen}>View Info</Button>
+      <Button  onClick={handleOpen}>BOOK NOW</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -133,7 +137,7 @@ export default function BasicModal({
             completely devoted to dentistry were being published. Ambroise Paré,
             often known as the Father of Surgery, published his own work about
             the proper maintenance and treatment of teeth. Ambroise Paré was a
-            French barber surgeon who performed de
+            French barber surgeon who performed.
           </Typography>
           {/* {slot.map((element, index) => (
             <Button key={index}>{element}</Button>
@@ -151,13 +155,21 @@ export default function BasicModal({
           <p>Selected Time: {selectedTime}</p>
           <p>Doctor Consultation Fee: {amt} rs/-</p>
           <Button
-          disabled={docStatus!=='present'}
+            disabled={docStatus !== "present"}
             onClick={handleClick}
-            className="mt-5"
+            className="mt-5 m-2"
+            variant="contained"
+            color={status}
+          >
+            {book}
+          </Button>
+          <Button
+            onClick={handleNext}
+            className="mt-5 m-2"
             variant="contained"
             color="success"
           >
-            BOOK APPOINTMENT
+            Confirm Booking
           </Button>
         </Box>
       </Modal>

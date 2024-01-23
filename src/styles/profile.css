@@ -37,8 +37,13 @@ body {
   top: 0;
   left: 0;
   opacity: 0;
-  transform: translateX(20%); /* Slide from center to left */
+  transform: translateX(-100%); /* Initially slide out of view to the left */
   transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.perfil.show-content {
+  opacity: 1;
+  transform: translateX(-35%);/* Slide to the center */
 }
 
 .perfil.show-content {
