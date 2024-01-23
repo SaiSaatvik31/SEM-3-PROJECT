@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -62,6 +62,7 @@ function Profile() {
                 whileHover={{ scale: 1.1 }}
                 transition={{ delay: 3, duration: 0.8 }}
                 whileTap={{ scale: 0.9 }}
+                onClick={handleRecBook}
               >
                 Previous Bookings
               </motion.button>
@@ -72,6 +73,7 @@ function Profile() {
                 whileHover={{ scale: 1.1 }}
                 transition={{ delay: 3, duration: 0.8 }}
                 whileTap={{ scale: 0.9 }}
+                onClick={handleCancelBook}
               >
                 Cancel Your Bookings
               </motion.button>
