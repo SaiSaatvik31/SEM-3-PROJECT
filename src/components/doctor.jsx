@@ -43,7 +43,11 @@ export default function doctor() {
     console.log(data);
     console.log(data.doctor_name);
   }
-
+  const handleClick = (index) => {
+    if (index === "Todays bookings") {
+      navigate("/patientList");
+    }
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -63,7 +67,14 @@ export default function doctor() {
         >
           {Array.from(Array(5)).map((_, index) => (
             <Grid xs={2} sm={4} md={4} key={index}>
-              <Item index={index}>{array[index]}</Item>
+              <Item
+                index={index}
+                onClick={() => {
+                  handleClick(array[index]);
+                }}
+              >
+                {array[index]}
+              </Item>
             </Grid>
           ))}
         </Grid>

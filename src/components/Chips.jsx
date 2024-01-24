@@ -9,6 +9,7 @@ import { useState } from "react";
 import "../styles/chips.css";
 import { Box, Button } from "@mui/material";
 import ModelViewer from "./ModelViewer[1]";
+import Body_model from "./body_model";
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -284,7 +285,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       console.log("checking:");
       console.log(updatedOptions);
       navigate("/bookSelec", { state: updatedOptions });
-      
+
       // Update other elements if needed
 
       // Hide loading indicator
