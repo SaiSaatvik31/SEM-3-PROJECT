@@ -25,6 +25,7 @@ export default function Adv_book_m({
   data,
   amt,
 }) {
+  const [slotStatus, setSlotStatus] = useState("Book Slot");
   const [updatedList, setUpdatedList] = useState(data);
   const [slot, setSlot] = useState([]);
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export default function Adv_book_m({
   const [text, setText] = useState("Book Slot");
   console.log(amt);
   const asyncFunction = async () => {
+    setSlotStatus("Slot Booked");
     let updatedData = {
       ...updatedList,
       doct_name: doc_name,
@@ -83,7 +85,7 @@ export default function Adv_book_m({
 
   return (
     <div>
-      <Button onClick={handleOpen}>Book Slot</Button>
+      <Button onClick={handleOpen}>Book Now</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -109,7 +111,7 @@ export default function Adv_book_m({
             Selected Time: {selectedTime ? selectedTime : "No selection"}
           </Typography>
           <Button color={color} onClick={asyncFunction}>
-            {text}
+            {slotStatus}
           </Button>
           <Button
             onClick={() => {
