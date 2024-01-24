@@ -34,6 +34,7 @@ export default function BasicModal({
   const [docStatus, setDocStatus] = useState("");
   const [status, setStatus] = useState("success");
   const [book, setBook] = useState("Book Appointment");
+  const [finalData, setFinalData] = useState();
   const handleOpen = async () => {
     setOpen(true);
     console.log(name);
@@ -62,6 +63,10 @@ export default function BasicModal({
       booked_time: selectedTime,
       amt: amt,
     };
+    console.log(time);
+    console.log(slot);
+    console.log(final_options.booked_time);
+    console.log(final_options.amt);
     console.log("heyy!");
     console.log(final_options);
     setUpdatedList(final_options);
@@ -82,6 +87,7 @@ export default function BasicModal({
         data: stateObj.symptoms,
       }),
     });
+    setFinalData(final_options);
     const response_mongo = await fetch("/api/slotPage", {
       method: "POST",
       headers: {
@@ -105,11 +111,11 @@ export default function BasicModal({
     });
   };
   const handleNext = () => {
-    navigate("/userInfo", { state: updatedList });
+    navigate("/userInfo", { state: finalData });
   };
   return (
     <div>
-      <Button  onClick={handleOpen}>BOOK NOW</Button>
+      <Button onClick={handleOpen}>BOOK NOW</Button>
       <Modal
         open={open}
         onClose={handleClose}

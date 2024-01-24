@@ -45,7 +45,7 @@ function UserInfo() {
     if (location.state.book_type === "Advance Booking") {
       return location.state.time;
     } else {
-      return location.state.slot;
+      return location.state.booked_time;
     }
   };
   const callSpecialist = () => {

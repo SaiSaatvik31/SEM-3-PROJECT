@@ -19,6 +19,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   console.log(selectedOptions);
   const navigate = useNavigate();
   const [showSymptoms, setShowSymptoms] = useState(false);
+  const [selectedBodyPart, setSelectedBodyPart] = useState(null);
   const [chipData, setChipData] = useState([
     { key: 0, label: "Stomach" },
     { key: 1, label: "Skin" },
@@ -43,7 +44,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   const [activeBodyPart, setActiveBodyPart] = useState([]);
   const [activeSymptoms, setActiveSymptoms] = useState([]);
   const [useModal, setUseModal] = useState(true);
-
+  const [bodyName, setBodyName] = useState();
   let diseases = [
     {
       Stomach: [
@@ -202,7 +203,8 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       ],
     },
   ];
-
+  const [selectedFromShowContainer, setSelectedFromShowContainer] =
+    useState(false);
   const getSymptomForBodyPart = (bodyPart) => {
     const selectedDisease = diseases.find(
       (disease) => Object.keys(disease)[0] === bodyPart
@@ -210,17 +212,31 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     return selectedDisease ? selectedDisease[bodyPart] : [];
   };
 
-  //   const [activeSymptoms, setActiveSymptoms] = useState(diseases)
   const handleBodyPart = (partSelected) => () => {
+    // Update activeBodyPart
     setActiveBodyPart((prevPart) => [...prevPart, partSelected]);
+
     const symptomsForBodyPart = getSymptomForBodyPart(partSelected.label);
     setActiveSymptoms(symptomsForBodyPart.map((symptom) => ({ ...symptom })));
-    setShowSymptoms(true); // Show the symptoms container
-  };
-  // const handleBodyPart=(part)=>{
-  //     setActiveBodyPart(part)
-  // }
 
+    setShowSymptoms(true);
+    setBodyName(partSelected.label);
+  };
+
+  const handleSymptomSelection = (symptomSelected) => () => {
+    // Check if the symptom is already in symptoms
+    const symptomInSymptoms = symptoms.some(
+      (symptom) => symptom.label === symptomSelected.label
+    );
+
+    // Update symptoms only if the symptom is not already present
+    if (!symptomInSymptoms) {
+      setSymptoms((prevSymptoms) => [
+        ...prevSymptoms,
+        { key: symptomSelected.key, label: symptomSelected.label },
+      ]);
+    }
+  };
   const handleDelete = (chipToDelete) => () => {
     setSymptoms((symptoms) =>
       symptoms.filter((symptom) => symptom.key !== chipToDelete.key)
@@ -235,6 +251,8 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   };
 
   const handleClick = (chipSelected) => () => {
+    setSelectedFromShowContainer(true);
+
     if (!symptoms.some((symptom) => symptom.key === chipSelected.key)) {
       setSymptoms((prevSymptoms) => [...prevSymptoms, chipSelected]);
 
@@ -250,8 +268,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //const selectedSymptoms = symptoms.map((symptom) => symptom.key);
-    // Show loading indicator while waiting for response
+
     console.log(symptoms);
     try {
       const response = await fetch("/flask/predict", {
@@ -285,12 +302,38 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       console.log("checking:");
       console.log(updatedOptions);
       navigate("/bookSelec", { state: updatedOptions });
-
-      // Update other elements if needed
-
-      // Hide loading indicator
     } catch (error) {
       console.error("Error:", error);
+    }
+  };
+  const handleBodyPartClick = (part_name) => {
+    const selectedBodyPart = chipData.find((data) => data.label === part_name);
+    if (selectedBodyPart) {
+      handleBodyPart(selectedBodyPart)();
+    }
+    setSelectedBodyPart(part_name);
+  };
+  const handleSelection = (selectedItem) => () => {
+    if (selectedItem.type === "bodyPart") {
+      // Handle body part selection
+      setActiveBodyPart((prevPart) => [...prevPart, selectedItem]);
+      const symptomsForBodyPart = getSymptomForBodyPart(selectedItem.label);
+      setActiveSymptoms(symptomsForBodyPart.map((symptom) => ({ ...symptom })));
+      setShowSymptoms(true);
+      setBodyName(selectedItem.label);
+    } else if (selectedItem.type === "symptom") {
+      // Handle symptom selection
+      const symptomInSymptoms = symptoms.some(
+        (symptom) => symptom.label === selectedItem.label
+      );
+
+      // Update symptoms only if the symptom is not already present
+      if (!symptomInSymptoms) {
+        setSymptoms((prevSymptoms) => [
+          ...prevSymptoms,
+          { key: selectedItem.key, label: selectedItem.label },
+        ]);
+      }
     }
   };
   <h1 id="value1">hello</h1>;
@@ -300,10 +343,32 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       <Box component={"div"} className="chip-container bg-dark">
         <div className="flex flex-row">
           <ModelViewer useModal={true} height="300" width="400" />
-          <Box
-            component={"div"}
-            className="col-8 col-md-8 selected-chip-container"
-          >
+          <Box component={"div"} className="body-parts-container">
+            <h3 className="font-bold">Body Parts</h3>
+            <ul>
+              {chipData.map((data) => (
+                <ListItem key={data.key}>
+                  <Chip
+                    size="medium"
+                    className="showChips"
+                    color="secondary"
+                    onClick={handleSelection({
+                      type: "bodyPart",
+                      key: data.key,
+                      label: data.label,
+                    })}
+                    label={data.label}
+                  />
+                </ListItem>
+              ))}
+            </ul>
+            <p className="ml-5 text-white">
+              Selected Body Part Name : {bodyName}
+            </p>
+          </Box>
+        </div>
+        <div>
+          <Box component={"div"} className="selected-chip-container">
             <h3 className="font-bold">Selected Symptoms</h3>
 
             <form action="/predict" onSubmit={handleSubmit} method="post">
@@ -333,61 +398,51 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
             </form>
           </Box>
         </div>
-
-        <Box component={"div"} className="body-parts-container">
-          <h3 className="font-bold">Body Parts</h3>
-          <ul>
-            {chipData.map((data) => (
-              <ListItem key={data.key}>
-                <Chip
-                  size="medium"
-                  className="showChips"
-                  color="secondary"
-                  onClick={handleBodyPart(data)}
-                  label={data.label}
-                />
-              </ListItem>
-            ))}
-          </ul>
-        </Box>
-
-        <Box component={"div"} className="chip-show-container ">
-          <h3 className="font-bold" id="choose-symptoms">
-            Please Select A Body Part First
-          </h3>
-          <AnimatePresence>
-            {showSymptoms && (
-              <motion.ul
-                key="symptom-list"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {activeSymptoms.map((symptom) => (
-                  <motion.li
-                    className="ml-3 mb-2"
-                    key={symptom.key}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 30,
-                    }}
-                  >
-                    <Chip
-                      size="medium"
-                      color="secondary"
-                      onClick={handleClick(symptom)}
-                      label={symptom.label}
-                    />
-                  </motion.li>
-                ))}
-              </motion.ul>
-            )}
-          </AnimatePresence>
-        </Box>
+        <div className="flex flex-row mt-0">
+          <div className="col-6">
+            <Body_model
+              className="mt-0"
+              handleBodyPartClick={handleBodyPartClick}
+            />
+          </div>
+          <Box component={"div"} className="chip-show-container ">
+            <h3 className="font-bold" id="choose-symptoms">
+              Please Select A Body Part First
+            </h3>
+            <AnimatePresence>
+              {showSymptoms && (
+                <motion.ul
+                  key="symptom-list"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  {activeSymptoms.map((symptom) => (
+                    <motion.li
+                      className="ml-3 mb-2"
+                      key={symptom.key}
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    >
+                      <Chip
+                        size="medium"
+                        color="secondary"
+                        onClick={handleClick(symptom)}
+                        label={symptom.label}
+                      />
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </Box>
+        </div>
       </Box>
     </>
   );
