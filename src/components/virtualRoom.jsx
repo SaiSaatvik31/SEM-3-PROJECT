@@ -64,14 +64,18 @@ export default function VirtualRoom() {
 
   const addMinutesToCurrentDate = (minutesToAdd, slot) => {
     const currentDate = new Date();
-    const [start, end] = slot.split("-").map((time) => time.trim());
 
-    const startDate = parse(start, "hh:mm aa", new Date());
-    const updatedDate = addMinutes(startDate, minutesToAdd);
+    if (slot) {
+      const [start, end] = slot.split("-").map((time) => time.trim());
 
-    return format(updatedDate, "hh:mm aa");
+      const startDate = parse(start, "hh:mm aa", currentDate);
+      const updatedDate = addMinutes(startDate, minutesToAdd);
+
+      return format(updatedDate, "hh:mm aa");
+    }
+
+    return "";
   };
-
   return (
     <>
       <div className="m-3">
@@ -88,7 +92,13 @@ export default function VirtualRoom() {
           className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {Object.keys(slot).map((element, index) => (
-          <Button onClick={() => handleSlotClick(element)} key={index}>
+          <Button
+            onClick={() => {
+              handleSlotClick(element);
+              console.log(element);
+            }}
+            key={index}
+          >
             {element}
           </Button>
         ))}
@@ -155,6 +165,8 @@ export default function VirtualRoom() {
                 columns={{ xs: 4, sm: 8, md: 12 }}
               >
                 {selectedSlot &&
+                  slot[selectedSlot] &&
+                  slot[selectedSlot].patient_list &&
                   slot[selectedSlot].patient_list.map((patient, index) => (
                     <Grid xs={2} sm={4} md={4} key={index}>
                       <AnimatePresence>
