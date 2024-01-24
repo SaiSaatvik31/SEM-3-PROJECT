@@ -3,7 +3,9 @@ import "../styles/profile.css";
 import goku from "../goku.jpg";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
 function Profile() {
+  // const navigate = useNavigate()
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -13,6 +15,13 @@ function Profile() {
 
     return () => clearTimeout(timeout);
   }, []);
+
+  const handleRecBook = ()=>{
+    navigate('/recBook')
+  }
+  const handleCancelBook = () => {
+    navigate('/cancellation')
+  }
 
   return (
     <>
@@ -53,9 +62,7 @@ function Profile() {
                 whileHover={{ scale: 1.1 }}
                 transition={{ delay: 3, duration: 0.8 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => {
-                  navigate("/recBook");
-                }}
+                onClick={handleRecBook}
               >
                 Previous Bookings
               </motion.button>
@@ -66,9 +73,7 @@ function Profile() {
                 whileHover={{ scale: 1.1 }}
                 transition={{ delay: 3, duration: 0.8 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => {
-                  navigate("/cancellation");
-                }}
+                onClick={handleCancelBook}
               >
                 Cancel Your Bookings
               </motion.button>
