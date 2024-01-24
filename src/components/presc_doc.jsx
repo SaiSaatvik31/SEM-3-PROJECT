@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Form } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
-import "../styles/presc.css";
 export default function D_prescribe() {
   const hospital = {
     A: "Apollo",
