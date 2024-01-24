@@ -33,6 +33,9 @@ import RecBook from "./components/recBook.jsx";
 import Profile from "./components/Profile.jsx";
 import OnlineCons from "./components/online_cons.jsx";
 import On_cons2 from "./components/on_cons2.jsx";
+import InteractiveSVG from "./components/body_model.jsx";
+import PatientList from "./components/patientList.jsx";
+import Presc_doc from "./components/presc_doc.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -55,6 +58,8 @@ const MainApp = () => {
           <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route path="/cancellation" element={<Cancellation />} />
+          <Route path="/patientList" element={<PatientList />} />
+          <Route path="/prescription" element={<Presc_doc />} />
 
           <Route
             path="/home"
@@ -145,6 +150,7 @@ const MainApp = () => {
         />
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
+        <Route path="/svg" element={<InteractiveSVG />} />
       </>
     )
   );

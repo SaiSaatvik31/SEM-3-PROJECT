@@ -21,6 +21,7 @@ function Register() {
   // };
   async function loginUser(event) {
     event.preventDefault();
+    
     const response = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -62,13 +63,16 @@ function Register() {
           <h1 className="text-3xl font-semibold mb-6">Login</h1>
           <form onSubmit={loginUser} className="flex flex-col space-y-4">
             <input
-              type="email"
+              type="text"
               name="userid"
               id="userid"
               required
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                console.log(e.target.value);
+              }}
               className="border p-2 rounded-md focus:outline-none focus:border-blue-500"
             />
             <input

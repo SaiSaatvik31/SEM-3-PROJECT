@@ -207,7 +207,17 @@ app.post('/api/bookOnline', async (req, res) => {
     await client.close();
   }
 });
-
+app.post('/api/patient_list',async(req,res)=>{
+  try{
+    console.log(req.body.userName);
+    const data=await booking.find({doct_name:req.body.userName})
+    console.log(data)
+    return res.json({data})
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 app.post('/api/docLogin',async (req,res)=>{
 
   try{
