@@ -125,7 +125,7 @@ function UserInfo() {
           </div>
         ) : (
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 text-xl">
               <h2 className="mb-4">Your Appointment Information</h2>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
@@ -153,7 +153,7 @@ function UserInfo() {
                 Please arrive at least 5 minutes before your slot time.
               </p>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 text-xl">
               <h2 className="mb-4">Your Personal Information</h2>
               <div className="card mb-3">
                 <div className="card-body flex justify-center">
