@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
+import Footer1 from "../n_compo/footer1"; 
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
 import { HashLoader } from "react-spinners";
@@ -110,7 +110,7 @@ function UserInfo() {
       <Navbar />
       <Outlet />
       <div
-        className="container m-5 p-4 rounded-lg shadow-md "
+        className="container m-5 p-4 rounded-lg shadow-md text-large "
         style={{ background: "#f3f9fc" }}
       >
         {loading ? (
@@ -125,7 +125,7 @@ function UserInfo() {
           </div>
         ) : (
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 text-lg">
               <h2 className="mb-4">Your Appointment Information</h2>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
@@ -153,7 +153,7 @@ function UserInfo() {
                 Please arrive at least 5 minutes before your slot time.
               </p>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 text-lg">
               <h2 className="mb-4">Your Personal Information</h2>
               <div className="card mb-3">
                 <div className="card-body flex justify-center">
@@ -184,7 +184,7 @@ function UserInfo() {
           </div>
         )}
       </div>
-      <Footer style={{ marginTop: "auto" }} />
+      <Footer1/>
     </>
   );
 }

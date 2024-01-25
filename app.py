@@ -209,7 +209,7 @@ def pre_time():
     x1 = doc_wtl[doc_wtl['Doc_Name']==doc].index.values[0]
     doc_wtl['Time'][x1]= doc_wtl["Time"][x1]+pre_t[0]
     print(doc_wtl['Time'][x1])
-    doc_wtl.to_csv("doc_wtl_n1.csv")
+    doc_wtl.to_csv("doc_wtl_n1.csv",index=False)
     return {}
     
 if __name__ == '__main__':
