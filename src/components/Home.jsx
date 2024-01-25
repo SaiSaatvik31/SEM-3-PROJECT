@@ -79,7 +79,7 @@ function Home({ selectedOptions, updateSelectedOptions }) {
         <div className="content">
           <div className="headerContainer">
             <h1>Doctor Appointment Website</h1>
-            <div className="buttons">
+            <div>
               <M_model />
             </div>
           </div>
