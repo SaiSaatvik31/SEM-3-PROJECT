@@ -45,7 +45,14 @@ function UserInfo() {
     if (location.state.book_type === "Advance Booking") {
       return location.state.time;
     } else {
-      return location.state.slot;
+      return location.state.booked_time;
+    }
+  };
+  const waiting = () => {
+    if (location.state.book_type === "Advance Booking") {
+      return "No waiting Time(Advance Booking)";
+    } else {
+      return location.state.time + "minutes";
     }
   };
   const callSpecialist = () => {
@@ -132,8 +139,7 @@ function UserInfo() {
                   {time()}
                 </li>
                 <li className="list-group-item">
-                  <strong>Estimated Waiting Time:</strong> {location.state.time}{" "}
-                  minutes
+                  <strong>Estimated Waiting Time:</strong> {waiting()}
                 </li>
                 <li className="list-group-item">
                   <strong>Booking Type:</strong> {location.state.book_type}
