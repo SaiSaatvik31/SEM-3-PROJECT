@@ -72,9 +72,9 @@ const MainApp = () => {
             }
           />
 
-          <Route path="book-appointment" element={<Appointment />} />
-          <Route path="about" element={<About />} />
-          <Route path="feedback" element={<Feedback />} />
+          <Route path="/book-appointment" element={<Appointment />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/feedback" element={<Feedback />} />
           <Route
             path="/forWhom"
             element={
@@ -152,6 +152,7 @@ const MainApp = () => {
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
         <Route path="/svg" element={<InteractiveSVG />} />
+        
       </>
     )
   );

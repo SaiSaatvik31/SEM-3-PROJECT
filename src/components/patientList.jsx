@@ -7,10 +7,13 @@ import {
   TableHead,
   TableRow,
   TableBody,
+  Button
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Presc_modal from "./presc_modal";
 function PatientList() {
   const [patientData, setPatientData] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
     const asyncFn = async () => {
       try {
@@ -46,15 +49,15 @@ function PatientList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {patientData.map((elem, index) => (
-            <TableRow>
+          {patientData.map((elem) => (
+            <TableRow key={elem.id}>
               <TableCell>{elem.name}</TableCell>
-              <TableCell>
-                {elem.symptoms.map((item, index) => (
-                  <p>{item.label}</p>
+              <TableCell key={elem.id}>
+                {elem.symptoms.map((item) => (
+                  <p key={item.id}>{item.label}</p>
                 ))}
               </TableCell>
-              <Presc_modal />
+              <Button key={elem.id} onClick={()=>{navigate('/prescription',{state: elem.name})}}>Add Prescription</Button>
             </TableRow>
           ))}
         </TableBody>
