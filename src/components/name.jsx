@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 function Name({ selectedOptions, updateSelectedOptions }) {
-  const [buttonColor1, setButtonColor1] = useState("primary");
-  const [buttonColor2, setButtonColor2] = useState("primary");
+  const [buttonColor1, setButtonColor1] = useState("#00df9a");
+  const [buttonColor2, setButtonColor2] = useState("#00df9a");
   const [required, setRequired] = useState("");
   const navigate = useNavigate();
 
@@ -20,16 +20,16 @@ function Name({ selectedOptions, updateSelectedOptions }) {
   };
 
   const handleGenderSelection1 = (gender) => {
-    setButtonColor1("secondary");
-    setButtonColor2("primary");
+    setButtonColor2("#000000");
+    setButtonColor1("#00df9a");
     const updatedOptions = { ...selectedOptions, gender: gender };
     updateSelectedOptions(updatedOptions);
     console.log(updatedOptions);
   };
 
   const handleGenderSelection2 = (gender) => {
-    setButtonColor2("secondary");
-    setButtonColor1("primary");
+    setButtonColor1("#000000");
+    setButtonColor2("#00df9a");
     const updatedOptions = { ...selectedOptions, gender: gender };
     updateSelectedOptions(updatedOptions);
     console.log(updatedOptions);
@@ -47,7 +47,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
   const handleNextButtonClick = () => {
     if (
       required === "" &&
-      (buttonColor1 === "secondary" || buttonColor2 === "secondary")
+      (buttonColor1 === "#00df9a" || buttonColor2 === "#00df9a")
     ) {
       navigate("/Age");
     }
@@ -55,11 +55,18 @@ function Name({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <>
-      <div style={{backgroundColor:"#000000",height:"100vh"}} className="container ">
-        <label className="mt-5 text-white"  htmlFor="name">
+      <div
+        style={{ backgroundColor: "#000000", height: "100vh" }}
+        className="p-3"
+      >
+        <label className="mt-5 text-white" htmlFor="name">
           Enter Your Name
         </label>
-        <form>
+        <form
+          onChange={(e) => {
+            e.preventDefault();
+          }}
+        >
           <input
             onBlur={functionRequired}
             className="form-control mt-3"
@@ -74,28 +81,32 @@ function Name({ selectedOptions, updateSelectedOptions }) {
           </label>
           <div className="d-flex flex-row mt-4">
             <div className="mr-5">
-              <Button
-                onClick={() => handleGenderSelection1("MALE")}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleGenderSelection1("MALE");
+                }}
                 variant="contained"
-                color={buttonColor1}
                 className="p-3"
-                style={{ width: "150px", backgroundColor:"#00df9a" }}
+                style={{ width: "150px", backgroundColor: buttonColor1 }}
               >
                 <i class="fa-solid fa-mars-stroke-up p-2"></i>
                 MALE
-              </Button>
+              </button>
             </div>
             <div>
-              <Button
-                onClick={() => handleGenderSelection2("FEMALE")}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleGenderSelection2("FEMALE");
+                }}
                 variant="contained"
-                color={buttonColor2}
                 className="p-3"
-                style={{ width: "150px", backgroundColor:"#00df9a"}}
+                style={{ width: "150px", backgroundColor: buttonColor2 }}
               >
                 <i class="fa-solid fa-venus p-2"></i>
                 FEMALE
-              </Button>
+              </button>
             </div>
           </div>
           <br />
@@ -106,7 +117,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 onClick={forWhomPage}
                 variant="contained"
                 color="success"
-                style={{backgroundColor:"#00df9a"}}
+                style={{ backgroundColor: "#00df9a" }}
               >
                 BACK
               </Button>
@@ -118,7 +129,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 variant="contained"
                 color="success"
                 type="submit"
-                style={{backgroundColor:"#00df9a"}}
+                style={{ backgroundColor: "#00df9a" }}
               >
                 NEXT
               </Button>
