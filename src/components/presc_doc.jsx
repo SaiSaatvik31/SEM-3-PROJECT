@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Form } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
-export default function D_prescribe() {
+import "../styles/presc.css";
+export default function D_prescribe({name}) {
+  const [date, setDate] = useState(new Date())
+
+useEffect(()=>{
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
+  setDate(formattedDate)
+})
+
+  console.log(name);
   const hospital = {
     A: "Apollo",
     B: "TrustCure",
@@ -95,7 +105,7 @@ export default function D_prescribe() {
   const handleDisplaylabData = () => {
     // console.log('Lab Tests Data:', labTests);
   };
-  const [date, setDate] = useState("");
+  // const [date, setDate] = useState("");
 
   const datechange = (e) => {
     const tdate = e.target.value;
@@ -307,12 +317,12 @@ export default function D_prescribe() {
                 Date{" "}
               </span>
               <input
-                type="date"
+                type="text"
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 value={date}
-                onChange={datechange}
+                // onChange={datechange}
               />
             </div>
             <div>

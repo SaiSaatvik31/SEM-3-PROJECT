@@ -9,11 +9,11 @@
   background-color: black;
   font-size: x-large;
 }
-p{
+/* p{
   font-size: xx-large;
   color: #00df9A;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+} */
 .body{
   border: 5px solid #00df9A;
   width: 800px;

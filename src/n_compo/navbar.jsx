@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+// import '../styles/navbar.css'
 const navbarVariants = {
   hidden: { opacity: 0, y: -50 },
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, delay: 0.2 } },
@@ -16,6 +17,10 @@ function Navbar() {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  const handleLogout = ()=>{
+    localStorage.removeItem('token')
+    navigate('/register')
+  }
 
   return (
     <motion.div
@@ -34,11 +39,19 @@ function Navbar() {
           variants={navbarVariants}
         >
           <ul className="flex uppercase font-bold">
-            <li className="p-4 cursor-pointer">Home</li>
-            <li className="p-4 cursor-pointer">About</li>
-            <li className="p-4 cursor-pointer">FeedBack</li>
+            <li className="p-4 cursor-pointer" ><Link to='/home' style={{color:'white'}}>Home</Link></li>
+            <li className="p-4 cursor-pointer" ><Link to='/about' style={{color:'white'}}>About</Link></li>
+            <li className="p-4 cursor-pointer" ><Link to='/feeback' style={{color:'white'}}>FeedBack</Link></li>
             {userName ? (
-              <li className="p-3 cursor-pointer">{`Hey! ${userName}`}</li>
+              <li className="p-3 cursor-pointer"><a>{`Hey! ${userName}`}</a>
+              <ul className="dropdown">
+                <li className="p-2">
+                  <Link tof="/profile">Profile</Link>
+                </li>
+                <li className="p-2">
+                  <Link onClick={handleLogout} to="/login">Logout</Link>
+                </li>
+                </ul> </li>
             ) : (
               <button
                 onClick={() => {

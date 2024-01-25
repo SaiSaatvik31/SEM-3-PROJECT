@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const User = require('./models/data');
 const jwt=require('jsonwebtoken');
 const admin=require('./models/doc-admin');
+// const doctor=require('.models/doctor_avail_new')
 const booking=require('./models/patient_bookData');
 const onlineBook=require('./models/online_patients');
 const { MongoClient } = require('mongodb');
