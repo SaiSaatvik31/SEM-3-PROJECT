@@ -36,6 +36,7 @@ import On_cons2 from "./components/on_cons2.jsx";
 import InteractiveSVG from "./components/body_model.jsx";
 import PatientList from "./components/patientList.jsx";
 import Presc_doc from "./components/presc_doc.jsx";
+import ChatBot from "./components/chatBot.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -60,7 +61,7 @@ const MainApp = () => {
           <Route path="/cancellation" element={<Cancellation />} />
           <Route path="/patientList" element={<PatientList />} />
           <Route path="/prescription" element={<Presc_doc />} />
-
+          <Route path="/chatBot" element={<ChatBot />} />
           <Route
             path="/home"
             element={

@@ -21,14 +21,13 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
     } else if (booking === "Normal Booking") {
       navigate("/slotPage", { state: updatedList });
     } else {
-   
       navigate("/onlineConsultation", { state: updatedList });
     }
   };
 
   return (
     <>
-      <div className="flex flex-col min-h-screen bg-[#000000]">
+      <div className="flex flex-col min-h-screen bg-[#000000] m">
         <div className="flex-grow m-5">
           <Navbar />
           <div className="flex flex-row">
