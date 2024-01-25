@@ -76,7 +76,7 @@ function ModelViewer() {
     gltfAnim.animationSpeed = 1;
     gltfAnim.loopAnimations = true;
 
-    // await gltfAnim.playAnimation();
+    await gltfAnim.playAnimation();
     // viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
     // (await viewer.addPlugin(GLTFAnimationPlugin)).playAnimation();
 
