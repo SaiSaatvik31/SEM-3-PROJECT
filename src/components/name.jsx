@@ -55,8 +55,8 @@ function Name({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <>
-      <div className="container">
-        <label className="mt-5" htmlFor="name">
+      <div style={{backgroundColor:"#000000",height:"100vh"}} className="container ">
+        <label className="mt-5 text-white"  htmlFor="name">
           Enter Your Name
         </label>
         <form>
@@ -69,7 +69,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
             required
           />
           <p className="text-red-600">{required}</p>
-          <label className="mt-5 col-12" htmlFor="gender">
+          <label className="mt-5 col-12 text-white" htmlFor="gender">
             Select Your Gender
           </label>
           <div className="d-flex flex-row mt-4">
@@ -79,7 +79,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 variant="contained"
                 color={buttonColor1}
                 className="p-3"
-                style={{ width: "150px" }}
+                style={{ width: "150px", backgroundColor:"#00df9a" }}
               >
                 <i class="fa-solid fa-mars-stroke-up p-2"></i>
                 MALE
@@ -91,7 +91,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 variant="contained"
                 color={buttonColor2}
                 className="p-3"
-                style={{ width: "150px" }}
+                style={{ width: "150px", backgroundColor:"#00df9a"}}
               >
                 <i class="fa-solid fa-venus p-2"></i>
                 FEMALE
@@ -99,13 +99,14 @@ function Name({ selectedOptions, updateSelectedOptions }) {
             </div>
           </div>
           <br />
-          <div className="d-flex flex-row">
+          <div className="d-flex flex-row ">
             <div className="mr-5">
               <Button
                 className="mt-5"
                 onClick={forWhomPage}
                 variant="contained"
                 color="success"
+                style={{backgroundColor:"#00df9a"}}
               >
                 BACK
               </Button>
@@ -117,6 +118,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 variant="contained"
                 color="success"
                 type="submit"
+                style={{backgroundColor:"#00df9a"}}
               >
                 NEXT
               </Button>

@@ -1,7 +1,8 @@
 .chip-container {
-  height: 120vh;
-  display: flex-column;
-  /* background-image: linear-gradient(to right, #f0f8ff, #c5cae9);  */
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
 }
 
 .selected-chip-container {

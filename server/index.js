@@ -67,7 +67,7 @@ app.post('/api/slotPage',async (req,res)=>{
     if (Booking_id === undefined) {
       await initializeBookingId();
     }
-
+    console.log(req.body.slot)
     Booking_id += 1;
     await booking.create({
       name:req.body.name,
