@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
-import Footer1 from "../n_compo/footer1"; 
+import Footer1 from "../n_compo/footer1";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
 import { HashLoader } from "react-spinners";
@@ -42,7 +42,10 @@ function UserInfo() {
     }
   };
   const time = () => {
-    if (location.state.book_type === "Advance Booking") {
+    if (
+      location.state.book_type === "Advance Booking" ||
+      location.state.book_type === "Online Booking"
+    ) {
       return location.state.time;
     } else {
       return location.state.booked_time;
@@ -51,6 +54,8 @@ function UserInfo() {
   const waiting = () => {
     if (location.state.book_type === "Advance Booking") {
       return "No waiting Time(Advance Booking)";
+    } else if (location.state.book_type === "Online Booking") {
+      return "No waiting Time(Online Consultation)";
     } else {
       return location.state.time + "minutes";
     }
@@ -135,7 +140,7 @@ function UserInfo() {
                   <strong>Hospital:</strong> {location.state.hospital}
                 </li>
                 <li className="list-group-item">
-                  <strong>Appointment Time:</strong>
+                  <strong>Slot Time:</strong>
                   {time()}
                 </li>
                 <li className="list-group-item">
@@ -184,7 +189,7 @@ function UserInfo() {
           </div>
         )}
       </div>
-      <Footer1/>
+      <Footer1 />
     </>
   );
 }
