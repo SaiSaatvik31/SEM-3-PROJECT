@@ -109,7 +109,7 @@ function Home({ selectedOptions, updateSelectedOptions }) {
                 variant="outlined"
                 color="primary"
                 onClick={() => {
-                  navigate("/profile");
+                  navigate("/recBook");
                 }}
               >
                 View Bookings

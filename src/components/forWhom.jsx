@@ -37,9 +37,13 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
       style={{ minHeight: "100vh" }}
     >
       <Grid item xs={12} md={6}>
-        <Card elevation={4} className="p-5" style={{backgroundColor:"#000000"}}>
-          <CardContent  align="center">
-            <Typography  className="text-white" variant="h4" sx={{ mb: 2 }}>
+        <Card
+          elevation={4}
+          className="p-5"
+          style={{ backgroundColor: "#000000" }}
+        >
+          <CardContent align="center">
+            <Typography className="text-white" variant="h4" sx={{ mb: 2 }}>
               For Whom the appointment is For?
             </Typography>
             <Grid container spacing={2}>
@@ -47,13 +51,19 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                 <Button
                   fullWidth
                   variant="contained"
-                  style={{backgroundColor:"#00df9a"}}
+                  style={{ backgroundColor: "#00df9a" }}
                   size="large"
                   onClick={() => namePage("FOR ME")}
                 >
                   <Box display="flex" alignItems="center">
-                    <Avatar style={{backgroundColor:"#000000"}} src="YOUR_IMAGE_SRC_HERE" sx={{ mr: 2 }} />
-                    <Typography className="text-dark" variant="h6">FOR ME</Typography>
+                    <Avatar
+                      style={{ backgroundColor: "#000000" }}
+                      src="YOUR_IMAGE_SRC_HERE"
+                      sx={{ mr: 2 }}
+                    />
+                    <Typography className="text-dark" variant="h6">
+                      FOR ME
+                    </Typography>
                   </Box>
                 </Button>
               </Grid>
@@ -61,14 +71,43 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                 <Button
                   fullWidth
                   variant="contained"
-                  style={{backgroundColor:"#00df9a"}}
+                  style={{ backgroundColor: "#00df9a" }}
                   color="secondary"
                   size="large"
                   onClick={() => namePage("SOMEONE ELSE")}
                 >
                   <Box display="flex" alignItems="center">
-                    <Avatar style={{backgroundColor:"#000000"}} src="YOUR_IMAGE_SRC_HERE" sx={{ mr: 2 }} />
-                    <Typography className="text-dark" variant="h6">SOMEONE ELSE</Typography>
+                    <Avatar
+                      style={{ backgroundColor: "#000000" }}
+                      src="YOUR_IMAGE_SRC_HERE"
+                      sx={{ mr: 2 }}
+                    />
+                    <Typography className="text-dark" variant="h6">
+                      SOMEONE ELSE
+                    </Typography>
+                  </Box>
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  style={{ backgroundColor: "#00df9a" }}
+                  color="secondary"
+                  size="large"
+                  onClick={() => {
+                    navigate("/otherProfile");
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <Avatar
+                      style={{ backgroundColor: "#000000" }}
+                      src="YOUR_IMAGE_SRC_HERE"
+                      sx={{ mr: 2 }}
+                    />
+                    <Typography className="text-dark" variant="h6">
+                      Profiles
+                    </Typography>
                   </Box>
                 </Button>
               </Grid>
@@ -77,7 +116,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
           <CardActions>
             <Button
               variant="outlined"
-              style={{backgroundColor:"#00df9a"}}
+              style={{ backgroundColor: "#00df9a" }}
               onClick={handleBack}
               startIcon={<ArrowBackIcon />}
             >

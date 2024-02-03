@@ -7,7 +7,7 @@ const doctor=new mongoose.Schema({
   hospital_name:String,
   availability:Object,
   amt:String,
-  status:String
+  status:String,
 
 },{collection:'doc_avail_new'})
 const model=mongoose.model('doc_avail_new',doctor)

@@ -268,7 +268,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("checking");
     console.log(symptoms);
     try {
       const response = await fetch("/flask/predict", {

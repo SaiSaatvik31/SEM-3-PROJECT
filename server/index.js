@@ -125,6 +125,40 @@ app.post('/api/docAttendance', async(req, res)=>{
     console.log(err);
   }
 })
+app.post('/api/directBooking',async (req,res)=>{
+  try{
+    console.log(req.body.mainList);
+    booking.create({
+      name:req.body.mainList.name,
+      Age:req.body.mainList.Age,
+      gender:req.body.mainList.gender,
+      email:req.body.mainList.email,
+      forWhom:req.body.mainList.forWhom,
+      doct_name:req.body.mainList.doct_name,
+      speciality:req.body.mainList.speciality,
+      hospital:req.body.mainList.hospital,
+      amt:req.body.mainList.amt,
+      book_type:req.body.mainList.book_type,
+      slot:req.body.mainList.booked_time,
+    }
+    )
+  }
+  catch(err){
+    console.log(err);
+  }
+})
+app.post('/api/fullDoc',async (req,res)=>{
+  try{
+    await client.connect();
+    const database=client.db('trustcure');
+    const collection=database.collection('doc_avail_new');
+    const data=await collection.find({}).toArray();
+    return res.json({data});
+  }
+  catch(err){
+    console.log(err);
+  }
+})
 app.post('/api/advBook', async (req, res) => {
   try {
     await client.connect();
@@ -240,6 +274,50 @@ app.post('/api/docLogin',async (req,res)=>{
     console.log(error);
   }
 })
+app.post('/api/subProfile',async (req,res)=>{
+  try{
+    await client.connect();
+    const database=client.db('trustcure');
+    const collection=database.collection('sub_profile');
+    const data=await collection.findOne({email:req.body.email});
+    return res.json({data})
+  }
+  catch(err){
+    console.log(err)
+  }
+})
+app.post('/api/newProfile', async (req, res) => {
+  try {
+    await client.connect();
+
+    const database = client.db('trustcure');
+    const collection = database.collection('sub_profile');
+
+    const existingProfile = await collection.findOne({ email: req.body.email });
+
+    if (existingProfile) {
+      const updatedProfiles = [...existingProfile.profiles, req.body.newProfile];
+
+      await collection.updateOne({ email: req.body.email }, { $set: { profiles: updatedProfiles } });
+      console.log('Profile added to existing email');
+      res.status(200).json({ message: 'Profile added to existing email' });
+    } else {
+      const newEntry = {
+        email: req.body.email,
+        profiles: [req.body.newProfile],
+      };
+
+      await collection.insertOne(newEntry);
+      console.log('New profile created');
+      res.status(201).json({ message: 'New profile created' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    await client.close();
+  }
+});
 // app.post('/api/advBook',async (req,res)=>{
 //   try {
 //     const doc=await 
@@ -378,6 +456,54 @@ app.post('/api/refBook',async (req,res)=>{
   console.log(data);
   return res.json({data});
 })
+app.post('/api/status',async (req,res)=>{
+  console.log(req.body)
+  await booking.updateOne({doct_name:req.body.docName,name:req.body.name,Age:req.body.Age,book_type:req.body.book_type},{$set:{
+    consultation_status:"Completed"
+    }})
+  // return res.json({data});
+})
+app.post('/api/handleRating', async (req, res) => {
+  try {
+    console.log(req.body.m_rating);
+    await client.connect();
+    const database = client.db('trustcure');
+    const collection = database.collection('doc_avail_new');
+    const data = await collection.findOne({ doc_name: req.body.docName });
+
+    let newData;
+    let newPatientCount;
+
+    if (data && data.rating) {
+      newData = [...data.rating, req.body.m_rating];
+      newPatientCount = data.patient_count + 1;
+    } else {
+      newData = [req.body.m_rating];
+      newPatientCount = 1;
+    }
+
+    console.log(newData);
+
+    await collection.updateOne(
+      { doc_name: req.body.docName },
+      {
+        $set: {
+          rating: newData,
+          patient_count: newPatientCount,
+        },
+      }
+    );
+
+    res.status(200).send("Rating updated successfully");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  } finally {
+    await client.close();
+  }
+});
+
+
 app.post('/api/profile',async (req,res)=>{
       const data=await booking.find({email:req.body.email},{_id:0,__v:0})
       return res.json({data:data})

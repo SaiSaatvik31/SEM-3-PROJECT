@@ -5,6 +5,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import Footer1 from "../n_compo/footer1";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -42,7 +43,7 @@ function SlotPage() {
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    backgroundColor:"#000000"
+    backgroundColor: "#000000",
   };
 
   const mainContentStyle = {
@@ -59,27 +60,43 @@ function SlotPage() {
   return (
     <>
       <Outlet />
-      <div  style={slotPageStyle}>
+      <div style={slotPageStyle}>
         <Navbar />
-        <div  style={mainContentStyle} className="m-5 text-white bg-[#000000]">
+        <div style={mainContentStyle} className="m-5 text-white bg-[#000000]">
           <Table sx={{ minWidth: 650 }}>
             <TableHead>
               <TableRow>
                 <TableCell className="text-white">Doctor Name</TableCell>
-                <TableCell className="text-white" align="left">Speciality</TableCell>
-                <TableCell className="text-white" align="left">Hospital</TableCell>
-                <TableCell className="text-white" align="center">Ratings</TableCell>
-                <TableCell className="text-white" align="right">Estimated Waiting Time</TableCell>
-                <TableCell className="text-white" align="right">Time Slot</TableCell>
-                <TableCell className="text-white" align="right">Book Appointment</TableCell>
+                <TableCell className="text-white" align="left">
+                  Speciality
+                </TableCell>
+                <TableCell className="text-white" align="left">
+                  Hospital
+                </TableCell>
+                <TableCell className="text-white" align="center">
+                  Ratings
+                </TableCell>
+                <TableCell className="text-white" align="right">
+                  Estimated Waiting Time
+                </TableCell>
+                <TableCell className="text-white" align="right">
+                  Time Slot
+                </TableCell>
+                <TableCell className="text-white" align="right">
+                  Book Appointment
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {combinedArray.map((doctor, index) => (
                 <TableRow key={index}>
                   <TableCell className="text-white">{doctor.name}</TableCell>
-                  <TableCell className="text-white" align="left">{doctor.speciality}</TableCell>
-                  <TableCell className="text-white" align="left">{doctor.hospital}</TableCell>
+                  <TableCell className="text-white" align="left">
+                    {doctor.speciality}
+                  </TableCell>
+                  <TableCell className="text-white" align="left">
+                    {doctor.hospital}
+                  </TableCell>
                   <TableCell className="text-white" align="center">
                     <Box
                       sx={{
@@ -91,9 +108,13 @@ function SlotPage() {
                       <Stars stars={doctor.rating} review={doctor.review} />
                     </Box>
                   </TableCell>
-                  <TableCell className="text-white" align="right">{doctor.time} minutes</TableCell>
-                  <TableCell className="text-white" align="right">{doctor.slot}</TableCell>
-                  <TableCell  align="right">
+                  <TableCell className="text-white" align="right">
+                    {doctor.time} minutes
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    {doctor.slot}
+                  </TableCell>
+                  <TableCell align="right">
                     <Modal
                       stateObj={updatedList}
                       name={doctor.name}
@@ -111,7 +132,7 @@ function SlotPage() {
             variant="contained"
             color="success"
             className="mt-3"
-            style={{backgroundColor:"#00df9a"}}
+            style={{ backgroundColor: "#00df9a" }}
             onClick={handleClick}
           >
             Choose Other Doctors
@@ -121,7 +142,7 @@ function SlotPage() {
             start of the slot time. )
           </p>
         </div>
-        <Footer style={footerStyle} />
+        <Footer1 style={footerStyle} />
       </div>
     </>
   );
