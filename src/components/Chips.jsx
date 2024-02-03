@@ -10,6 +10,7 @@ import "../styles/chips.css";
 import { Box, Button } from "@mui/material";
 import ModelViewer from "./ModelViewer[1]";
 import Body_model from "./body_model";
+import { HashLoader } from "react-spinners";
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -205,6 +206,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   ];
   const [selectedFromShowContainer, setSelectedFromShowContainer] =
     useState(false);
+  const [loading, setLoading] = useState(false);
   const getSymptomForBodyPart = (bodyPart) => {
     const selectedDisease = diseases.find(
       (disease) => Object.keys(disease)[0] === bodyPart
@@ -268,6 +270,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log("checking");
     console.log(symptoms);
     try {
@@ -301,6 +304,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
       updateSelectedOptions(updatedOptions);
       console.log("checking:");
       console.log(updatedOptions);
+      setLoading(false);
       navigate("/bookSelec", { state: updatedOptions });
     } catch (error) {
       console.error("Error:", error);
@@ -340,110 +344,122 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <>
-      <Box component={"div"} className="chip-container bg-dark">
-        <div className="flex flex-row">
-          <ModelViewer useModal={true} height="300" width="400" />
-          <Box component={"div"} className="body-parts-container">
-            <h3 className="font-bold">Body Parts</h3>
-            <ul>
-              {chipData.map((data) => (
-                <ListItem key={data.key}>
-                  <Chip
-                    size="medium"
-                    className="showChips"
-                    color="secondary"
-                    onClick={handleSelection({
-                      type: "bodyPart",
-                      key: data.key,
-                      label: data.label,
-                    })}
-                    label={data.label}
-                  />
-                </ListItem>
-              ))}
-            </ul>
-            <p className="ml-5 text-white">
-              Selected Body Part Name : {bodyName}
-            </p>
-          </Box>
+      {loading ? (
+        <div className="flex justify-center items-center text-center h-screen w-screen">
+          <HashLoader
+            loading={loading}
+            size={100}
+            color="#00df9a"
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
         </div>
-        <div>
-          <Box component={"div"} className="selected-chip-container">
-            <h3 className="font-bold">Selected Symptoms</h3>
-
-            <form action="/predict" onSubmit={handleSubmit} method="post">
+      ) : (
+        <Box component={"div"} className="chip-container bg-dark">
+          <div className="flex flex-row">
+            <ModelViewer useModal={true} height="300" width="400" />
+            <Box component={"div"} className="body-parts-container">
+              <h3 className="font-bold">Body Parts</h3>
               <ul>
-                {/* Mapping through symptoms */}
-                {symptoms.map((symptom) => (
-                  <motion.li
-                    className="m-2"
-                    key={symptom.key}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -50 }}
-                    transition={{ duration: 0.3 }}
-                  >
+                {chipData.map((data) => (
+                  <ListItem key={data.key}>
                     <Chip
-                      key={symptom.key}
-                      className="selectedChips"
-                      color="primary"
-                      label={symptom.label}
-                      onDelete={handleDelete(symptom)}
+                      size="medium"
+                      className="showChips"
+                      color="secondary"
+                      onClick={handleSelection({
+                        type: "bodyPart",
+                        key: data.key,
+                        label: data.label,
+                      })}
+                      label={data.label}
                     />
-                  </motion.li>
+                  </ListItem>
                 ))}
               </ul>
-
-              <Button type="submit">Submit</Button>
-            </form>
-          </Box>
-        </div>
-        <div className="flex flex-row mt-0">
-          <div className="col-6">
-            <Body_model
-              className="mt-0"
-              handleBodyPartClick={handleBodyPartClick}
-            />
+              <p className="ml-5 text-white">
+                Selected Body Part Name : {bodyName}
+              </p>
+            </Box>
           </div>
-          <Box component={"div"} className="chip-show-container ">
-            <h3 className="font-bold" id="choose-symptoms">
-              Please Select A Body Part First
-            </h3>
-            <AnimatePresence>
-              {showSymptoms && (
-                <motion.ul
-                  key="symptom-list"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  {activeSymptoms.map((symptom) => (
+          <div>
+            <Box component={"div"} className="selected-chip-container">
+              <h3 className="font-bold">Selected Symptoms</h3>
+
+              <form action="/predict" onSubmit={handleSubmit} method="post">
+                <ul>
+                  {/* Mapping through symptoms */}
+                  {symptoms.map((symptom) => (
                     <motion.li
-                      className="ml-3 mb-2"
+                      className="m-2"
                       key={symptom.key}
-                      initial={{ opacity: 0, x: -50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ duration: 0.3 }}
                     >
                       <Chip
-                        size="medium"
-                        color="secondary"
-                        onClick={handleClick(symptom)}
+                        key={symptom.key}
+                        className="selectedChips"
+                        color="primary"
                         label={symptom.label}
+                        onDelete={handleDelete(symptom)}
                       />
                     </motion.li>
                   ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-          </Box>
-        </div>
-      </Box>
+                </ul>
+
+                <Button type="submit">Submit</Button>
+              </form>
+            </Box>
+          </div>
+          <div className="flex flex-row mt-0">
+            <div className="col-6">
+              <Body_model
+                className="mt-0"
+                handleBodyPartClick={handleBodyPartClick}
+              />
+            </div>
+            <Box component={"div"} className="chip-show-container ">
+              <h3 className="font-bold" id="choose-symptoms">
+                Please Select A Body Part First
+              </h3>
+              <AnimatePresence>
+                {showSymptoms && (
+                  <motion.ul
+                    key="symptom-list"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {activeSymptoms.map((symptom) => (
+                      <motion.li
+                        className="ml-3 mb-2"
+                        key={symptom.key}
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -50 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 30,
+                        }}
+                      >
+                        <Chip
+                          size="medium"
+                          color="secondary"
+                          onClick={handleClick(symptom)}
+                          label={symptom.label}
+                        />
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </Box>
+          </div>
+        </Box>
+      )}
     </>
   );
 }
