@@ -39,7 +39,7 @@ function Cancellation() {
 
   return (
     <div>
-      <h1 className="text-[#00df9a] text-2xl">Cancel Your Booking</h1>
+      <h1 className="text-[#00df9a] text-2xl">Cancel Your Bookings</h1>
       <p className="text-2xl">Select the booking that you want to cancel:</p>
       {m_data.map((element, index) => (
         <Grid key={index}>

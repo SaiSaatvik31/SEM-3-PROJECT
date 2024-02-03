@@ -37,6 +37,8 @@ import InteractiveSVG from "./components/body_model.jsx";
 import PatientList from "./components/patientList.jsx";
 import Presc_doc from "./components/presc_doc.jsx";
 import ChatBot from "./components/chatBot.jsx";
+import OtherProfile from "./components/otherProfile.jsx";
+import DirectBook from "./components/directBook.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -62,6 +64,7 @@ const MainApp = () => {
           <Route path="/patientList" element={<PatientList />} />
           <Route path="/prescription" element={<Presc_doc />} />
           <Route path="/chatBot" element={<ChatBot />} />
+
           <Route
             path="/home"
             element={
@@ -79,6 +82,24 @@ const MainApp = () => {
             path="/forWhom"
             element={
               <ForWhom
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+          <Route
+            path="/otherProfile"
+            element={
+              <OtherProfile
+                selectedOptions={selectedOptions}
+                updateSelectedOptions={updateSelectedOptions}
+              />
+            }
+          />
+          <Route
+            path="/directBook"
+            element={
+              <DirectBook
                 selectedOptions={selectedOptions}
                 updateSelectedOptions={updateSelectedOptions}
               />
@@ -103,6 +124,7 @@ const MainApp = () => {
             }
           />
         </Route>
+
         <Route
           path="/formPage"
           element={
@@ -152,7 +174,6 @@ const MainApp = () => {
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
         <Route path="/svg" element={<InteractiveSVG />} />
-        
       </>
     )
   );

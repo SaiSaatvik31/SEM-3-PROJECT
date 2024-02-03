@@ -12,7 +12,7 @@ function UserInfo() {
   const location = useLocation();
   const navigate = useNavigate();
   const [img, setImg] = useState("");
-
+  console.log(location.state);
   const [symptoms, setSymptoms] = useState([""]);
   useEffect(() => {
     setLoading(true);
@@ -26,9 +26,11 @@ function UserInfo() {
     } else {
       return (
         <>
-          <p>Symptoms are:</p>
+          {location.state.book_type === "Direct Booking" ? null : (
+            <p>Symptoms are:</p>
+          )}
           <ul style={{ fontSize: "18px" }}>
-            {symptoms.map((symptom) => (
+            {symptoms?.map((symptom) => (
               <li
                 key={symptom.key}
                 style={{ opacity: symptom.visible ? 1 : 0 }}
@@ -57,12 +59,16 @@ function UserInfo() {
     } else if (location.state.book_type === "Online Booking") {
       return "No waiting Time(Online Consultation)";
     } else {
-      return location.state.time + "minutes";
+      return location.state.time
+        ? location.state.time + "minutes"
+        : "No waiting Time(Direct Booking)";
     }
   };
   const callSpecialist = () => {
     if (location.state.Age <= 6) {
       return <p>We recommend you to consult Pediatrician</p>;
+    } else if (location.state.book_type === "Direct Booking") {
+      return "";
     } else {
       return <p>We recommend you to consult {location.state.speciality}</p>;
     }
@@ -70,7 +76,10 @@ function UserInfo() {
 
   useEffect(() => {
     const animateSymptoms = () => {
-      if (location.state.symptoms && location.state.symptoms.length > 0) {
+      if (
+        Array.isArray(location.state?.symptoms) &&
+        location.state.symptoms.length > 0
+      ) {
         const animatedSymptoms = location.state.symptoms.map((symptom) => ({
           ...symptom,
           visible: false,
@@ -93,7 +102,6 @@ function UserInfo() {
     animateSymptoms();
   }, [location.state.symptoms]);
 
-  // Update user image based on gender
   useEffect(() => {
     if (location.state.gender === "FEMALE") {
       setImg(
@@ -148,6 +156,9 @@ function UserInfo() {
                 </li>
                 <li className="list-group-item">
                   <strong>Booking Type:</strong> {location.state.book_type}
+                </li>
+                <li className="list-group-item">
+                  <strong>Booking Day:</strong> {location.state.day}
                 </li>
                 <li className="list-group-item">
                   <strong>Your Doctor Consultation Fee:</strong>{" "}

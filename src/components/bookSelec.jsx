@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import N_footer from "../n_compo/n_footer";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -27,54 +27,67 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen bg-[#000000] m">
+      <div className="flex flex-col min-h-screen bg-[#000000] text-white">
         <div className="flex-grow m-5">
           <Navbar />
-          <div className="flex flex-row">
+
+          <div className="flex flex-col items-center justify-center mt-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="m-3 text-white"
+              className="mb-6 text-center"
             >
-              <button
-                className="bg-[#00df9a] p-3 rounded-md hover:scale-110 duration-150"
-                onClick={() => handleNext("Advance Booking")}
-              >
-                ADVANCE BOOKING
-              </button>
+              <h1 className="text-4xl font-bold">Choose Your Booking Type</h1>
+              <p className="text-lg mt-2">
+                Select the type of appointment that suits your needs.
+              </p>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="m-3 text-white"
-            >
-              <button
-                className="bg-[#00df9a] p-3 rounded-md hover:scale-110 duration-150"
-                variant="contained"
-                onClick={() => handleNext("Normal Booking")}
+
+            <div className="flex flex-row space-x-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
               >
-                NORMAL BOOKING
-              </button>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="m-3 text-white"
-            >
-              <button
-                className="bg-[#00df9a] p-3 rounded-md hover:scale-110 duration-150"
-                variant="contained"
-                onClick={() => handleNext("Online Booking")}
+                <button
+                  className="bg-[#00df9a] p-4 rounded-md hover:scale-110 duration-150"
+                  onClick={() => handleNext("Advance Booking")}
+                >
+                  ADVANCE BOOKING
+                </button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
               >
-                ONLINE CONSULATION
-              </button>
-            </motion.div>
+                <button
+                  className="bg-[#00df9a] p-4 rounded-md hover:scale-110 duration-150"
+                  onClick={() => handleNext("Normal Booking")}
+                >
+                  NORMAL BOOKING
+                </button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <button
+                  className="bg-[#00df9a] p-4 rounded-md hover:scale-110 duration-150"
+                  onClick={() => handleNext("Online Booking")}
+                >
+                  ONLINE CONSULTATION
+                </button>
+              </motion.div>
+            </div>
           </div>
         </div>
-        <Footer />
+
+        <N_footer />
       </div>
     </>
   );

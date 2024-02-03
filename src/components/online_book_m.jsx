@@ -49,6 +49,7 @@ export default function online_book_m({
     }
   };
   const asyncFunction = async () => {
+    setText("Slot Booked");
     await handleCreateMeeting();
     let updatedData = {
       ...updatedList,
@@ -61,6 +62,7 @@ export default function online_book_m({
     console.log("checking");
     console.log(updatedData);
     setUpdatedList(updatedData);
+
     const i_date = updatedData.selectedDate;
     const dateObject = new Date(i_date);
     const formattedDate = dateObject.toISOString().split("T")[0];
