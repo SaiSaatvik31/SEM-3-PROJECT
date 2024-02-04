@@ -56,6 +56,8 @@ def predict():
     n=[]
     s_t=[]
     doc_wtl = pd.read_csv("Doc_wtl_n1.csv")
+    doc_desc=pd.read_csv("Doctordescrpitions.csv")
+   
     ut = doc_wtl['Time'].max()
     lt = doc_wtl['Time'].min()
     dt = ut - lt
@@ -90,7 +92,10 @@ def predict():
         elif i==5:
             h.append("Kamineni Hospital")
             amt.append("450")
-    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt}
+
+    main_desc=doc_desc[doc_desc['Doctor names'].isin(l)]
+    desc=main_desc.iloc[:,5].tolist()
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt,'desc':desc}
     url = 'https://docs.google.com/spreadsheets/d/1rZutJ4-S0YK-Yw3URsJN5BacnUO-Z8R2Lt8F88N32cU/export?format=csv&gid=243849322'
     gf1 = pd.read_csv(url)
     last_updated_time = time_collection.find_one()
@@ -134,7 +139,7 @@ def predict():
     print(output)
     print(x)
     print(prediction)
-    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name,"amt":list(n_dtf["amt"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
+    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name,"amt":list(n_dtf["amt"]),'desc':list(n_dtf['desc'])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
 
 @app.route('/flask/status',methods=['POST','GET'])
 def status():

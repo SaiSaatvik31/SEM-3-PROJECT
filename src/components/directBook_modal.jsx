@@ -131,7 +131,7 @@ export default function BasicModal({
                 docHandle();
                 navigate("/userInfo", { state: mainList });
               }}
-              color="secondary"
+              color="success"
             >
               Book Appointment
             </Button>

@@ -25,6 +25,7 @@ function SlotPage() {
 
   let combinedArray = [];
   console.log("hello");
+  console.log(location.state.desc);
   for (let i = 0; i < location.state.doct_list.length; i++) {
     combinedArray.push({
       name: location.state.doct_list[i],
@@ -35,6 +36,7 @@ function SlotPage() {
       time: location.state.time_list[i],
       slot: location.state.slot[i],
       amt: location.state.amt[i],
+      desc: location.state.desc[i],
     });
   }
   console.log("0");
@@ -112,7 +114,9 @@ function SlotPage() {
                     {doctor.time} minutes
                   </TableCell>
                   <TableCell className="text-white" align="right">
-                    {doctor.slot}
+                    {doctor.slot === "nan"
+                      ? "No slots are available"
+                      : doctor.slot}
                   </TableCell>
                   <TableCell align="right">
                     <Modal
@@ -122,13 +126,14 @@ function SlotPage() {
                       time={doctor.time}
                       slot={doctor.slot}
                       amt={doctor.amt}
+                      desc={doctor.desc}
                     />
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-          <Button
+          {/* <Button
             variant="contained"
             color="success"
             className="mt-3"
@@ -136,8 +141,8 @@ function SlotPage() {
             onClick={handleClick}
           >
             Choose Other Doctors
-          </Button>
-          <p>
+          </Button> */}
+          <p className="mt-5">
             *(Please Note that the Estimated waiting time is shown from the
             start of the slot time. )
           </p>
