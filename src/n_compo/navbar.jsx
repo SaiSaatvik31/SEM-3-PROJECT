@@ -17,10 +17,10 @@ function Navbar() {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-  const handleLogout = ()=>{
-    localStorage.removeItem('token')
-    navigate('/register')
-  }
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/register");
+  };
 
   return (
     <motion.div
@@ -32,32 +32,47 @@ function Navbar() {
     >
       <h1 className="w-full text-3xl font-bold text-[#00df9a]">TrustCure</h1>
       <div className="lg:flex hidden">
-        {/* Your desktop navigation */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={navbarVariants}
         >
           <ul className="flex uppercase font-bold">
-            <li className="p-4 cursor-pointer" ><Link to='/home' style={{color:'white'}}>Home</Link></li>
-            <li className="p-4 cursor-pointer" ><Link to='/about' style={{color:'white'}}>About</Link></li>
-            <li className="p-4 cursor-pointer" ><Link to='/feeback' style={{color:'white'}}>FeedBack</Link></li>
+            <li className="p-4 cursor-pointer">
+              <Link to="/home" style={{ color: "white" }}>
+                Home
+              </Link>
+            </li>
+            <li className="p-4 cursor-pointer">
+              <Link to="/about" style={{ color: "white" }}>
+                About
+              </Link>
+            </li>
+            <li className="p-4 cursor-pointer">
+              <Link to="/feeback" style={{ color: "white" }}>
+                FeedBack
+              </Link>
+            </li>
             {userName ? (
-              <li className="p-3 cursor-pointer"><a>{`Hey! ${userName}`}</a>
-              <ul className="dropdown">
-                <li className="p-2">
-                  <Link tof="/profile">Profile</Link>
-                </li>
-                <li className="p-2">
-                  <Link onClick={handleLogout} to="/login">Logout</Link>
-                </li>
-                </ul> </li>
+              <li className="p-3 cursor-pointer">
+                <a>{`Hey! ${userName}`}</a>
+                <ul className="dropdown">
+                  <li className="p-2">
+                    <Link tof="/profile">Profile</Link>
+                  </li>
+                  <li className="p-2">
+                    <Link onClick={handleLogout} to="/login">
+                      Logout
+                    </Link>
+                  </li>
+                </ul>{" "}
+              </li>
             ) : (
               <button
                 onClick={() => {
                   navigate("/login");
                 }}
-                className=" hover:scale-110 duration-500 text-dark bg-[#00df9a] w-[150px] rounded-md font-medium  mx-auto  text-dark mt-3  "
+                className=" hover:scale-110 duration-500 text-dark bg-[#00df9a] w-[150px] rounded-md font-medium    text-dark mt-3 text-center pr-10"
               >
                 Login
               </button>
@@ -66,7 +81,6 @@ function Navbar() {
         </motion.div>
       </div>
       <div className="lg:hidden">
-        {/* Hamburger menu for mobile */}
         {showMenu ? (
           <AiOutlineClose
             size={30}
@@ -83,7 +97,6 @@ function Navbar() {
           />
         )}
       </div>
-      {/* Mobile menu */}
       {showMenu && (
         <div className="fixed left-0 top-0 w-[60%] border-r border-r-gray-900 bg-black ease-in-out duration-9000">
           <ul className="pt-24 uppercase">

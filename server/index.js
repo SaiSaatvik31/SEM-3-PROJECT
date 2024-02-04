@@ -147,6 +147,29 @@ app.post('/api/directBooking',async (req,res)=>{
     console.log(err);
   }
 })
+app.post('/api/deleteSubProfile', async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db('trustcure');
+    const collection = database.collection('sub_profile');
+
+    const idToDelete = req.body.id;
+
+    const result = await collection.updateOne(
+      { 'profiles.id': idToDelete },
+      { $pull: { profiles: { id: idToDelete } } }
+    );
+
+    if (result.modifiedCount > 0) {
+      res.status(200).json({ success: true, message: 'Sub-profile deleted successfully.',ok:true });
+    } else {
+      res.status(404).json({ success: false, message: 'Sub-profile not found.' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Internal server error.' });
+  }
+});
 app.post('/api/fullDoc',async (req,res)=>{
   try{
     await client.connect();

@@ -80,7 +80,15 @@ function Home({ selectedOptions, updateSelectedOptions }) {
           <div className="headerContainer">
             <h1>Doctor Appointment Website</h1>
             <div>
-              <M_model />
+              <Button
+                className="p-2"
+                color="success"
+                onClick={() => {
+                  navigate("/book-appointment");
+                }}
+              >
+                Book Now
+              </Button>
             </div>
           </div>
         </div>

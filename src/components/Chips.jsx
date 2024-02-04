@@ -300,6 +300,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         slot: data.slot,
         dayName: data.dayName,
         amt: data.amt,
+        desc: data.desc,
       };
       updateSelectedOptions(updatedOptions);
       console.log("checking:");
