@@ -28,7 +28,6 @@ export default function BasicModal({
   const [time, setTime] = useState();
   const [mainList, setMainList] = useState();
   const navigate = useNavigate();
-  const [m_day, setDay] = useState();
   useEffect(() => {
     if (selectedDoctor) {
       setSelectDate(null);
@@ -37,7 +36,7 @@ export default function BasicModal({
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const updateDoc = (doc) => {
+  const updateDoc = (doc, day) => {
     let updatedList = {
       ...updateState,
       doct_name: doc.doc_name,
@@ -45,9 +44,10 @@ export default function BasicModal({
       hospital: doc.hospital_name,
       amt: "500 rupees",
       book_type: "Direct Booking",
-      day: m_day,
+      day: day,
     };
     setMainList(updatedList);
+    console.log(updatedList);
   };
   const docHandle = async () => {
     const response = await fetch("/api/directBooking", {
@@ -94,8 +94,7 @@ export default function BasicModal({
                       setSelectDate(
                         selectedDoctor.availability[day].availability
                       );
-                      updateDoc(selectedDoctor);
-                      setDay(day);
+                      updateDoc(selectedDoctor, day);
                     }}
                   >
                     {day}:{" "}

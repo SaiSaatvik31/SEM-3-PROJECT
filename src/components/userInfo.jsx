@@ -158,7 +158,10 @@ function UserInfo() {
                   <strong>Booking Type:</strong> {location.state.book_type}
                 </li>
                 <li className="list-group-item">
-                  <strong>Booking Day:</strong> {location.state.day}
+                  <strong>Booking Day:</strong>{" "}
+                  {location.state.day
+                    ? location.state.day
+                    : location.state.dayName}
                 </li>
                 <li className="list-group-item">
                   <strong>Your Doctor Consultation Fee:</strong>{" "}

@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -18,7 +19,7 @@ const style = {
   p: 4,
 };
 
-export default function online_book_m({
+export default function OnlineBookModal({
   doc_name,
   speciality,
   doc_avail,
@@ -33,7 +34,8 @@ export default function online_book_m({
   const [selectedTime, setSelectedTime] = useState(null);
   const [color, setColor] = useState("secondary");
   const [text, setText] = useState("Book Slot");
-  console.log(amt);
+  const [loading, setLoading] = useState(false);
+
   const handleCreateMeeting = async () => {
     try {
       const response = await axios.post(
@@ -48,9 +50,11 @@ export default function online_book_m({
       console.error("Error creating meeting:", error);
     }
   };
+
   const asyncFunction = async () => {
     setText("Slot Booked");
-    await handleCreateMeeting();
+    setLoading(true);
+
     let updatedData = {
       ...updatedList,
       doct_name: doc_name,
@@ -59,6 +63,8 @@ export default function online_book_m({
       hospital: hospital,
       amt: amt,
     };
+    await handleCreateMeeting();
+
     console.log("checking");
     console.log(updatedData);
     setUpdatedList(updatedData);
@@ -67,27 +73,33 @@ export default function online_book_m({
     const dateObject = new Date(i_date);
     const formattedDate = dateObject.toISOString().split("T")[0];
 
-    const response = await fetch("/api/onlineBookMain", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        hospital: updatedData.hospital,
-        doct_name: updatedData.doct_name,
-        book_type: updatedData.book_type,
-        forWhom: updatedData.forWhom,
-        name: updatedData.name,
-        gender: updatedData.gender,
-        Age: updatedData.Age,
-        email: updatedData.email,
-        time: updatedData.time,
-        day: updatedData.bookedDay,
-        date: formattedDate,
-        amt: updatedData.amt,
-      }),
-    });
+    setTimeout(async () => {
+      const response = await fetch("/api/onlineBookMain", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          hospital: updatedData.hospital,
+          doct_name: updatedData.doct_name,
+          book_type: updatedData.book_type,
+          forWhom: updatedData.forWhom,
+          name: updatedData.name,
+          gender: updatedData.gender,
+          Age: updatedData.Age,
+          email: updatedData.email,
+          time: updatedData.time,
+          day: updatedData.bookedDay,
+          date: formattedDate,
+          amt: updatedData.amt,
+        }),
+      });
+
+      setLoading(false);
+    }, 2000);
+    navigate("/userInfo", { state: updatedData });
   };
+
   const handleOpen = () => {
     let time = doc_avail.split(",");
     setSlot(time);
@@ -127,15 +139,8 @@ export default function online_book_m({
           <Typography>
             Selected Time: {selectedTime ? selectedTime : "No selection"}
           </Typography>
-          <Button color={color} onClick={asyncFunction}>
-            {text}
-          </Button>
-          <Button
-            onClick={() => {
-              navigate("/userInfo", { state: updatedList });
-            }}
-          >
-            Confirm Booking
+          <Button color={color} onClick={asyncFunction} disabled={loading}>
+            {loading ? "Loading..." : text}
           </Button>
         </Box>
       </Modal>
