@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import M_model from "../n_compo/m_model";
-import Banner from "../banner_big.png";
-import "../styles/home.css";
-import "../styles/animTxt.css";
+import HospitalCard from "./HospitalCard";
+import { Container, Row, Col } from "reactstrap";
+import SearchBar from "./SearchBar";
+import WaterCard from "./WaterCard";
+import SubTitle from "./Subtitle";
 function Home({ selectedOptions, updateSelectedOptions }) {
   const [updatedList, setUpdatedOptions] = useState(selectedOptions);
   const [count, setCount] = useState(0);
@@ -75,24 +77,58 @@ function Home({ selectedOptions, updateSelectedOptions }) {
   };
   return (
     <>
-      <section className="home" style={{ backgroundImage: `url(${Banner})` }}>
-        <div className="content">
-          <div className="headerContainer">
-            <h1>Doctor Appointment Website</h1>
-            <div>
-              <Button
-                className="p-2"
-                color="success"
-                onClick={() => {
-                  navigate("/book-appointment");
-                }}
-              >
-                Book Now
-              </Button>
-            </div>
-          </div>
-        </div>
-
+      <section>
+        <Container>
+          <Row>
+            <Col lg="6">
+              <div className="hero__content">
+                <div className="hero__subtitle d-flex align-items-center">
+                  <SubTitle subtitle={"Know Before You Go"} />
+                </div>
+                <h1>
+                  Book Your Doctor <span className="highlight">With Us</span>
+                </h1>
+                <p className="text-2xl" style={{ textAlign: "justify" }}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Sapiente reiciendis illo molestiae, ullam iste velit quae
+                  placeat, quo quisquam nemo facilis itaque. Esse quo debitis
+                  numquam obcaecati dicta exercitationem quidem.
+                </p>
+                <Button
+                  className="p-2"
+                  color="success"
+                  onClick={() => {
+                    navigate("/book-appointment");
+                  }}
+                >
+                  Book Now
+                </Button>
+              </div>
+            </Col>
+            <Col lg="2">
+              <div className="hero__img-box">
+                {/* <img src="src\styles\WhatsApp Image 2024-02-05 at 14.48.38_fbde76ce.jpg" /> */}
+              </div>
+            </Col>
+            <Col lg="2">
+              <div className="hero__img-box mt-4">
+                {/* <img src="src\styles\WhatsApp Image 2024-02-05 at 14.48.50_c58eed10.jpg" /> */}
+              </div>
+            </Col>
+            <Col lg="2">
+              <div className="hero__img-box mt-5">
+                {/* <img src="src\styles\WhatsApp Image 2024-02-05 at 14.49.13_ea9519f2.jpg" /> */}
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-4">
+            <HospitalCard />
+          </Row>
+          <Row className="mt-4 invisible-md">
+            <WaterCard />
+          </Row>
+          <SearchBar />
+        </Container>
         {showModal && count > 0 && (
           <Modal open={showModal} onClose={handleCloseModal}>
             <div
@@ -126,30 +162,6 @@ function Home({ selectedOptions, updateSelectedOptions }) {
           </Modal>
         )}
       </section>
-      <div>
-        <h1>Show Your Bookings:</h1>
-        <Button
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          Go To Bookings
-        </Button>
-        <h1>Book An Online Consulation Now:</h1>
-        <Button>Book Consulation</Button>
-        <h1>View Your previous Prescriptions:</h1>
-        <Button>View Now</Button>
-        <h1>Enter Virtual Room</h1>
-        <Button
-          onClick={() => {
-            navigate("/virtualRoom");
-          }}
-        >
-          Lets Go!!!
-        </Button>
-        <h1>Cancel Your Bookings</h1>
-        <Button>Cancel Bookings</Button>
-      </div>
     </>
   );
 }

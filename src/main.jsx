@@ -53,24 +53,21 @@ const MainApp = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/docLogin" element={<DocLogin />} />
           <Route path="/recBook" element={<RecBook />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/doctor" element={<Doctor />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/otherDoctors" element={<OtherDoc />} />
           <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route path="/cancellation" element={<Cancellation />} />
           <Route path="/patientList" element={<PatientList />} />
           <Route path="/prescription" element={<Presc_doc />} />
-          <Route path="/chatBot" element={<ChatBot />} />
 
           <Route
             path="/home"
             element={
               <Home
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
               />
             }
           />
@@ -82,8 +79,8 @@ const MainApp = () => {
             path="/forWhom"
             element={
               <ForWhom
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
               />
             }
           />
@@ -91,8 +88,8 @@ const MainApp = () => {
             path="/otherProfile"
             element={
               <OtherProfile
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
               />
             }
           />
@@ -100,8 +97,8 @@ const MainApp = () => {
             path="/directBook"
             element={
               <DirectBook
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
               />
             }
           />
@@ -109,8 +106,8 @@ const MainApp = () => {
             path="/name"
             element={
               <Name
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
               />
             }
           />
@@ -118,8 +115,8 @@ const MainApp = () => {
             path="/Age"
             element={
               <Age
-                selectedOptions={selectedOptions}
-                updateSelectedOptions={updateSelectedOptions}
+              selectedOptions={selectedOptions}
+              updateSelectedOptions={updateSelectedOptions}
               />
             }
           />
@@ -129,8 +126,8 @@ const MainApp = () => {
           path="/formPage"
           element={
             <ChipsArray
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
+            selectedOptions={selectedOptions}
+            updateSelectedOptions={updateSelectedOptions}
             />
           }
         />
@@ -139,8 +136,8 @@ const MainApp = () => {
           path="/advBook"
           element={
             <Adv_booking
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
+            selectedOptions={selectedOptions}
+            updateSelectedOptions={updateSelectedOptions}
             />
           }
         />
@@ -148,8 +145,8 @@ const MainApp = () => {
           path="/onlineConsultation"
           element={
             <OnlineCons
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
+            selectedOptions={selectedOptions}
+            updateSelectedOptions={updateSelectedOptions}
             />
           }
         />
@@ -157,8 +154,8 @@ const MainApp = () => {
           path="/bookOnline"
           element={
             <On_cons2
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
+            selectedOptions={selectedOptions}
+            updateSelectedOptions={updateSelectedOptions}
             />
           }
         />
@@ -166,14 +163,18 @@ const MainApp = () => {
           path="/bookSelec"
           element={
             <BookSelec
-              selectedOptions={selectedOptions}
-              updateSelectedOptions={updateSelectedOptions}
+            selectedOptions={selectedOptions}
+            updateSelectedOptions={updateSelectedOptions}
             />
           }
         />
         <Route path="/userInfo" element={<UserInfo />} />
         <Route path="/slotPage" element={<SlotPage />} />
         <Route path="/svg" element={<InteractiveSVG />} />
+        <Route path="/chatBot" element={<ChatBot />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
       </>
     )
   );

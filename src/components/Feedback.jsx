@@ -1,14 +1,8 @@
-// import React from 'react'
-// import Layout from './Layout'
+import React from 'react'
 
-
-
-const Feedback = () => {
-  document.title='Feedback'
+function Feedback() {
   return (
-    <div>
-      <h1>Hello Hell</h1>
-    </div>
+    <div>Feedback</div>
   )
 }
 
