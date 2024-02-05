@@ -6,7 +6,7 @@ import "../styles/layout.css";
 import Footer1 from "../n_compo/footer1";
 function Layout() {
   return (
-    <div className="wrapper">
+    <div className="wrapper" >
       <div className="content">
         <Navbar />
         <Outlet />

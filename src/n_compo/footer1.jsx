@@ -5,11 +5,11 @@ import {
   FaInstagram,
   FaTwitterSquare,
 } from "react-icons/fa";
-import FadeInOnScroll from "./FadeInOnScroll";
+// import FadeInOnScroll from "./FadeInOnScroll";
 function Footer1() {
   return (
     <div>
-      <FadeInOnScroll>
+      {/* <FadeInOnScroll> */}
         <div className="w-full bg-gray-900 text-white">
           <div className="max-w-[1240px] mx-auto py-8 px-4 lg:flex lg:justify-between lg:items-center">
             <div className="flex justify-center lg:justify-start lg:w-2/3">
@@ -35,7 +35,7 @@ function Footer1() {
             </div>
           </div>
         </div>
-      </FadeInOnScroll> 
+      {/* </FadeInOnScroll>  */}
     </div>
   );
 }

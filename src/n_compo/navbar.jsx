@@ -39,8 +39,8 @@ function Navbar() {
           variants={navbarVariants}
         >
           <ul className="flex uppercase font-bold">
-            <li className="p-4 cursor-pointer" ><Link to='/home' style={{color:'white'}}>Home</Link></li>
-            <li className="p-4 cursor-pointer" ><Link to='/about' style={{color:'white'}}>About</Link></li>
+            <li className="p-4 cursor-pointer" ><Link to='/home' style={{color:'black'}}>Home</Link></li>
+            <li className="p-4 cursor-pointer" ><Link to='/about' style={{color:'black'}}>About</Link></li>
             <li className="p-4 cursor-pointer" ><Link to='/feeback' style={{color:'white'}}>FeedBack</Link></li>
             {userName ? (
               <li className="p-3 cursor-pointer"><a>{`Hey! ${userName}`}</a>

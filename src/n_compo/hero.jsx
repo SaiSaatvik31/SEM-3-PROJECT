@@ -21,7 +21,7 @@ const variants = {
 
 function Hero() {
   return (
-    <div className="text-white">
+    <div className="text-black">
       <motion.div
         className="max-w-[800px] w-full h-screen mt-[-96px] mx-auto flex flex-column items-center justify-center"
         variants={variants}

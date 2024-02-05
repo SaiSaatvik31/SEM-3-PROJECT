@@ -49,6 +49,7 @@ app.post('/api/register', async (req, res) => {
     await User.create({
       name: req.body.name,
       email: req.body.email,
+      number: req.body.mobNum,
       password: req.body.password,
       patient_id:`P${patient_id}`
     });

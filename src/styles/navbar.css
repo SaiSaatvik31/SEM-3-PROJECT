@@ -39,6 +39,7 @@ span {
 
 .navigation-menu {
     list-style: none;
+    background-position: ;
     display: flex;
     align-items: center;
     justify-content: center;
