@@ -25,6 +25,7 @@ export default function BasicModal({
   time,
   slot,
   amt,
+  desc,
 }) {
   const navigate = useNavigate();
   const [selectedTime, setSelectedTime] = useState(null);
@@ -115,7 +116,9 @@ export default function BasicModal({
   };
   return (
     <div>
-      <Button onClick={handleOpen}>BOOK NOW</Button>
+      <Button disabled={slot === "nan" ? true : false} onClick={handleOpen}>
+        BOOK NOW
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -130,20 +133,7 @@ export default function BasicModal({
             {hospital}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            In China as well as France, the first people to perform dentistry
-            were barbers. They have been categorized into 2 distinct groups:
-            guild of barbers and lay barbers. The first group, the Guild of
-            Barbers, was created to distinguish more educated and qualified
-            dental surgeons from lay barbers. Guild barbers were trained to do
-            complex surgeries. The second group, the lay barbers, were qualified
-            to perform regular hygienic services such as shaving and tooth
-            extraction as well as basic surgery. However, in 1400, France made
-            decrees prohibiting lay barbers from practicing all types of
-            surgery. In Germany as well as France from 1530 to 1575 publications
-            completely devoted to dentistry were being published. Ambroise Paré,
-            often known as the Father of Surgery, published his own work about
-            the proper maintenance and treatment of teeth. Ambroise Paré was a
-            French barber surgeon who performed.
+            {desc}
           </Typography>
           {/* {slot.map((element, index) => (
             <Button key={index}>{element}</Button>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import pic from "../pro-logo.png";
+import { Button } from "@mui/material";
+import Stars from "./Stars";
 import {
   Card,
   CardContent,
@@ -12,10 +14,9 @@ import {
   CardMedia,
 } from "@mui/material";
 import { borderLeft } from "@mui/system";
-
+import Modal_rate from "./modal_rate";
 function recBook() {
   const [patientData, setPatientData] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,7 +45,15 @@ function recBook() {
 
     fetchData();
   }, [setPatientData]);
-
+  const updateStatus = async (docName, name, Age, book_type) => {
+    const response = await fetch("/api/status", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ docName, name, Age, book_type }),
+    });
+  };
   return (
     <Container
       className=""
@@ -142,12 +151,22 @@ function recBook() {
                       <br />
                       Doctor Name: {element.doct_name}
                       <br />
+                      Consultation Status: {element.consultation_status}
+                      <br />
                       {element.day ? `Booking Day: ${element.day}` : null}
                       <br />
                       {element.time ? `Booking Time: ${element.time}` : null}
                       <br />
                       {element.date ? `Booking Date: ${element.date}` : null}
                     </Typography>
+                    <Modal_rate
+                      updateStatus={updateStatus}
+                      docName={element.doct_name}
+                      name={element.name}
+                      Age={element.Age}
+                      book_type={element.book_type}
+                      main_status={element.consultation_status}
+                    />
                   </CardContent>
                 </CardActionArea>
               </Card>

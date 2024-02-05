@@ -56,6 +56,8 @@ def predict():
     n=[]
     s_t=[]
     doc_wtl = pd.read_csv("Doc_wtl_n1.csv")
+    doc_desc=pd.read_csv("Doctordescrpitions.csv")
+   
     ut = doc_wtl['Time'].max()
     lt = doc_wtl['Time'].min()
     dt = ut - lt
@@ -90,7 +92,10 @@ def predict():
         elif i==5:
             h.append("Kamineni Hospital")
             amt.append("450")
-    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt}
+
+    main_desc=doc_desc[doc_desc['Doctor names'].isin(l)]
+    desc=main_desc.iloc[:,5].tolist()
+    n_dic = {'doctor_list':l,"hospitals_list":h,"time":t, "rating":r,"Norm":n,"slot":s_t,"dayName":day_name,"amt":amt,'desc':desc}
     url = 'https://docs.google.com/spreadsheets/d/1rZutJ4-S0YK-Yw3URsJN5BacnUO-Z8R2Lt8F88N32cU/export?format=csv&gid=243849322'
     gf1 = pd.read_csv(url)
     last_updated_time = time_collection.find_one()
@@ -134,8 +139,61 @@ def predict():
     print(output)
     print(x)
     print(prediction)
-    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name,"amt":list(n_dtf["amt"])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
-x
+    return {"value" : output,"doctor_list":list(n_dtf['doctor_list']),"hospitals_list":list(n_dtf["hospitals_list"]),"time":list(n_dtf["time"]), "rating":list(n_dtf["rating"]), "slot":list(n_dtf["slot"]),"dayName":day_name,"amt":list(n_dtf["amt"]),'desc':list(n_dtf['desc'])} #jsonify('{value : 21}'), 200, {'Content-Type': 'application/json'}
+
+@app.route('/flask/status',methods=['POST','GET'])
+def status():
+    url = 'https://docs.google.com/spreadsheets/d/1rZutJ4-S0YK-Yw3URsJN5BacnUO-Z8R2Lt8F88N32cU/export?format=csv&gid=243849322'
+    gf1 = pd.read_csv(url)
+    last_updated_time = time_collection.find_one()
+    last_updated_time = last_updated_time['time']
+    print(last_updated_time)
+    # time_document = last_updated_time_.next() if last_updated_time_.count()>0 else None
+    # print(time_document)
+    # time = time_document["time"] if time_document else None
+    # print(time)
+    gf2 = gf1[gf1['DateTime']>last_updated_time]
+    print(gf2.empty)
+    if not gf2.empty:
+
+        example = gf2['Doctor_ID'].index.values
+        last_index = example[-1] 
+        time = gf2['DateTime'][last_index]
+        print(time)
+    # time = example['DateTime'][example[-1]]
+        latest_time = time_collection.update_one({},{"$set":{'time': time}})
+        # if time > last_updated_time:
+        print("#############")
+        for i in example:
+        
+                # print(doctor_id)
+                doctor_doc = doctors_collection.find_one({"doc_id": gf2['Doctor_ID'][i]})
+                if doctor_doc:
+                # Toggle status based on existing status
+                    new_status = "absent" if doctor_doc["status"] == "present" else "present"
+                    doctors_collection.update_one({"doc_id": gf2['Doctor_ID'][i]}, {"$set": {"status": new_status}})
+                    print(new_status)
+                else:
+                    # Doctor ID not found, handle as needed (e.g., log a message)
+                    print(f"Doctor ID {gf2['Doctor_ID'][i]} not found in MongoDB collection.")
+        return ''
+@app.route('/flask/rating',methods=['POST','GET'])
+def rating():
+    list_a=pd.read_csv("Doc_wtl_n1.csv")
+    a=request.get_json()
+    docName=a['docName']
+    x=list_a[list_a['Doc_Name']==docName].index.values
+    data=doctors_collection.find_one({'doc_name':a['docName']})
+    rating_sum=data['rating']
+    main_sum=sum(rating_sum)
+    count=data['patient_count']
+    avg=main_sum/count
+    l=round(avg,1)
+    list_a['Rating'][x[0]]=l
+    list_a.to_csv("doc_wtl_n1.csv",index=False)
+    print(l)
+    print(x)
+    return ''
 
 @app.route('/flask/otherDoctors',methods=['POST','GET'])
 def otherDoc():

@@ -16,13 +16,15 @@ function Profile() {
     return () => clearTimeout(timeout);
   }, []);
 
-  const handleRecBook = ()=>{
-    navigate('/recBook')
-  }
+  const handleRecBook = () => {
+    navigate("/recBook");
+  };
   const handleCancelBook = () => {
-    navigate('/cancellation')
-  }
-
+    navigate("/cancellation");
+  };
+  const handleOthers = () => {
+    navigate("/otherProfile");
+  };
   return (
     <>
       <div className="container">
@@ -76,6 +78,17 @@ function Profile() {
                 onClick={handleCancelBook}
               >
                 Cancel Your Bookings
+              </motion.button>
+              <motion.button
+                className="bg-[#00df9a] w-[200px] rounded-md font-medium px-6 py-3 m-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ delay: 3, duration: 0.8 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleOthers}
+              >
+                book for Other Profile
               </motion.button>
             </div>
           </div>

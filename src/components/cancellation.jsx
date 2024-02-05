@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import Cancellation_m from "./cancellation_m";
@@ -39,7 +38,7 @@ function Cancellation() {
 
   return (
     <div>
-      <h1 className="text-[#00df9a] text-2xl">Cancel Your Booking</h1>
+      <h1 className="text-[#00df9a] text-2xl">Cancel Your Bookings</h1>
       <p className="text-2xl">Select the booking that you want to cancel:</p>
       {m_data.map((element, index) => (
         <Grid key={index}>
