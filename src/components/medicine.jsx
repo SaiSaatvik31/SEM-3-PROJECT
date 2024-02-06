@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Papa from "papaparse";
-
+import { Button } from "@mui/material";
+import { TextField } from "@mui/material";
 function Medicine() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -64,11 +64,14 @@ function Medicine() {
   };
 
   return (
-    <div className="App">
-      <input
-        type="text"
-        placeholder="Search medicine..."
+    <div className="App ml-5">
+      <TextField
+        className="mt-5"
         value={searchTerm}
+        id="outlined-basic"
+        label="Medicine"
+        variant="outlined"
+        placeholder="Search medicine..."
         onChange={handleSearchChange}
       />
       {checkedData.length > 0 && (
@@ -82,7 +85,14 @@ function Medicine() {
           <p>Total Rate: {totalRate}</p>
         </div>
       )}
-      <button onClick={handleShowCheckedData}>Select</button>
+      <Button
+        className="ml-5 m-5"
+        variant="contained"
+        color="success"
+        onClick={handleShowCheckedData}
+      >
+        Submit
+      </Button>
       {filteredData.length ? (
         <table className="table">
           <thead>
