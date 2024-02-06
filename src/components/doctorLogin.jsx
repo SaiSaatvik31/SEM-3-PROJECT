@@ -32,7 +32,7 @@ function DocLogin() {
     setUserName(e.target.value);
   }
   const handlePasswordChange = (e) => {
-    setUserName(e.target.value);
+    setPassword(e.target.value);
   }
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword)=> !prevShowPassword);
