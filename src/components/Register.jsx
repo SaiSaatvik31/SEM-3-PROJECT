@@ -164,7 +164,7 @@ function Register() {
       </div> */}
       <Navbar />
       <div className="register-wrapper">
-        <div className="registrationForm-wrapper">
+        <div className="registrationForm-wrapper mt-5 mb-5">
           <form onSubmit={registerUser}>
             <h1>Register</h1>
             <div className="input-box">

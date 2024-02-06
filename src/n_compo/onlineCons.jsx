@@ -13,16 +13,25 @@ function OnlineCons() {
                 Online Consultation
               </h1>
               <p>
-              Welcome to our Online Consultation service, designed to provide you with convenient 
-              and accessible healthcare from the comfort of your own space. Our platform offers a 
-              seamless experience for booking virtual appointments with experienced doctors, 
-              allowing you to consult with medical professionals without the need for in-person 
-              visits. Whether you're seeking expert advice, follow-up consultations, or have non-
-              emergency health concerns, our Online Consultation feature empowers you to 
-              schedule and attend appointments at your convenience. Experience personalized and 
-              confidential healthcare consultations, ensuring that you receive the care you need, 
-              when you need it. Take a proactive step towards your well-being with our efficient and 
-              secure online platform for medical consultations.
+                Welcome to our Online Consultation service, designed to provide
+                you with convenient <br />
+                and accessible healthcare from the comfort of your own space.
+                Our platform offers a <br />
+                seamless experience for booking virtual appointments with
+                experienced doctors, <br />
+                allowing you to consult with medical professionals without the
+                need for in-person <br />
+                visits. Whether you're seeking expert advice, follow-up
+                consultations, or have non- <br />
+                emergency health concerns, our Online Consultation feature
+                empowers you to <br />
+                schedule and attend appointments at your convenience. Experience
+                personalized and <br />
+                confidential healthcare consultations, ensuring that you receive
+                the care you need, <br />
+                when you need it. Take a proactive step towards your well-being
+                with our efficient and <br />
+                secure online platform for medical consultations.
               </p>
             </div>
           </div>

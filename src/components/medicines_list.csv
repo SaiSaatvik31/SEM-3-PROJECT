@@ -1,0 +1,40 @@
+﻿id,medicine,rate
+m1,Paracetamol (acetaminophen),200
+m2,Ibuprofen,244
+m3,Aspirin,23
+m4,Diclofenac,212
+m5,Amoxicillin,554
+m6,Ciprofloxacin,3432
+m7,Azithromycin,231
+m8,Cefixime,65
+m9,Ranitidine,654
+m10,Pantoprazole,23
+m11,Omeprazole,432
+m13,Cetirizine,35
+m14,Loratadine,323
+m15,Fexofenadine,654
+m16,Loperamide,332
+m17,Racecadotril,4
+m18,Ondansetron,54
+m19,Domperidone,32
+m20,Metoclopramide,22432
+m21,Amlodipine,565
+m22,Losartan,35
+m23,Enalapril,23
+m24,Metoprolol,5465
+m25,Metformin,3
+m26,Glibenclamide (glyburide),24
+m27,Glimepiride,21
+m28,Insulin,24
+m29,Prednisolone,3
+m30,Dexamethasone,24
+m31,Naproxen,4234
+m32,Fluconazole,345
+m33,Clotrimazole,4
+m34,Terbinafine,53
+m35,Oseltamivir (Tamiflu),235
+m36,Acyclovir,312341
+m37,Valacyclovir,324
+m38,Chloroquine,132
+m39,Artemether-Lumefantrine,123
+m40,Doxycycline,12
