@@ -122,13 +122,13 @@ function Home({ selectedOptions, updateSelectedOptions }) {
               </div>
             </Col>
           </Row>
+          <SearchBar />
           <Row className="mt-4">
             <HospitalCard />
           </Row>
           <Row className="mt-4 invisible-md">
             <WaterCard />
           </Row>
-          <SearchBar />
         </Container>
         {showModal && count > 0 && (
           <Modal open={showModal} onClose={handleCloseModal}>
