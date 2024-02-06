@@ -169,7 +169,7 @@ hover animation
 /* <==========new one==========> */
 
 :root {
-    --hos-normal-fontt-size :.938rem;
+    --hos-normal-font-size :.938rem;
     --hos-h3-font-size : 1.125rem;
     --hos-samll-font-size: .75rem;
 }
@@ -223,6 +223,7 @@ hover animation
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    /* margin-left: 70px; */
     border : 2px solid var(--hos-primary-color);
     margin-bottom: 1rem;
     object-fit: cover;
@@ -251,10 +252,10 @@ hover animation
     text-decoration: none;
     display: inline-block;
     background: linear-gradient(130deg, rgba(251,254,251,.9),rgba(251,251,254,.2));
-    padding: .75rem 1.5rem;
+    padding: 10px 15px;
     border-radius: .5rem;
     color: var(--hos-title-color);
-    transition: .4s;
+    /* transition: backgroun .4s ease; */
     font-weight: 500;
 }
 
@@ -290,7 +291,7 @@ hover animation
 }
 
 .hoscard__glass:hover .hoscard__link {
-    transform: translateX(-1.5ren);
+    transform: translateX(-1.5rem);
 }
 
 .hoscard__circle {

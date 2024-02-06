@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import '../styles/WaterCard.css'
-import Stars from './Stars.jsx'
+import Stars from './HomeStars.jsx'
 import { Button } from 'reactstrap'
 import {Swiper, SwiperSlide} from 'swiper/react'
 

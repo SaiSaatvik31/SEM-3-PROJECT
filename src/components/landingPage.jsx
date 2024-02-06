@@ -7,7 +7,7 @@ import Prescription from "../n_compo/Prescription";
 import Articles from "../n_compo/articles";
 import Footer1 from "../n_compo/footer1";
 const bodyStyle = {
-  backgroundColor: "#000300",
+  // backgroundColor: "#000300",
   backgroundSize: "cover",
   height: "100vh",
 };

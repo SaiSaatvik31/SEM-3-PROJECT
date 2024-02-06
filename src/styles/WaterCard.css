@@ -46,11 +46,11 @@
 }
 .swiper-slider:hover::before, .img__card:hover::before{
     top:170px;
-    left:300px;
+    left:270px;
 }
 .swiper-slider:hover::after, .img__card:hover::after{
-    top:210px;
-    left:320px;
+    top:205px;
+    left:290px;
 }
 .swiper-slider::after, .img__card::after {
     content: "";
@@ -86,16 +86,16 @@
   color: var(--text-color);
 }
 
-.img__card_content .hospital_name {
+.img__card_content .hospital_name, .img__card_content .rating {
   margin-top: 10px;
-  font-size: larger;
+  font-size: 20px;
   color: (--heading-color);
 }
 
 .img__card_content .img__btn,
 .img__card_content .img__btn:hover {
   position: relative;
-  padding: 8px 35px;
+  padding: 8px 30px;
   background: var(--secondary-color);
   border: none;
   outline: none;

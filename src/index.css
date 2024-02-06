@@ -1,12 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Protest+Revolution&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+/* *{
     padding: 0, 0;
     margin: 0, 0;
     box-sizing: border-box;
-    /* position: relative; */
-    /* color: black; */
+
 }
 body {
     font-family:  'roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -17,5 +17,109 @@ body::-webkit-scrollbar {
   }
   
   body::-webkit-scrollbar-thumb {
-    background-color: rgba(243, 241, 241, 0.238); /* Change this to your desired scrollbar color */
+    background-color: rgba(243, 241, 241, 0.238); 
+  } */
+
+
+
+  :root {
+      --primary-color : #123adc;
+      --secondary-color: #321cda;
+      --heading-color : #e89820;
+      --text-color : #6e7051;
+      --font-name : 'Dosis',sans-serif;
+      --other-font-name: 'Protest Revolution', sans-serif;
+      --background-color : rgb(99, 141, 152);
+      --logo-color : rgb(2,2,2);
+  
+      --hos-primary-color:#23412a;
+      --hos-title-color:#65721d;
+      --hos-text-color:#adfcea;
+      --hos-body-color : #eefa34;
+      --hos-container-color:#8752da;
+      --hos-h2-font-size:1.25rem;
+      --hos-small-font-size:.813rem;
+  
   }
+  
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  html body {
+      font-family: var(--font-name);
+      background-color: var(--background-color);
+      /* scrollbar-width: none; */
+      /* font-family: 'Courier New', Courier, monospace; */
+  }
+  
+   section {
+      padding : 50px 0px;
+   }
+  
+   h1,h2,h3,h4,h5,h6 {
+      color: var(--heading-color);
+   }
+  
+   a{
+      text-decoration: none;
+      /* color: unset; */
+   }
+   ul {
+      list-style: none;
+   }
+  
+   .primary__btn {
+      background: var(--secondary-color) !important;
+      border: none !important;
+      border-radius: 40px !important;
+      padding: 0.4rem 1.5rem !important;
+   }
+  
+   .primary__btn a{
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #fff;
+   }
+  
+   .primary__btn a:hover {
+      color: inherit;
+   }
+  
+   .secondary__btn {
+      background: transparent !important;
+      color :#032424;
+      border: none !important;
+      font-weight: 500;
+      border-radius: 40px !important;
+      padding: 0.4rem 1.5rem !important;
+   }
+  
+   .secondary__btn a{
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: var(--heading-color);
+   }
+  
+   .secondary__btn a:hover {
+      color: var(--heading-color);
+   }
+  
+  .section__subtitle {
+      /* background-color: var(--secondary-color); */
+      font-family: var(--other-font-name);
+      width: max-content;
+      padding: 0px 0.5rem;
+      padding-right: 1rem;
+      border-radius : 40px;
+      font-weight: 500;
+      font-size: 1.7rem;
+      color: var(--heading-color);
+  }
+   
+.article__container {
+  background: rgba(255,255,255,.25);
+  backdrop-filter: blur(20px);
+}

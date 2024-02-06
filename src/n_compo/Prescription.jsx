@@ -5,7 +5,7 @@ function Prescription() {
   return (
     <div>
       <FadeInOnScroll>
-        <div className="w-full bg-white py-16 px-4">
+        <div className="w-full  py-16 px-4">
           <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
             <div className="flex flex-col justify-start mt-5 mr-5">
               <h1 className="text-[#00df9a] md:text-4xl font-bold sm:text-3xl ">

@@ -74,7 +74,7 @@ function Navbar() {
   );
   return (
     <Box>
-      <AppBar component={"nav"} sx={{ bgcolor: "#0a0a0a" }}>
+      <AppBar component={"nav"} sx={{ bgcolor: "rgba(255,255,255,.15)", backdropFilter:'blur(20px)', borderRadius: '0 0 15px 15px' }}>
         <Toolbar>
           <Typography
             color={"darkcyan"}
@@ -83,10 +83,10 @@ function Navbar() {
             variant="h5"
           >
             <div
-              style={{ color: "white", cursor: "pointer" }}
+              style={{ color: "var(--logo-color)", cursor: "pointer" }}
               onClick={redirectToHome}
             >
-              <sup>
+              <sup style={{fontWeight:600}}>
                 Trust<sub>Cure</sub>
                 <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
               </sup>
@@ -104,17 +104,17 @@ function Navbar() {
           <Box component={"div"} sx={{ display: { xs: "none", sm: "block" } }}>
             <ul className="navigation-menu">
               <li>
-                <Link style={{ color: "white" }} to="/home">
+                <Link style={{ color: "var(--heading-color)" }} to="/home">
                   Home
                 </Link>
               </li>
               <li>
-                <Link style={{ color: "white" }} to="/about">
+                <Link style={{ color: "var(--heading-color)" }} to="/about">
                   About
                 </Link>
               </li>
               <li>
-                <Link style={{ color: "white" }} to="/feedback">
+                <Link style={{ color: "var(--heading-color)" }} to="/feedback">
                   FeedBack
                 </Link>
               </li>
@@ -136,7 +136,7 @@ function Navbar() {
                 </div>
               ) : (
                 <li>
-                  <Link style={{ color: "white" }} to="/register">
+                  <Link style={{ color: "var(--heading-color)" }} to="/register">
                     Login/Register
                   </Link>
                 </li>
