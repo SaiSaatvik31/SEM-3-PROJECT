@@ -12,7 +12,7 @@ function Articles() {
             <h1 className="text-5xl font-bold text-[#00df9a]">ARTICLES</h1>
           </div>
           <div className="max-w-[1240px] mx-auto grid grid-cols-3 gap-8">
-            <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-500">
+            <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-500 article__container">
               <h2 className=" text-2xl text-bold text-[#00df9a]">Article 1</h2>
               <div className="m-3">
                 <img src={pic1} />
@@ -31,7 +31,7 @@ function Articles() {
                 </a>
               </button>
             </div>
-            <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-500">
+            <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-500 article__container">
               <h2 className=" text-2xl text-bold text-[#00df9a]">Article 2</h2>
               <div className="m-3 ">
                 <img src={pic2} />
@@ -52,7 +52,7 @@ function Articles() {
                 </a>
               </button>
             </div>
-            <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-500">
+            <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-500 article__container">
               <h2 className=" text-2xl text-bold text-[#00df9a] ">Article 3</h2>
               <div className="m-3">
                 <img src={pic3} />

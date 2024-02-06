@@ -30,7 +30,7 @@ function Navbar() {
       animate="visible"
       style={{ position: showMenu ? "absolute" : "relative" }}
     >
-      <h1 className="w-full text-3xl font-bold text-[#00df9a]">TrustCure</h1>
+      <h1 className="w-full text-3xl font-bold text">TrustCure</h1>
       <div className="lg:flex hidden">
         <motion.div
           initial="hidden"

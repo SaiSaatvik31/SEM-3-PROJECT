@@ -22,7 +22,7 @@
     border-radius: 15px;
     border: 1px solid var(--text-color);
     object-fit: cover;
-    box-shadow: 0 4px 6px var(--text-color);
+    box-shadow: 0 2px 6px var(--logo-color);
     transform: translate3d(1px);
     transition: box-shadow .3s ease-in-out;
 }

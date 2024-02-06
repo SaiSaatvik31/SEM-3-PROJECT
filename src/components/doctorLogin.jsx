@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/login.css";
+import {Email, Visibility, VisibilityOff} from '@mui/icons-material'
 import { useNavigate } from "react-router-dom";
+
+import { Button, TextField } from "@mui/material";
+import useStyles from '../styles/customStyles'
 let doc_num = 2000;
 let adm_num = 2000;
 function DocLogin() {
+
   const location = useLocation();
-  const [userName, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [errors,setErrors] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  // const navigate = useNavigate();
   const [user, setUser] = useState("hello");
+  const navigate = useNavigate();
+  const classes = useStyles();
 
   const handleValidation = () => {
     if (userName !== "" && password !== "") {
@@ -19,6 +28,15 @@ function DocLogin() {
       setMessage("Invalid Credentials..Please Check again!");
     }
   };
+  const handleUserChange = (e) => {
+    setUserName(e.target.value);
+  }
+  const handlePasswordChange = (e) => {
+    setUserName(e.target.value);
+  }
+  const handleShowPassword = () => {
+    setShowPassword((prevShowPassword)=> !prevShowPassword);
+  }
   // const handleLogin = () => {
   //   navigate("/loginPage");
   // };
@@ -65,71 +83,73 @@ function DocLogin() {
 
   return (
     <>
-      <div className="main-container">
-        <div className="main-container2">
-          <div className="image-container">
-            <div className="d-flex flex-column justify-content-end">
-              <div className="ml-5 d-flex justify-content-center">
-                <img
-                  style={{ mixBlendMode: "multiply" }}
-                  src="../src/Trustcurelogo-1.png"
-                  width="300px"
-                  alt="logo"
-                />
-              </div>
-            </div>
-            <div className="ml-5 d-flex justify-content-center">
-              <img src="../src/Trustcure-nobg.png" alt="logo" />
-            </div>
-          </div>
-
-          <div className="login-container">
-            <h1>Doctor/Admin Login</h1>
-            <form onSubmit={loginUser}>
-              {/* Existing input for email */}
-              <input
+      <div className="login-wrapper">
+        <div className="loginForm-wrapper">
+          <form onSubmit={loginUser}>
+            <h1>Doctor Login</h1>
+            <div className="input-box">
+              <TextField
+                className={classes.textField}
+                error={errors}
+                helperText={errors ? "Invalid Credentials" : ""}
+                fullWidth
                 type="text"
                 name="userid"
                 id="userid"
                 required
-                placeholder="abc12@gmail.com"
+                label="Email"
                 value={userName}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                onBlur={(e) => {
-                  setUser(e.target.value);
+                onChange={handleUserChange}
+                InputProps={{
+                  // style:{borderColor:'black'},
+                  // notchedOutline:{borderColor:'black'},
+                  endAdornment: <Email fontSize="small" />,
                 }}
               />
-              {/* Existing input for password */}
-              <input
-                type="password"
+              {/* <Email fontSize="small"/> */}
+            </div>
+            <div className="input-box">
+              <TextField
+                error={errors}
+                className={classes.textField}
+                helperText={errors ? "Invalid Credentials" : ""}
+                fullWidth
+                type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
                 required
-                placeholder="Password"
+                label="Password"
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
+                onChange={handlePasswordChange}
+                InputProps={{
+                  endAdornment: showPassword ? (
+                    <VisibilityOff
+                      fontSize="small"
+                      onClick={handleShowPassword}
+                    />
+                  ) : (
+                    <Visibility fontSize="small" onClick={handleShowPassword} />
+                  ),
                 }}
               />
-              <button type="submit">Login</button>
-              <p
-                style={{
-                  marginTop: "8px",
-                  marginLeft: "25px",
-                  color:
-                    message ===
-                    "Successfully Logged In.. Redirecting in 2 seconds.."
-                      ? "green"
-                      : "red",
-                }}
-              >
-                {message}
+            </div>
+            <div className="remember-me">
+              <label>
+                <input type="checkbox" name="" id="" />
+                Remember Me
+              </label>
+              <Link to="#">Forgot Password?</Link>
+            </div>
+            <Button className="loginSubmit-button" type="submit">
+              Login
+            </Button>
+            <div className="register">
+              <p>
+                Don't have an account?<Link to="/register">Register</Link>
               </p>
-            </form>
-          </div>
-        </div>
+            </div>
+          </form>
+        </div>{" "}
       </div>
     </>
   );
