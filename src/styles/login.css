@@ -123,6 +123,7 @@
   
 
 .login-wrapper, .register-wrapper {
+    position: relative;
     
     font-family: 'Poppins', sans-serif;
     /* -webkit-font-smoothing : antialiased; */
@@ -133,9 +134,10 @@
     min-height:83.8vh;
     background-color: #fff;
     background: url('src/assets/login-image.jpg') no-repeat;
-    
+    /* filter: blur(10px);     */
     background-position: center;
     background-size: cover;
+    
 
     
 
@@ -152,8 +154,9 @@
     width:480px;
     color:#000;
     background: transparent;
-    backdrop-filter: blur(100px);
+    backdrop-filter: blur(50px);
     padding: 20px 40px;
+    
 }
 
 .loginForm-wrapper h1, .registrationForm-wrapper h1 {
