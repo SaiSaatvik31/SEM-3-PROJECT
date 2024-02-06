@@ -86,7 +86,7 @@ function DocLogin() {
       <div className="login-wrapper">
         <div className="loginForm-wrapper">
           <form onSubmit={loginUser}>
-            <h1>Doctor Login</h1>
+            <h1 style={{color:'black'}}>Doctor Login</h1>
             <div className="input-box">
               <TextField
                 className={classes.textField}
