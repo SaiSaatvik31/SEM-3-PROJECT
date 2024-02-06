@@ -22,7 +22,7 @@ function Articles() {
                   motor responses
                 </p>
               </div>
-              <button>
+              <button className="text-center mr-5">
                 <a
                   target="_blank"
                   href="https://www.britannica.com/science/brain"
@@ -42,7 +42,7 @@ function Articles() {
                   cholesterol are primary causes of heart disease
                 </p>
               </div>
-              <button>
+              <button className="mr-5">
                 <a
                   target="_blank"
                   href="
@@ -59,11 +59,11 @@ function Articles() {
                 <p>
                   Chronic obstructive pulmonary disease (COPD) has for too long
                   been seen as a self-inflicted progressive disorder of smokers
-                  towards the end of life with few treatment options beyond
+                  towards the end of life with few treatment options beyond{" "}
                   symptom control
                 </p>
               </div>
-              <button>
+              <button className="mr-5">
                 <a
                   target="_blank"
                   href="

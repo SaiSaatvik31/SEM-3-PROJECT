@@ -182,6 +182,20 @@ app.post('/api/fullDoc',async (req,res)=>{
     console.log(err);
   }
 })
+app.post('/api/medicine',async (req,res)=>{
+  try{
+    await client.connect();
+    const database=client.db('trustcure');
+    const collection=database.collection('medicine_list');
+    const data=await collection.find({}).toArray();
+    console.log(data);
+    return res.json({data});
+
+  }
+  catch(err){
+    console.log(err);
+  }
+})
 app.post('/api/advBook', async (req, res) => {
   try {
     await client.connect();
