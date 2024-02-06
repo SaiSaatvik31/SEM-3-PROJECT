@@ -118,7 +118,6 @@
     text-align: center;
 } */
 
-
   
   
 
@@ -133,6 +132,7 @@
     min-height:83.8vh;
     background-color: #fff;
     background: url('src/assets/login-image.jpg') no-repeat;
+    backdrop-filter: blur(10px);
     
     background-position: center;
     background-size: cover;

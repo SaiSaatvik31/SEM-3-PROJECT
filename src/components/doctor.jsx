@@ -29,7 +29,6 @@ const array = [
   "Todays Schedule",
   "Notes",
   "Online Consultation",
-  "Emergency",
 ];
 export default function doctor() {
   const navigate = useNavigate();
