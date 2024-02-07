@@ -8,7 +8,7 @@ function Medicine() {
   const [checkedItems, setCheckedItems] = useState([]);
   const [checkedData, setCheckedData] = useState([]);
   const [totalRate, setTotalRate] = useState(0);
-
+  const [text, setText] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,7 +39,7 @@ function Medicine() {
     setFilteredData(filtered);
   };
 
-  const handleCheckboxChange = (id, rate) => {
+  const handleCheckboxChange = (id, rate, med) => {
     const isChecked = checkedItems.includes(id);
     const updatedCheckedItems = isChecked
       ? checkedItems.filter((item) => item !== id)
@@ -48,7 +48,7 @@ function Medicine() {
 
     const updatedCheckedData = isChecked
       ? checkedData.filter((item) => item.id !== id)
-      : [...checkedData, { id, rate }];
+      : [...checkedData, { id, rate, med }];
     setCheckedData(updatedCheckedData);
   };
 
@@ -61,6 +61,7 @@ function Medicine() {
     setTotalRate(sum);
     console.log("Checked Data:", checkedData);
     console.log("Total Rate:", totalRate);
+    setText("The Selected Medicines has been Farworded to the Pharmacy");
   };
 
   return (
@@ -79,10 +80,13 @@ function Medicine() {
           <h2>Checked Data:</h2>
           <ul>
             {checkedData.map((item, index) => (
-              <li key={index}>{`ID: ${item.id}, Rate: ${item.rate}`}</li>
+              <li
+                key={index}
+              >{`ID: ${item.id}, Medicine: ${item.med} ,Rate: ${item.rate}`}</li>
             ))}
           </ul>
           <p>Total Rate: {totalRate}</p>
+          {text}
         </div>
       )}
       <Button
@@ -93,6 +97,7 @@ function Medicine() {
       >
         Submit
       </Button>
+
       {filteredData.length ? (
         <table className="table">
           <thead>
@@ -113,7 +118,9 @@ function Medicine() {
                   <input
                     type="checkbox"
                     checked={checkedItems.includes(row.id)}
-                    onChange={() => handleCheckboxChange(row.id, row.rate)}
+                    onChange={() =>
+                      handleCheckboxChange(row.id, row.rate, row.medicine)
+                    }
                   />
                 </td>
               </tr>

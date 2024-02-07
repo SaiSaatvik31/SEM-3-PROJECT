@@ -26,7 +26,7 @@ const Item = styled(Paper)(({ theme, index }) => ({
 }));
 const array = [
   "Todays bookings",
-  "Todays Schedule",
+  "Add Medicines",
   "Notes",
   "Online Consultation",
 ];
@@ -45,6 +45,13 @@ export default function doctor() {
   const handleClick = (index) => {
     if (index === "Todays bookings") {
       navigate("/patientList");
+    } else if (index === "Add Medicines") {
+      console.log("heyyy");
+      navigate("/medicine");
+    } else if (index === "Notes") {
+      navigate("/notes");
+    } else if (index === "Online Consultation") {
+      navigate("/onlinePatients");
     }
   };
   useEffect(() => {
@@ -64,11 +71,12 @@ export default function doctor() {
           columns={{ xs: 4, sm: 8, md: 12 }}
           justifyContent="center"
         >
-          {Array.from(Array(5)).map((_, index) => (
+          {Array.from(Array(4)).map((_, index) => (
             <Grid xs={2} sm={4} md={4} key={index}>
               <Item
                 index={index}
                 onClick={() => {
+                  console.log(index);
                   handleClick(array[index]);
                 }}
               >

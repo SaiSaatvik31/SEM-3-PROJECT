@@ -3,14 +3,18 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Form } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
 import "../styles/presc.css";
-export default function D_prescribe({name}) {
-  const [date, setDate] = useState(new Date())
+import Navbar from "./Navbar";
+export default function D_prescribe({ name }) {
+  const [date, setDate] = useState(new Date());
+  const [text, setText] = useState("Save Form");
 
-useEffect(()=>{
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
-  setDate(formattedDate)
-})
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
+    setDate(formattedDate);
+  });
 
   console.log(name);
   const hospital = {
@@ -28,10 +32,8 @@ useEffect(()=>{
     console.log(newData);
   }
 
-  // State to keep track of the checked radio button
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // Handler function to update the selected option
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.id);
   };
@@ -116,6 +118,7 @@ useEffect(()=>{
 
   return (
     <>
+      <Navbar />
       <div className="contain">
         <div className="header">
           <figure className="text-center">
@@ -188,8 +191,12 @@ useEffect(()=>{
           aria-describedby="inputGroup-sizing-default"
         /> */}
             {/* </InputGroup> */}
-            <div className="gender">
+            <div className="">
               <h5>Gender</h5>
+              <select>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
             </div>
 
             <h3>Prescription:</h3>
@@ -329,9 +336,12 @@ useEffect(()=>{
               <button
                 type="button"
                 className=" saveForm buttons"
-                onClick={display}
+                onClick={() => {
+                  display;
+                  setText("Form Submitted");
+                }}
               >
-                Save form
+                {text}
               </button>
             </div>
           </div>

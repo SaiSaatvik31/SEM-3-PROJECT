@@ -7,13 +7,13 @@ import {
   TableHead,
   TableRow,
   TableBody,
-  Button
+  Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Presc_modal from "./presc_modal";
 function PatientList() {
   const [patientData, setPatientData] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const asyncFn = async () => {
       try {
@@ -39,12 +39,12 @@ function PatientList() {
   }, []);
   return (
     <>
-      <h1>fhhbhfdbhf</h1>
       <Table>
         <TableHead>
           <TableRow>
             <TableCell>Patient Name</TableCell>
-            <TableCell>Symptoms</TableCell>
+            <TableCell>Gender</TableCell>
+            <TableCell>Age</TableCell>
             <TableCell>Add Prescription</TableCell>
           </TableRow>
         </TableHead>
@@ -52,12 +52,21 @@ function PatientList() {
           {patientData.map((elem) => (
             <TableRow key={elem.id}>
               <TableCell>{elem.name}</TableCell>
-              <TableCell key={elem.id}>
+              <TableCell>{elem.gender}</TableCell>
+              <TableCell>{elem.Age}</TableCell>
+              {/* <TableCell key={elem.id}>
                 {elem.symptoms.map((item) => (
                   <p key={item.id}>{item.label}</p>
                 ))}
-              </TableCell>
-              <Button key={elem.id} onClick={()=>{navigate('/prescription',{state: elem.name})}}>Add Prescription</Button>
+              </TableCell> */}
+              <Button
+                key={elem.id}
+                onClick={() => {
+                  navigate("/prescription", { state: elem.name });
+                }}
+              >
+                Add Prescription
+              </Button>
             </TableRow>
           ))}
         </TableBody>

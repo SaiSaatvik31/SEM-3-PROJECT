@@ -19,7 +19,8 @@ const patient_main2=new mongoose.Schema({
   time_list:Array,
   rating:Array,
   amt:Array,
-  speciality:String
+  speciality:String,
+  meet_link:String
 },{collection:'online_ref'})
 const data=mongoose.model('patients-booking-main2',patient_main2)
 module.exports=data

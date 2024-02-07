@@ -182,6 +182,20 @@ app.post('/api/fullDoc',async (req,res)=>{
     console.log(err);
   }
 })
+app.post('/api/onPatients',async (req,res)=>{
+  try{
+    await client.connect();
+    const database=client.db('trustcure');
+    const collection=database.collection('online-patients-booking');
+    console.log(req.body.userName);
+    const data=await collection.find({doct_name:req.body.userName}).toArray();
+    console.log(data);
+    return res.json({data});
+  }
+  catch(err){
+    console.log(err);
+  }
+})
 app.post('/api/medicine',async (req,res)=>{
   try{
     await client.connect();
@@ -432,7 +446,8 @@ app.post('/api/onlineBookMain',async (req,res)=>{
     day:req.body.day,
     date:req.body.date,
     booking_id:Booking_id,
-    amt:req.body.amt
+    amt:req.body.amt,
+    meet_link:req.body.meet_link
   })
   }
   catch(err){
@@ -643,9 +658,7 @@ app.get('/google/redirect', async (req, res) => {
   try {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
-    // Save tokens to the user session or database for later use if needed
-    // Your logic to handle the tokens
-    res.redirect('http://localhost:5173/bookOnline'); // Redirect to your frontend after successful authentication
+    res.redirect('http://localhost:5173/bookOnline'); 
   } catch (error) {
     console.error('Error getting tokens:', error);
     res.status(500).send({ error: "Error getting tokens" });

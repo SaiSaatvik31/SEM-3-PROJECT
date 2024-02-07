@@ -1,4 +1,3 @@
-#from markupsafe import escape
 from flask import Flask,request, url_for, redirect, render_template,jsonify
 import pickle
 import numpy as np
@@ -25,9 +24,7 @@ main_test=[]
 #a = pd.read_csv("test.csv")
 #b = pd.read_csv("updated test.emt_1.csv")
 lematizer  = WordNetLemmatizer()
-lp = []
-ln =[]
-nn_l = []
+# ln =[]
 bm_l = []
 x=0
 intents = json.loads(open("Intents1.json").read())
@@ -36,6 +33,16 @@ words = pickle.load(open('Words.pkl','rb'))
 classes = pickle.load(open('Classes.pkl','rb'))
 m_model = load_model('chatBot_model.h5')
 pln = spacy.load('model_out')
+ls = pd.read_csv("loop_state.csv")
+ls1 = pd.read_csv("extr_state.csv")
+
+lp = list(ls1['lp'])
+nn_l = list(ls1['nn_l'])
+
+
+ls_tag = ls['tag'][0]
+ls_count = list(ls['count'])[0]
+pr_int = list(ls['pr_int'])[0]
 # bot_symp = pd.read_csv("bot_symp")
 
 a = "Itching,Skin Rash,Nodal Skin Eruptions,Continuous Sneezing,Shivering,Chills,Joint Pain,Stomach Pain,Acidity,Ulcers On Tongue,Muscle Wasting,Vomiting,Burning Urination,Spotting Urination,Fatigue,Weight Gain,Anxiety,Cold Hands And Feets,Mood Swings,Weight Loss,Restlessness,Lethargy,Pain In Throat,Irregular Sugar Level,Cough,High Fever,Sunken Eyes,Breathlessness,Sweating,Dehydration,Indigestion,Headache,Yellowish Skin,Dark Urine,Nausea,Loss of Appetite,Pain behind the Eyes,Back Pain,Constipation,Abdominal Pain,Diarrhoea,Mild Fever,Yellow Urine,Yellowing of Eyes,Liver Failure,Fluid Overload,Swelling Of Stomach,Swelled Lymph Nodes,Malaise,Blurred and Distorted Vision,Phlegm,Throat Irritation,Redness of Eyes,Sinus Pressure,Runny Nose,Congestion,Chest Pain,Weakness in Limbs,Fast Heart Rate,Pain During Bowel Movements,Pain in Anal Region,Bloody Stool,Irritation in Anus,Neck Pain,Dizziness,Cramps,Bruising,Obesity,Swollen Legs,Swollen Blood Vessels,Puffy Face,Enlarged Thyroid,Brittle Nails,Swollen Extremeties,Excessive Hunger,Extra-Marital Contacts,Dying Lipds,Slurred Speech,Knee Pain,Hip-Joint Pain,Muscle Weakness,Stiff Neck,Swelling Joints,Movement  Stiffness,Spinning movements,Loss Of Balance,Unsteadiness,Body Weakness,Loss of Smell,Bladder Discomfort,Foul Smell of Urine,Continuous Feel of Urine,Passage Of Gases,Internal itching,Toxic Look,Depression,Irritability,Muscle Pain,Altered Sensorium,Red Spots Over Body,Belly Pain,Abnormal Menstruation,Dischromic Patches,Watering from Eyes,Increased Appetite,Polyuria,Family History,Mucoid Sputum,Rusty Sputum,Lack of Concentration,Visual Disturbances,Receiving Blood Transfusion,Reciving unsterile innjections,Coma,Stomach Bleeding,Distention Of Abdomen,Alcohol addiction,Fuild Overload,Blood in Sputum,Prominent Veins on Calf,Palpitations,Painful Walking,Pimples,Blackheads,Scurring,Skin Peeling,Silver like Dusting,Small Dents in Nails,Inflammatory Nails,Blister,Red Sore around Nose,Yellow Crust Ooze"
@@ -168,54 +175,97 @@ def predict():
 
 @app.route('/flask/chatBot',methods=['POST','GET'])
 def bot():
+    ls_tag = list(ls['tag'])[0]
+    lp = list(ls1['lp'])
+    nn_l = list(ls1['nn_l'])
+    ls_count = list(ls['count'])[0]
+    pr_int = list(ls['pr_int'])[0]
     message = request.get_json()
-    # message = input()
-  
-    print(message)
     botMsg=message['userMessage']
-    print(botMsg)
+    # message = input('You: ')
+    bool_mat = con_mat(botMsg)
     ints = pre_cls(botMsg)
     preint = ints[0]['intent']
-    if ints[0]['intent'] == 'symptoms':
-        print("him")
-        print("him")
-        print("him")
-        print("him")
-        # print(type(botMsg))
-        nn_extrct(botMsg)
-   
-    res = get_res(ints, intents)
+    if ls_tag == 'True' and preint == 'RES':
+        print(1)
+        # print(ls_tag)
+        ls_int = intents['intents']
+        ls_res = []
+        for i in ls_int:
+            if i['tag'] == pr_int:
+                ls_res = i['responses']
+                break
+        if ls_count < len(ls_res):
+            if ls_count == len(ls_res):
+                ls_tag = 'False'
+            ls_count = ls_count+1
+            print(f'Bot: {ls_res[ls_count-1]}')
+            res = ls_res[ls_count-1]
+            df1 = pd.DataFrame({'pr_int': pr_int,'tag': ls_tag,'count':ls_tag})
+            df1.to_csv("loop_state")
+            df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            df.to_csv("extr_state")
+            return {"response":res}
 
-    # print(lp)
-    # print(nn_l)
+            
 
-    if preint not in ['symptoms','greetings', 'exit','HRU','NAME']:
-        nn_extrct(botMsg)
-        # ls_int = intents['intents']
-        # ls_res = []
-        # for i in ls_int:
-        #     if i['tag'] == preint:
-        #         ls_res = i['responses']
-        #         break
-        # print("Don't worry I'll assist you.")
-        # for j in range(len(ls_res)):
-        #     print(f'Bot: {ls_res[j]}')
-        #     if len(ls_res)-1==j:
-        #         break
-        #     tmpin = input('You: ')
-    # else:
-    #     print(f'Bot: {res}')
-    print(f'Bot: {res}')
+    elif preint != 'exit':
+        print(2)
+        res = get_res(ints, intents)
+        if bool_mat:
+            print(f"Bot🤖: I've already noted this symptom tell me about other symptoms.")
+            res = "Bot🤖: I've already noted this symptom tell me about other symptoms."
+            return {"response":res}
 
+
+        elif ints[0]['intent'] == 'symptoms':
+            nn_extrct(botMsg)
+            res = get_res(ints, intents)
+            print(f'Bot🤖: {res}')
+            df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            df.to_csv("extr_state")
+            return {"response":list(res)}
+        elif preint in ['FEVER','COLD','STOMACHPAIN','HEADACHE','ITCHING','JOINTPAIN','CHESTPAIN','EYEPAIN']:
+            print("entered")
+            ls_int = intents['intents']
+            ls_res = []
+            for i in ls_int:
+                if i['tag'] == preint:
+                    ls_res = i['responses']
+                    break
+            ls_tag = 'True'
+            pr_int = preint
+            ls_count = 1
+            print(f"Bot: Don't worry I'll assist you. {ls_res[0]}")
+            res = ls_res[0]
+            lsc=[]
+            lsc.append(ls_count)
+            df1 = pd.DataFrame({'pr_int': list(pr_int),'tag': list(ls_tag),'count':lsc})
+            df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            df.to_csv("extr_state")
+            df1.to_csv("loop_state")
+            return {"response":"Don't worry I'll assist you"+res}
+        else:
+            res = get_res(ints, intents)
+            print(f"Bot🤖: {res}")
+            # df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            # df.to_csv("Nrm_1/extr_state")
+            return {"response":res}
+    print(lp)
+    print(nn_l)
     if ints[0]['intent'] == 'exit':
         bm_fuz()
         lp_bm = lp+bm_l
         lp_bm = set(lp_bm)
         lp_bm = list(lp_bm)
         # print(lp_bm)
-        pre_dep(lp_bm)
-    
-    # print(res)
+        res = pre_dep(lp_bm)
+        lp =[]
+        nn_l =[]
+        df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+        df.to_csv("extr_state")
+        print(res)
+            
     return {"response":res}
    
 
@@ -229,6 +279,18 @@ def clean_sen(sentence):
         if i in sentence:
             lp.append(i)
     return sentence_words
+
+
+def con_mat(sen):
+    ext_con = []
+    for i in symptom_list:
+        if i in sen:
+            ext_con.append(i)
+    if len(ext_con)==1 and ext_con:
+        print(ext_con)
+        if ext_con[0] in lp:
+            return True
+    return False
 
 
 def bag_of_words(sentence):
@@ -268,6 +330,7 @@ def pre_dep(n12):
     snakes = pd.read_csv("Snakes_fin.csv")
     output = snakes.iloc[prediction][1]
     print("++++++"+"it seems you have to consult a",output)
+    return "it seems you have to consult a"+output
 
 def get_res(intents_list, intents_json):
     tag = intents_list[0]['intent']
@@ -436,3 +499,5 @@ def pre_time():
 if __name__ == '__main__':
     app.run(debug=True)
     # bot()
+
+

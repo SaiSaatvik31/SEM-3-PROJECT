@@ -49,8 +49,6 @@ const Online_cons = ({ selectedOptions, updateSelectedOptions }) => {
     }
   };
 
-  // Step 3: Create a meeting
-
   return (
     <div style={styles.cardContainer}>
       <div style={styles.cardContent}>

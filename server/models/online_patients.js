@@ -15,7 +15,8 @@ const patient_main=new mongoose.Schema({
   slot:String,
   waiting_time:String,
   booking_id:String,
-  amt:String
+  amt:String,
+  meet_link:String
 },{collection:'online-patients-booking'})
 const data=mongoose.model('patients-booking-main',patient_main)
 module.exports=data

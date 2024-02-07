@@ -7,7 +7,9 @@ import { Container, Row, Col } from "reactstrap";
 import SearchBar from "./SearchBar";
 import WaterCard from "./WaterCard";
 import SubTitle from "./Subtitle";
-import '../styles/home.css'
+
+import "../styles/home.css";
+import Services from "./services";
 function Home({ selectedOptions, updateSelectedOptions }) {
   const [updatedList, setUpdatedOptions] = useState(selectedOptions);
   const [count, setCount] = useState(0);
@@ -90,10 +92,11 @@ function Home({ selectedOptions, updateSelectedOptions }) {
                   Book Your Doctor <span className="highlight">With Us</span>
                 </h1>
                 <p className="text-2xl" style={{ textAlign: "justify" }}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Sapiente reiciendis illo molestiae, ullam iste velit quae
-                  placeat, quo quisquam nemo facilis itaque. Esse quo debitis
-                  numquam obcaecati dicta exercitationem quidem.
+                  Experience a new era in healthcare efficiency with our
+                  comprehensive suite of solutions dedicated to optimizing
+                  doctors' availability.Say goodbye to long wait times and hello
+                  to a healthcare experience where access to quality care is
+                  prioritized and optimized at every step.
                 </p>
                 <Button
                   className="p-2"
@@ -122,12 +125,14 @@ function Home({ selectedOptions, updateSelectedOptions }) {
               </div>
             </Col>
           </Row>
-          <SearchBar />
           <Row className="mt-4">
             <HospitalCard />
           </Row>
           <Row className="mt-4 invisible-md">
             <WaterCard />
+          </Row>
+          <Row className="mt-4 invisible-md">
+            <Services />
           </Row>
         </Container>
         {showModal && count > 0 && (

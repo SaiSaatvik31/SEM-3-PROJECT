@@ -35,7 +35,7 @@ export default function OnlineBookModal({
   const [color, setColor] = useState("secondary");
   const [text, setText] = useState("Book Slot");
   const [loading, setLoading] = useState(false);
-
+  const [meet, setMeet] = useState();
   const handleCreateMeeting = async () => {
     try {
       const response = await axios.post(
@@ -46,6 +46,15 @@ export default function OnlineBookModal({
       );
 
       console.log(response.data);
+      setMeet(response.data.events[0].meetLink);
+      let updatedData = {
+        ...updatedList,
+        meetLink: response.data.events[0].meetLink,
+      };
+      console.log(updatedData);
+      setUpdatedList(updatedData);
+      console.log(response.data.events[0].meetLink);
+      return response.data.events[0].meetLink;
     } catch (error) {
       console.error("Error creating meeting:", error);
     }
@@ -55,6 +64,12 @@ export default function OnlineBookModal({
     setText("Slot Booked");
     setLoading(true);
 
+    const main = await handleCreateMeeting();
+    console.log(main);
+    console.log(main);
+    console.log(main);
+    console.log(main);
+    console.log(main);
     let updatedData = {
       ...updatedList,
       doct_name: doc_name,
@@ -62,9 +77,8 @@ export default function OnlineBookModal({
       time: selectedTime,
       hospital: hospital,
       amt: amt,
+      meet_link: main,
     };
-    await handleCreateMeeting();
-
     console.log("checking");
     console.log(updatedData);
     setUpdatedList(updatedData);
@@ -74,6 +88,7 @@ export default function OnlineBookModal({
     const formattedDate = dateObject.toISOString().split("T")[0];
 
     setTimeout(async () => {
+      console.log(updatedData);
       const response = await fetch("/api/onlineBookMain", {
         method: "POST",
         headers: {
@@ -92,6 +107,7 @@ export default function OnlineBookModal({
           day: updatedData.bookedDay,
           date: formattedDate,
           amt: updatedData.amt,
+          meet_link: updatedData.meet_link,
         }),
       });
 

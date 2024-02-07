@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import './index.css'
+import "./index.css";
 import Layout from "./components/Layout.jsx";
 import Appointment from "./components/Appointment.jsx";
 import Home from "./components/Home.jsx";
@@ -41,6 +41,8 @@ import ChatBot from "./components/chatBot.jsx";
 import OtherProfile from "./components/otherProfile.jsx";
 import DirectBook from "./components/directBook.jsx";
 import Medicine from "./components/medicine.jsx";
+import OnlinePatients from "./components/onlinePatients.jsx";
+import DocNotes from "./components/docNotes.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -62,8 +64,10 @@ const MainApp = () => {
           <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route path="/cancellation" element={<Cancellation />} />
           <Route path="/patientList" element={<PatientList />} />
-          <Route path="/prescription" element={<Presc_doc />} />
+
           <Route path="/medicine" element={<Medicine />} />
+          <Route path="/notes" element={<DocNotes />} />
+          <Route path="/onlinePatients" element={<OnlinePatients />} />
 
           <Route
             path="/home"
@@ -177,6 +181,7 @@ const MainApp = () => {
         <Route path="/chatBot" element={<ChatBot />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/prescription" element={<Presc_doc />} />
       </>
     )
   );
