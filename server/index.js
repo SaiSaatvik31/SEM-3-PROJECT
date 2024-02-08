@@ -58,6 +58,16 @@ app.post('/api/register', async (req, res) => {
     res.json({ status: 'error' });
   }
 });
+app.post('/api/addPresc', async (req, res) => {
+  try {
+    console.log(req.body.name)
+    console.log(req.body.data)
+    await booking.updateOne({ name: req.body.name }, { $set: { presc: req.body.data }});
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.post('/api/slotPage',async (req,res)=>{
   console.log(req.body);
   await client.connect();

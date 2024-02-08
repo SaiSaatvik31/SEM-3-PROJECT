@@ -23,13 +23,15 @@ export default function D_prescribe({ name }) {
     C: "Kaminenei",
   };
   function display() {
-    const newData = { ...formData, ...medications, labTests, date };
-
+    const newData = [{ ...formData, ...medications, labTests, date }];
+    console.log(newData);
     // console.log(
     //     formData,
     //     medications ,
     //     labTests,)
+
     console.log(newData);
+    return newData;
   }
 
   const [selectedOption, setSelectedOption] = useState(null);
@@ -42,6 +44,16 @@ export default function D_prescribe({ name }) {
     name: "",
     age: "",
   });
+  const handleSubmit = async (data) => {
+    let name = data[0].name;
+    const response = await fetch("/api/addPresc", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data, name }),
+    });
+  };
   const handleInputChange = (event, fieldName) => {
     setFormData({
       ...formData,
@@ -310,17 +322,6 @@ export default function D_prescribe({ name }) {
             {/* <button type="button" className="btn btn-info button mb-3" onClick={handleAddField}>Add Lab Tests</button> */}
             <div className="input-group mb-3  inputs">
               <span className="input-group-text" id="inputGroup-sizing-default">
-                Signature
-              </span>
-              <input
-                type="text"
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-              />
-            </div>
-            <div className="input-group mb-3  inputs">
-              <span className="input-group-text" id="inputGroup-sizing-default">
                 Date{" "}
               </span>
               <input
@@ -337,8 +338,9 @@ export default function D_prescribe({ name }) {
                 type="button"
                 className=" saveForm buttons"
                 onClick={() => {
-                  display;
+                  let main_data = display();
                   setText("Form Submitted");
+                  handleSubmit(main_data);
                 }}
               >
                 {text}
