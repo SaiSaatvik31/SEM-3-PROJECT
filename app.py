@@ -175,7 +175,10 @@ def predict():
 
 @app.route('/flask/chatBot',methods=['POST','GET'])
 def bot():
+    ls = pd.read_csv("loop_state.csv")
+    ls1 = pd.read_csv("extr_state.csv")
     ls_tag = list(ls['tag'])[0]
+    # print(ls_tag)
     lp = list(ls1['lp'])
     nn_l = list(ls1['nn_l'])
     ls_count = list(ls['count'])[0]
@@ -186,7 +189,13 @@ def bot():
     bool_mat = con_mat(botMsg)
     ints = pre_cls(botMsg)
     preint = ints[0]['intent']
-    if ls_tag == 'True' and preint == 'RES':
+    print(preint)
+    print(ls_tag)
+    print(type(preint))
+    print(lp)
+    print(nn_l)
+    # print(type(ls_tag))
+    if ls_tag == 'yes' and preint == 'RES':
         print(1)
         # print(ls_tag)
         ls_int = intents['intents']
@@ -197,14 +206,20 @@ def bot():
                 break
         if ls_count < len(ls_res):
             if ls_count == len(ls_res):
-                ls_tag = 'False'
+                ls_tag = 'no'
             ls_count = ls_count+1
             print(f'Bot: {ls_res[ls_count-1]}')
             res = ls_res[ls_count-1]
-            df1 = pd.DataFrame({'pr_int': pr_int,'tag': ls_tag,'count':ls_tag})
-            df1.to_csv("loop_state")
-            df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
-            df.to_csv("extr_state")
+            lsc=[]
+            lsp = []
+            lst = []
+            lsp.append(pr_int)
+            lst.append(ls_tag)
+            lsc.append(ls_count)
+            df1 = pd.DataFrame({'pr_int': lsp,'tag': lst,'count':lsc})
+            df1.to_csv("loop_state.csv",index=False)
+            # df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            # df.to_csv("extr_state.csv",index=False)
             return {"response":res}
 
             
@@ -222,28 +237,36 @@ def bot():
             nn_extrct(botMsg)
             res = get_res(ints, intents)
             print(f'Bot🤖: {res}')
-            df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
-            df.to_csv("extr_state")
+            # df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            # df.to_csv("extr_state.csv",index=False)
             return {"response":list(res)}
         elif preint in ['FEVER','COLD','STOMACHPAIN','HEADACHE','ITCHING','JOINTPAIN','CHESTPAIN','EYEPAIN']:
             print("entered")
+            nn_extrct(botMsg)
             ls_int = intents['intents']
             ls_res = []
             for i in ls_int:
                 if i['tag'] == preint:
                     ls_res = i['responses']
                     break
-            ls_tag = 'True'
+            ls_tag = 'yes'
             pr_int = preint
             ls_count = 1
-            print(f"Bot: Don't worry I'll assist you. {ls_res[0]}")
+            print(f"Bot: Don't worry I'll assist you.\n {ls_res[0]}")
             res = ls_res[0]
             lsc=[]
+            lsp = []
+            lst = []
+            lsp.append(pr_int)
+            lst.append(ls_tag)
             lsc.append(ls_count)
-            df1 = pd.DataFrame({'pr_int': list(pr_int),'tag': list(ls_tag),'count':lsc})
-            df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
-            df.to_csv("extr_state")
-            df1.to_csv("loop_state")
+            print(len( lsp))
+            print(len(lst))
+            print(len(lsc))
+            df1 = pd.DataFrame({'pr_int': lsp,'tag': lst,'count':lsc})
+            # df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+            # df.to_csv("extr_state.csv",index=False)
+            df1.to_csv("loop_state.csv",index=False)
             return {"response":"Don't worry I'll assist you"+res}
         else:
             res = get_res(ints, intents)
@@ -251,19 +274,26 @@ def bot():
             # df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
             # df.to_csv("Nrm_1/extr_state")
             return {"response":res}
+    ls1 = pd.read_csv("extr_state.csv")
+    lp = list(ls1['lp'])
+    nn_l = list(ls1['nn_l'])
     print(lp)
     print(nn_l)
     if ints[0]['intent'] == 'exit':
-        bm_fuz()
-        lp_bm = lp+bm_l
+        lp_bm = bm_fuz()
         lp_bm = set(lp_bm)
         lp_bm = list(lp_bm)
         # print(lp_bm)
         res = pre_dep(lp_bm)
         lp =[]
         nn_l =[]
+        lsc=[0]
+        lsp = ['none']
+        lst = ['no']
+        df1 = pd.DataFrame({'pr_int': lsp,'tag': lst,'count':lsc})
+        df1.to_csv("loop_state.csv",index=False)
         df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
-        df.to_csv("extr_state")
+        df.to_csv("extr_state.csv",index=False)
         print(res)
             
     return {"response":res}
@@ -272,12 +302,17 @@ def bot():
     
 def clean_sen(sentence):
     sentence_words = nltk.word_tokenize(sentence)
+    ls1 = pd.read_csv("extr_state.csv")
+    lp = list(ls1['lp'])
+    nn_l = list(ls1['nn_l'])
     l = ["itching", "skin rash", "nodal skin eruptions", "continuous sneezing", "shivering", "chills", "joint pain", "stomach pain", "acidity", "ulcers on tongue", "muscle wasting", "vomiting", "burning urination", "spotting urination", "fatigue", "weight gain", "anxiety", "cold hands and feets", "mood swings", "weight loss", "restlessness", "lethargy", "pain in throat", "irregular sugar level", "cough", "high fever", "sunken eyes", "breathlessness", "sweating", "dehydration", "indigestion", "headache", "yellowish skin", "dark urine", "nausea", "loss of appetite", "pain behind the eyes", "back pain", "constipation", "abdominal pain", "diarrhoea", "mild fever", "yellow urine", "yellowing of eyes", "liver failure", "fluid overload", "swelling of stomach", "swelled lymph nodes", "malaise", "blurred and distorted vision", "phlegm", "throat irritation", "redness of eyes", "sinus pressure", "runny nose", "congestion", "chest pain", "weakness in limbs", "fast heart rate", "pain during bowel movements", "pain in anal region", "bloody stool", "irritation in anus", "neck pain", "dizziness", "cramps", "bruising", "obesity", "swollen legs", "swollen blood vessels", "puffy face", "enlarged thyroid", "brittle nails", "swollen extremeties", "excessive hunger", "extra-marital contacts", "dying lipds", "slurred speech", "knee pain", "hip-joint pain", "muscle weakness", "stiff neck", "swelling joints", "movement stiffness", "spinning movements", "loss of balance", "unsteadiness", "body weakness", "loss of smell", "bladder discomfort", "foul smell of urine", "continuous feel of urine", "passage of gases", "internal itching", "toxic look", "depression", "irritability", "muscle pain", "altered sensorium", "red spots over body", "belly pain", "abnormal menstruation", "dischromic patches", "watering from eyes", "increased appetite", "polyuria", "family history", "mucoid sputum", "rusty sputum", "lack of concentration", "visual disturbances", "receiving blood transfusion", "reciving unsterile innjections", "coma", "stomach bleeding", "distention of abdomen", "alcohol addiction", "fuild overload", "blood in sputum", "prominent veins on calf", "palpitations", "painful walking", "pimples", "blackheads", "scurring", "skin peeling", "silver like dusting", "small dents in nails", "inflammatory nails", "blister", "red sore around nose", "yellow crust ooze"]
-    
     sentence_words = [lematizer.lemmatize(word) for word in sentence_words]
     for i in l:
         if i in sentence:
             lp.append(i)
+            nn_l.append('0')
+    df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+    df.to_csv("extr_state.csv",index=False)
     return sentence_words
 
 
@@ -319,7 +354,7 @@ def pre_cls(sentence):
 
 def pre_dep(n12):
     a = pd.read_csv("test.csv")
-    b = pd.read_csv("updated test.emt_1.csv")
+    b = pd.read_csv("updated test.emt_1 copy.csv")
     x=[]
     for i in n12:
         #
@@ -344,21 +379,43 @@ def get_res(intents_list, intents_json):
 
 def nn_extrct(text):
     cod = pln(text)
+    ls1 = pd.read_csv("extr_state.csv")
+    lp = list(ls1['lp'])
+    nn_l = list(ls1['nn_l'])
     for ent in cod.ents:
         if ent.label_ == 'SYMPTOMS':
             nn_l.append(ent.text)
+            lp.append('0')
             # bot_symp['nn_l'].append(ent.text)
+    print(nn_l)
+    print(lp)
+    df = pd.DataFrame({'lp':lp, 'nn_l':nn_l})
+    df.to_csv("extr_state.csv",index=False)
 
 
 
 
 
 def bm_fuz():
+    bm_l =[]
+    ls1 = pd.read_csv("extr_state.csv")
+    lp = list(ls1['lp'])
+    nn_l = list(ls1['nn_l'])
+    lp1 = []
+    nn_l1 = []
+    for i in lp:
+        if i!='0':
+            lp1.append(i)
     for i in nn_l:
+        if i!='0':
+            nn_l1.append(i)
+    for i in nn_l1:
+        print(i)
         best_match, score = process.extractOne(i.lower(), symptom_list, scorer=fuzz.ratio)
         bm_l.append(best_match)
         if score >= 60: 
             bm_l.append(best_match)
+    return lp1+bm_l
     # print("BM")
     # print(bm_l)
     
@@ -499,5 +556,3 @@ def pre_time():
 if __name__ == '__main__':
     app.run(debug=True)
     # bot()
-
-

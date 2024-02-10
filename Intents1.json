@@ -6,18 +6,23 @@
             "responses":["I'm fine!"]
         },
         {
+            "tag": "RES",
+            "patterns":["high","low","medium","very high","from 3 days","5 days","upper region","lower","left side","right side"],
+            "responses":[""]
+        },
+        {
             "tag": "NAME",
-            "patterns":["what is your name", "what's your name","who are you"],
-            "responses":["I'm PraVeena!, basically I'm Kamal Nayan's girlfriend.I'm a ChatBot built to assist you in booking appointment with a doctor. "]
+            "patterns":["what is your name", "what's your name","who are you","you are?","u r?","u r","ur name","name?","u?"],
+            "responses":["I'm Dr.Bot!, I'm a ChatBot built to assist you in booking appointment with a doctor. "]
         },
         {
             "tag": "greetings",
-            "patterns": ["hello","hey","hi","good day","greetings","how is it going?","what's up?","ho","hlo","helo","hw "],
+            "patterns": ["hello","hey","hi","good day","greetings","how is it going?","what's up?","ho","hlo","helo","hw ","hiee","hiee","hola","hol","hayy","hai","hy"],
             "responses":["Hello!","Hey!","what can I do for you?","Hello! How can I help you?"]
         },
         {
             "tag": "exit",
-            "patterns": ["no","nope","thats it","that is all","nothing else"],
+            "patterns": ["no","nope","thats it","that is all","nothing else","I am done","yeah thats it","only those","i dont think so"],
             "responses":["Okay, it seems you have to consult a doctor","Based on your symptoms you may have to consult a doctor for further diagnosis"]
         },
         {
@@ -151,6 +156,3 @@
         
     ]
 }
-
-
-

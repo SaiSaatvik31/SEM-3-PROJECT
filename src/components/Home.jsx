@@ -7,9 +7,10 @@ import { Container, Row, Col } from "reactstrap";
 import SearchBar from "./SearchBar";
 import WaterCard from "./WaterCard";
 import SubTitle from "./Subtitle";
-
+import doc1 from "../doc1.jpg";
 import "../styles/home.css";
 import Services from "./services";
+import doc2 from "../doc2.jpg";
 function Home({ selectedOptions, updateSelectedOptions }) {
   const [updatedList, setUpdatedOptions] = useState(selectedOptions);
   const [count, setCount] = useState(0);
@@ -109,19 +110,14 @@ function Home({ selectedOptions, updateSelectedOptions }) {
                 </Button>
               </div>
             </Col>
-            <Col lg="2">
+            <Col lg="3">
               <div className="hero__img-box">
-                <img src="ML/Cat.jpg" />
+                <img src={doc1} />
               </div>
             </Col>
-            <Col lg="2">
+            <Col lg="3">
               <div className="hero__img-box mt-4">
-                <img src="ML/Shashi.jpg" />
-              </div>
-            </Col>
-            <Col lg="2">
-              <div className="hero__img-box mt-5">
-                <img src="src\styles\WhatsApp Image 2024-02-05 at 14.49.13_ea9519f2.jpg" />
+                <img src={doc2} />
               </div>
             </Col>
           </Row>

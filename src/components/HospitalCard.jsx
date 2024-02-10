@@ -31,7 +31,10 @@ function HospitalCard() {
         <div className="hoscard__container bd-container">
           {hospitalsData.map((hospital, index) => (
             <div key={index} className="hoscard__glass">
-              <img alt="" className="hoscard__image" />
+              <center>
+                <img alt="" className="hoscard__image text-center" />
+              </center>
+
               <div className="hoscard__data">
                 <h3>
                   <span className="hoscard__description">
@@ -39,7 +42,10 @@ function HospitalCard() {
                   </span>
                 </h3>
                 <h3 className="hoscard__title">{hospital.type}</h3>
-                <Link to="#" className="hoscard__button">
+                <Link
+                  to="#"
+                  className="hoscard__button position-relative mt-5 "
+                >
                   Read More
                 </Link>
                 <div className="hoscard__social">

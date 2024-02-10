@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Navbar from "./Navbar";
+
 function ChatBot() {
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleUserInput = async (message) => {
     setMessages((prevMessages) => [
@@ -88,6 +98,7 @@ function ChatBot() {
               </div>
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
         <input
           className="mb-5"

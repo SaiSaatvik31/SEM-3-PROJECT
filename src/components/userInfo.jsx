@@ -4,6 +4,13 @@ import { Outlet } from "react-router-dom";
 import Footer1 from "../n_compo/footer1";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/userInfo.css";
+import boy from "../boy.jpg";
+import girl from "../girl.jpg";
+import middleAged from "../middle_aged.jpg";
+import small_boy from "../small_boy.jpg";
+import small_girl from "../small_girl.jpg";
+import aged_women from "../above_60_men.jpg";
+import aged_men from "../above_60_women.jpg";
 import { HashLoader } from "react-spinners";
 import { timeout } from "webgi";
 
@@ -103,21 +110,64 @@ function UserInfo() {
   }, [location.state.symptoms]);
 
   useEffect(() => {
-    if (location.state.gender === "FEMALE") {
-      setImg(
-        "https://harunmudak.com/wp-content/uploads/2020/12/girl-cartoon-characters-1.jpg"
-      );
-    } else if (location.state.gender === "MALE") {
-      setImg(
-        "https://cdn.pixabay.com/photo/2023/04/26/09/25/ai-generated-7951983_1280.png"
-      );
-    } else {
-      setImg(
-        "https://www.seekpng.com/png/detail/215-2159746_generic-user-icon-png.png"
-      );
+    if (
+      (location.state.gender === "female" ||
+        location.state.gender === "FEMALE") &&
+      location.state.Age > 60
+    ) {
+      setImg(aged_women);
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "female" ||
+        location.state.gender === "FEMALE") &&
+      location.state.Age < 60 &&
+      location.state.Age > 30
+    ) {
+      setImg("");
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "male" || location.state.gender === "MALE") &&
+      location.state.Age > 60
+    ) {
+      setImg(aged_men);
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "male" || location.state.gender === "MALE") &&
+      location.state.Age < 60 &&
+      location.state.Age > 30
+    ) {
+      setImg(middleAged);
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "female" ||
+        location.state.gender === "FEMALE") &&
+      location.state.Age < 20 &&
+      location.state.Age > 10
+    ) {
+      setImg(girl);
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "male" || location.state.gender === "MALE") &&
+      location.state.Age < 20 &&
+      location.state.Age > 10
+    ) {
+      setImg(boy);
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "male" || location.state.gender === "MALE") &&
+      location.state.Age < 10
+    ) {
+      setImg(small_boy);
+      console.log("hmmmmmmmmmmmm");
+    } else if (
+      (location.state.gender === "female" ||
+        location.state.gender === "FEMALE") &&
+      location.state.Age < 10
+    ) {
+      setImg(small_girl);
+      console.log("hmmmmmmmmmmmm");
     }
-  }, [location.state.gender]);
-
+  }, [location.state]);
   return (
     <>
       <Navbar />
@@ -175,13 +225,13 @@ function UserInfo() {
             <div className="col-md-6 text-xl">
               <h2 className="mb-4">Your Personal Information</h2>
               <div className="card mb-3">
-                <div className="card-body flex justify-center">
+                <div className="card-body flex justify-center mr-5">
                   <img
-                    className="card-img-top rounded-circle w-20"
+                    className="card-img-top rounded-circle w-50 mr-5"
                     src={img}
                     alt="User"
                   />
-                  <ul className="list-group list-group-flush">
+                  <ul className="list-group list-group-flush ml-5">
                     <li className="list-group-item">
                       <strong>Name:</strong> {location.state.name}
                     </li>
