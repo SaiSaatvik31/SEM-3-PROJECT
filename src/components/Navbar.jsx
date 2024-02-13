@@ -74,7 +74,14 @@ function Navbar() {
   );
   return (
     <Box>
-      <AppBar component={"nav"} sx={{ bgcolor: "rgb(40,48,115)", backdropFilter:'blur(20px)', borderRadius: '0 0 15px 15px' }}>
+      <AppBar
+        component={"nav"}
+        sx={{
+          bgcolor: "rgb(40,48,115)",
+          backdropFilter: "blur(20px)",
+          borderRadius: "0 0 15px 15px",
+        }}
+      >
         <Toolbar>
           <Typography
             color={"darkcyan"}
@@ -86,7 +93,7 @@ function Navbar() {
               style={{ color: "var(--logo-color)", cursor: "pointer" }}
               onClick={redirectToHome}
             >
-              <sup style={{fontWeight:600}}>
+              <sup style={{ fontWeight: 600 }}>
                 Trust<sub>Cure</sub>
                 <i className="fa-solid fa-heart fa-beat" style={iconStyle}></i>
               </sup>
@@ -102,7 +109,7 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           <Box component={"div"} sx={{ display: { xs: "none", sm: "block" } }}>
-            <ul className="navigation-menu">
+            <ul className="navigation-menu text-white">
               <li>
                 <Link style={{ color: "var(--heading-color)" }} to="/home">
                   Home
@@ -136,7 +143,10 @@ function Navbar() {
                 </div>
               ) : (
                 <li>
-                  <Link style={{ color: "var(--heading-color)" }} to="/register">
+                  <Link
+                    style={{ color: "var(--heading-color)" }}
+                    to="/register"
+                  >
                     Login/Register
                   </Link>
                 </li>

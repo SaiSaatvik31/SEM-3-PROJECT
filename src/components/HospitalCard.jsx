@@ -1,7 +1,7 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
 import "../styles/HospitalCard.css";
-// import logo from '../styles/1eUZSnIjT09CQq5Sj14XkBw.jpg'
+// import logo from "../styles/1eUZSnIjT09CQq5Sj14XkBw.jpg";
 import { Instagram, Twitter, YouTube } from "@mui/icons-material";
 
 function HospitalCard() {
@@ -24,14 +24,23 @@ function HospitalCard() {
   ];
   return (
     <>
-      <section className="hos__card mt-4 cardsize ">
-        <h3 className="highlight" style={{ marginTop: "10px", fontSize: "40px" }}>HOSPITALS</h3>
+      <section className="hos__card mt-4">
+        <h3
+          className="highlight"
+          style={{ marginTop: "10px", fontSize: "40px" }}
+        >
+          HOSPITALS
+        </h3>
         <div className="hoscard__circle hoscard__circle1"></div>
         <div className="hoscard__circle hoscard__circle2"></div>
         <div className="hoscard__container bd-container">
           {hospitalsData.map((hospital, index) => (
             <div key={index} className="hoscard__glass">
-              <img alt="" className="hoscard__image" />
+              <center>
+                {" "}
+                <img alt="" className="hoscard__image" />
+              </center>
+
               <div className="hoscard__data ">
                 <h3 className="hfont">
                   <span className="hoscard__description hfont">

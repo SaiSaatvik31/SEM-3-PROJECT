@@ -6,6 +6,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import botImg from "../chatbot.jpg";
+import direct_book from "../direct_book.jpg";
+import online_cons from "../online_cons.jpg";
+import waiting from "../waiting.jpg";
+import symptom from "../symptom_detect.jpg";
 import { Navigation, Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 function Services() {
@@ -21,22 +26,27 @@ function Services() {
     {
       name: "ChatBot",
       info: "Provides automated responses to common queries.",
+      img: botImg,
     },
     {
       name: "Virtual Waiting Room",
       info: "Allows patients to wait virtually for their appointments.",
+      img: waiting,
     },
     {
       name: "Symptom Detection",
-      info: "Helps in detecting symptoms if you are not sure about your disease",
+      info: "Helps in detecting symptoms.",
+      img: symptom,
     },
     {
       name: "Online Consultation",
       info: "Enables remote consultations with available doctors.",
+      img: online_cons,
     },
     {
       name: "Direct Booking",
       info: "Allows patients to book appointments directly with the doctors.",
+      img: direct_book,
     },
   ];
 
@@ -61,11 +71,11 @@ function Services() {
               <SwiperSlide key={index} className="img__card">
                 <div className="img__card_content">
                   <div className="image">
-                    <img src="src\styles\1eUZSnIjT09CQq5Sj14XkBw.jpg" />
+                    <img src={doc.img} />
                   </div>
                   <div className="name-profession">
-                    <span className="name hfont">{doc.name}</span>
-                    <span className="department hfont">{doc.info}</span>
+                    <span className="name">{doc.name}</span>
+                    <span className="department">{doc.info}</span>
                   </div>
 
                   <Button
