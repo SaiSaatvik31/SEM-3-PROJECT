@@ -1,0 +1,133 @@
+.chip-container {
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+}
+
+.selected-chip-container {
+  min-height: fit-content;
+  display: flex-column;
+  border-radius: 10px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+}
+
+.selected-chip-container h3 {
+  padding-top: 20px;
+  padding-left: 50px;
+  color:#f0f8ff
+}
+
+.selected-chip-container ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 50px 20px;
+  margin: 40px;
+  box-sizing: border-box;
+  border: 1px dashed transparent; /* Remove solid border */
+  /* background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); Gradient matching the container */
+}
+.selected-chip-container  Button {
+  float: right;
+  color: #04254c; 
+  background-color: #00df9a; 
+  background-image: linear-gradient(to right, #b2ebf2, #81d4fa);
+  border: none;
+  border-radius: 5px; 
+  padding: 8px 15px;
+  margin-right: 40px;
+}
+.selected-chip-container Button:hover {
+  color: #fff;
+  background-color: #04254c; 
+  cursor: pointer;
+}
+.selected-chip-container .selectedChips {
+  background-color: #00df9a; /* Lighter blue with gradient */
+  /* background-image: linear-gradient(to right, #81d4fa, #b2ebf2); */
+  color: #04254c;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px; 
+}
+.selected-chip-container .selectedChips:hover {
+    background-color: black;
+    color: white;
+    transition: all 500ms ease-in-out;
+}
+
+.body-parts-container {
+  min-height: fit-content;
+  display: flex-column;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+.body-parts-container Button:hover{
+  background-color:#c73713 ;
+}
+.body-parts-container ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 50px 20px;
+  margin: 40px;
+  box-sizing: border-box;
+  border: 1px dashed transparent;
+  /* background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); */
+}
+.body-parts-container h3 {
+  padding-top: 20px;
+  padding-left: 50px;
+  color:#f0f8ff
+}
+.chip-show-container ul {
+  display: flex;
+  justify-content: center;
+    flex-wrap: wrap;
+  list-style: none;
+  padding: 30px;
+  margin: 40px;
+  border: 1px dashed transparent; /* Remove solid border */
+  /* background-image: linear-gradient(to bottom, #f0f8ff, #c5cae9); */
+}
+.chip-show-container .showChips{
+    color: black;
+    background-color: #0bb876;
+    font-size: 14px;
+    padding: 8px;
+}
+.chip-show-container .showChips:hover{
+    transition: all 400ms ease-in-out;
+    background-color: red;
+    
+}
+.chip-show-container h3 {
+    padding-top: 20px;
+    padding-left: 50px;
+    color:#f0f8ff
+
+}
+@media only screen and (max-width: 600px) {
+    .selected-chip-container ul {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .selected-chip-container Button {
+      margin-right: 20px;
+    }
+  
+    .body-parts-container ul {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .chip-show-container ul {
+      padding: 20px;
+      margin: 20px;
+    }
+  }
+

@@ -1,0 +1,199 @@
+.img__container {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(130deg, rgba(251,254,251,.6),rgba(251,251,254,.2));
+    box-shadow: inset 2px 2px 1px rgba(251,251,254,.3),
+    inset -2px -2px 1px rgba(251,251,254,.2);
+}
+
+.image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0.8;
+  border: 2px solid black;
+}
+
+.swiper-slider, .img__card {
+  width: 100%;
+  height: 350px;
+  background-color: transparent;
+  box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+    5px 25px 20px rgba(0, 0, 0, 0.05), 5px 20px 30px rgba(0, 0, 0, 0.05),
+    inset -20px -20px 25px rgba(255, 255, 255, 0.5);
+    border-radius: 50%  ;
+  transition: border-radius 0.3s ease-in-out;
+  position: relative;
+
+  /*z-index: 999; */
+}
+
+.swiper-slider::before, .img__card::before {
+  content: "";
+  position: absolute;
+  top: 55px;
+  left: 60px;
+  width: 35px;
+  height: 35px;
+  background: rgba(225, 225, 225, 0.7);
+  border-radius: 50%;
+  opacity: 0.9;
+  transition: left 0.3s ease-in-out, top 0.4s ease-in;
+}
+.swiper-slider:hover, .img__card:hover {
+    border-radius : 47% ;
+}
+.swiper-slider:hover::before, .img__card:hover::before{
+    top:170px;
+    left:270px;
+}
+.swiper-slider:hover::after, .img__card:hover::after{
+    top:205px;
+    left:290px;
+}
+.swiper-slider::after, .img__card::after {
+    content: "";
+    position: absolute;
+    top: 95px;
+    left: 60px;
+    width: 15px;
+    height: 15px;
+    background: rgba(225, 225, 225, 0.7);
+    border-radius: 50%;
+    opacity: 0.9;
+    transition: left 0.4s ease-in-out, top 0.3s ease-out;
+    /* border-radius : 49% 51% 41% 59% / 40% 31% 69% 60% ; */
+}
+
+
+
+.img__card .img__card_content {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.img__card_content .name-profession {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+  font-size: large;
+  color: var(--text-color);
+}
+
+.img__card_content .hospital_name, .img__card_content .rating {
+  margin-top: 10px;
+  font-size: 20px;
+  color: (--heading-color);
+}
+
+.img__card_content .img__btn,
+.img__card_content .img__btn:hover {
+  position: relative;
+  padding: 8px 30px;
+  background: var(--secondary-color);
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 35px;
+}
+
+.img__card_content .img__btn::before {
+  content: "";
+  position: absolute;
+  width: 55%;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    
+  }
+  
+  /*
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  } */
+
+  .img__container {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    padding: 40px;
+    border: none;
+    outline: none;
+    background: transparent;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+  }
+
+  .img__container .img__box {
+    padding: 50px 40px;
+    overflow: hidden;
+    
+  }
+
+
+  @media only screen and (max-width: 768px) {
+    .swiper-slider, .img__card {
+      /* height: 130px; */
+      border-radius: 10%;
+    }
+    .swiper-slider:hover, .img__card:hover {
+        /* height: 130px; */
+        border-radius: 10%;
+    }
+    
+    .swiper-slider::before, .img__card::before, .swiper-slider::after, .img__card::after {
+      width: 25px;
+      height: 25px;
+      
+
+    }
+  
+    .swiper-slider:hover::before, .img__card:hover::before {
+      top: 10px;
+      left: 15px;
+      
+    }
+  
+    .swiper-slider:hover::after, .img__card:hover::after {
+      top: 15px;
+      left: 20px;
+    }
+  
+    .img__card_content .img__btn, .img__card_content .img__btn:hover {
+        padding: 8px 25px;
+        margin-top: 20px;
+        justify-items: center;
+        align-items: center;
+    }
+}
+/* Adjust border-radius for smaller screens */

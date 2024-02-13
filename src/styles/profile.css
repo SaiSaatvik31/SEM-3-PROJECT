@@ -1,0 +1,70 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:wght@400;600&display=swap');
+:root {
+  --first_color: #00df9a;
+}
+.header-font {
+  font-family: 'Playfair Display', serif;
+}
+
+.body-font {
+  font-family: 'Open Sans', sans-serif;
+}
+body {
+  margin: 0;
+}
+
+.home__rectangle {
+  width: 100%;
+  height: 43%;
+  background-color: var(--first_color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.perfil {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-100%); /* Initially slide out of view to the left */
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.perfil.show-content {
+  opacity: 1;
+  transform: translateX(-35%);/* Slide to the center */
+}
+
+.perfil.show-content {
+  opacity: 1;
+  transform: translateX(-35%); /* Slide to the center */
+}
+
+.perfil__img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 8px solid var(--first_color);
+  border-radius: 50%;
+  transition: opacity 0.5s ease-in;
+}
+
+.text-content {
+  text-align: center;
+  color: white;
+}
+
+.text-content p {
+  margin: 10px 0;
+}

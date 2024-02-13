@@ -1,0 +1,156 @@
+{
+    "intents" : [
+        {
+            "tag": "HRU",
+            "patterns":["how are you","what about you","How are you?","hw r u?","hw r you?","hw are you?"],
+            "responses":["I'm fine!"]
+        },
+        {
+            "tag": "NAME",
+            "patterns":["what is your name", "what's your name","who are you"],
+            "responses":["I'm PraVeena!, basically I'm Kamal Nayan's girlfriend.I'm a ChatBot built to assist you in booking appointment with a doctor. "]
+        },
+        {
+            "tag": "greetings",
+            "patterns": ["hello","hey","hi","good day","greetings","how is it going?","what's up?","ho","hlo","helo","hw "],
+            "responses":["Hello!","Hey!","what can I do for you?","Hello! How can I help you?"]
+        },
+        {
+            "tag": "exit",
+            "patterns": ["no","nope","thats it","that is all","nothing else"],
+            "responses":["Okay, it seems you have to consult a doctor","Based on your symptoms you may have to consult a doctor for further diagnosis"]
+        },
+        {
+            "tag": "symptoms",
+            "patterns": ["Itching", "Skin Rash", "Nodal Skin Eruptions", "Continuous Sneezing", "Shivering", "Chills", "Joint Pain", "Stomach Pain", "Acidity", "Ulcers On Tongue", "Muscle Wasting", "Vomiting", "Burning Urination", "Spotting Urination", "Fatigue", "Weight Gain", "Anxiety", "Cold Hands And Feets", "Mood Swings", "Weight Loss", "Restlessness", "Lethargy", "Pain In Throat", "Irregular Sugar Level", "Cough", "High Fever", "Sunken Eyes", "Breathlessness", "Sweating", "Dehydration", "Indigestion", "Headache", "Yellowish Skin", "Dark Urine", "Nausea", "Loss of Appetite", "Pain behind the Eyes", "Back Pain", "Constipation", "Abdominal Pain", "Diarrhoea", "Mild Fever", "Yellow Urine", "Yellowing of Eyes", "Liver Failure", "Fluid Overload", "Swelling Of Stomach", "Swelled Lymph Nodes", "Malaise", "Blurred and Distorted Vision", "Phlegm", "Throat Irritation", "Redness of Eyes", "Sinus Pressure", "Runny Nose", "Congestion", "Chest Pain", "Weakness in Limbs", "Fast Heart Rate", "Pain During Bowel Movements", "Pain in Anal Region", "Bloody Stool", "Irritation in Anus", "Neck Pain", "Dizziness", "Cramps", "Bruising", "Obesity", "Swollen Legs", "Swollen Blood Vessels", "Puffy Face", "Enlarged Thyroid", "Brittle Nails", "Swollen Extremeties", "Excessive Hunger", "Extra-Marital Contacts", "Dying Lipds", "Slurred Speech", "Knee Pain", "Hip-Joint Pain", "Muscle Weakness", "Stiff Neck", "Swelling Joints", "Movement Stiffness", "Spinning movements", "Loss Of Balance", "Unsteadiness", "Body Weakness", "Loss of Smell", "Bladder Discomfort", "Foul Smell of Urine", "Continuous Feel of Urine", "Passage Of Gases", "Internal itching", "Toxic Look", "Depression", "Irritability", "Muscle Pain", "Altered Sensorium", "Red Spots Over Body", "Belly Pain", "Abnormal Menstruation", "Dischromic Patches", "Watering from Eyes", "Increased Appetite", "Polyuria", "Family History", "Mucoid Sputum", "Rusty Sputum", "Lack of Concentration", "Visual Disturbances", "Receiving Blood Transfusion", "Reciving unsterile innjections", "Coma", "Stomach Bleeding", "Distention Of Abdomen", "Alcohol addiction", "Fuild Overload", "Blood in Sputum", "Prominent Veins on Calf", "Palpitations", "Painful Walking", "Pimples", "Blackheads", "Scurring", "Skin Peeling", "Silver like Dusting", "Small Dents in Nails", "Inflammatory Nails", "Blister", "Red Sore around Nose", "Yellow Crust Ooze"],
+            "responses":["I think it might be helpful if you can explain it in detail", "Is there anything else you are experiencing", "Are you experincing any other symptom?"]
+        },
+        {
+            "tag": "STOMACHPAIN",
+            "patterns": ["Belly pain","Stomach pain","Stomach ache","My stomach hurts","I have stomach ache", "I have stomach pain", "my stomach hurts", "Ow, my tummy hurts", "I feel sick in my stomach", "my belly feels funny", "it hurts when I press here", "I'm not feeling well in my tummy", "I have a stomach ache", "my stomach feels icky", "my tummy is cramping", "I feel nauseous", "something's wrong with my belly"],
+            "responses": [
+                "Which region of the stomach are you experiencing the pain?",
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the pain?",
+                "Are you experiencing these symptoms: Acidity, Vomiting, Fatigue, Chest pain?"
+            ]
+            
+        },
+        {
+            "tag": "COLD",
+            "patterns": [ "Cold","Common Cold","I have cold","I have common cold", "I have a runny nose.",
+            "I'm experiencing congestion in my nose and sinuses.",
+            "I have a sore throat and itchy, scratchy feeling.",
+            "I'm coughing and have a tickle in my throat.",
+            "I feel fatigued and rundown.",
+            "I have body aches and pains.",
+            "I'm sneezing frequently.",
+            "I have a low-grade fever along with my cold symptoms.",
+            "I feel chilly and have the shivers.",
+            "I've lost my appetite due to this cold."],
+            "responses": [
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the cold?",
+                "Are you experiencing these symptoms: Runny nose, Congestion, Sore throat, Cough?"
+            ]
+            
+        },
+        {
+            "tag": "FEVER",
+            "patterns": ["I'm experiencing a high temperature.","I am experiencing fever",
+            "I feel hot and sweaty.",
+            "I have chills and shivers.",
+            "My body aches all over.",
+            "I've been feeling feverish for a few days now.",
+            "I have a persistent headache along with the fever.",
+            "I noticed my temperature rising rapidly.",
+            "I'm experiencing fatigue and weakness along with the fever.",
+            "I have a dry cough and sore throat in addition to the fever.",
+            "I've been alternating between feeling hot and cold."],
+            "responses": [
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the fever?",
+                "Are you experiencing these symptoms: Cold, Cough, Stomach Pain, Head Ache?"
+            ]
+            
+        },
+        {
+            "tag": "HEADACHE",
+            "patterns": ["Head Ache","Head Pain","Pain in head","I have Head Ache","I have Head pain",  "I have a pounding headache.",
+            "My head feels like it's being squeezed.",
+            "I'm experiencing a sharp pain in my head.",
+            "I have a constant dull ache in my head.",
+            "I feel pressure behind my eyes and in my temples.",
+            "I've been having frequent headaches lately.",
+            "My headache is worsened by bright lights and loud noises.",
+            "I feel nauseous and sensitive to movement due to the headache.",
+            "I woke up with a throbbing headache this morning.",
+            "I've tried taking painkillers, but my headache won't go away."],
+            "responses": [
+                "Which region of the head are you experiencing the pain?",
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the pain?",
+                "Are you experiencing these symptoms: Migraine, Tension, Dizziness, Sinus pressure"
+            ]
+            
+        },
+        {
+            "tag": "ITCHING",
+            "patterns": ["Itching","I have itching","I have a persistent itchiness on my skin.",
+            "I'm experiencing redness and irritation where I'm itching.",
+            "I have small bumps or welts on my skin.",
+            "My skin feels dry and flaky, leading to itching.",
+            "I'm scratching constantly, but the itch won't go away.",
+            "I noticed the itching started after coming into contact with a certain substance.",
+            "I have itching in specific areas like my arms, legs, or back.",
+            "I've tried applying lotion, but it doesn't relieve the itching.",
+            "The itching is disrupting my sleep and daily activities.",
+            "I'm concerned about the cause of the itching and if it's a sign of something more serious."],
+            "responses": [
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the itching?",
+                "Are you experiencing these symptoms: Headache, Nausea, Fatigue, Cough?"
+            ]
+            
+        },
+        {
+            "tag": "JOINTPAIN",
+            "patterns": ["My joints ache, especially in the morning", "I feel stiffness and discomfort in my joints", "The pain in my joints gets worse with movement", "I have swelling and tenderness in my joints", "I've noticed a decrease in my range of motion due to joint pain", "The joint pain is interfering with my daily activities", "I experience sharp, shooting pains in my joints", "The joint pain seems to flare up during certain weather conditions", "I'm finding it difficult to sleep because of the pain in my joints", "I've tried over-the-counter pain relievers, but the joint pain persists"],
+            "responses": [
+                "Which region of the body are you experiencing the pain?",
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the pain?",
+                "Are you experiencing these symptoms: Muscle Weakness, Stiff Neck, Swelling Joints, Movement Stiffness?"
+            ]
+            
+        },
+        {
+            "tag": "CHESTPAIN",
+            "patterns": ["I have chest pain", "My chest hurts", "I'm feeling pain in my chest", "There's discomfort in my chest area", "I'm experiencing tightness in my chest", "I'm experiencing a sharp pain in my chest", "There's a pressure or tightness in my chest", "I feel like there's a heavy weight on my chest", "The chest pain radiates to my arms or back", "I'm having difficulty breathing along with the chest pain", "The chest pain worsens with movement or deep breaths", "I feel dizzy or lightheaded with the chest pain", "The chest pain started suddenly and is intense", "I'm sweating profusely along with the chest pain", "I've had chest pain before, but this feels different"],
+            "responses": [
+                "Which region of the chest are you experiencing the pain?",
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the pain?",
+                "Are you experiencing these symptoms: Adity, Vomiting, Fatigue, Stomach pain?"
+            ]
+            
+        },
+        {
+            "tag": "EYEPAIN",
+            "patterns": ["Eye pain", "Pain behind eyes", "Swollen eyes", "I have eye pain", "My eyes are hurting", "I'm experiencing sharp pain in my eyes", "There's a throbbing sensation in my eyes", "My eyes feel sore and tender", "I have a stabbing pain in my eye", "There's a burning sensation in my eyes", "I feel pressure behind my eyes", "I'm experiencing discomfort when moving my eyes", "The pain worsens when I try to focus or concentrate", "I've noticed redness or swelling around my eyes" ],
+            "responses": [
+                "Which region of the eye are you experiencing the pain?",
+                "For how many days have you been experiencing the issue?",
+                "May I know the intensity of the pain?",
+                "Are you experiencing these symptoms: Headache, Nausea, Fatigue, Joint Pain?"
+            ]
+            
+        }
+        
+        
+        
+    ]
+}
+
+
+
