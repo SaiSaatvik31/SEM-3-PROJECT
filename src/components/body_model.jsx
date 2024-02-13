@@ -86,7 +86,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("head");
+                    handleClick("Head");
                   }}
                   transform="translate(0, 0)"
                 />
@@ -182,7 +182,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -201,7 +201,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -220,7 +220,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -239,7 +239,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -258,7 +258,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -277,7 +277,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -296,7 +296,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
                 <path
@@ -315,7 +315,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
                 <path
@@ -334,7 +334,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
                 <path
@@ -353,7 +353,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
                 <path
@@ -372,7 +372,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
                 <path
@@ -391,7 +391,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
                 <path
@@ -410,7 +410,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -429,7 +429,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("hand");
+                    handleClick("Hands");
                   }}
                 />
                 <path
@@ -448,7 +448,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={() => {
-                    handleClick("leg");
+                    handleClick("Legs");
                   }}
                 />
               </g>

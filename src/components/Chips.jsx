@@ -39,6 +39,10 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     { key: 14, label: "Throat" },
     { key: 15, label: "Fever" },
     { key: 16, label: "Body Pain" },
+    { key: 120, label: "Head" },
+    { key: 121, label: "Hands" },
+    { key: 122, label: "Legs" },
+    { key: 123, label: "Neck" },
     { key: 17, label: "Others" },
   ]);
   const [symptoms, setSymptoms] = useState([]);
@@ -109,6 +113,54 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
     },
     {
       Chest: [{ key: 58, label: "Chest Pain" }],
+    },
+    {
+      Hands: [
+        { key: 136, label: "Joint Pain" },
+        { key: 137, label: " Muscle Wasting" },
+        { key: 138, label: "Cold Hands And Feets" },
+        { key: 139, label: "Weakness in Limbs" },
+        { key: 140, label: "Muscle Weakness" },
+        { key: 141, label: "Muscle Pain" },
+      ],
+    },
+    {
+      Legs: [
+        { key: 142, label: "Joint Pain" },
+        { key: 143, label: " Muscle Wasting" },
+        { key: 144, label: "Cold Hands And Feets" },
+        { key: 145, label: "Weakness in Limbs" },
+        { key: 146, label: "Muscle Weakness" },
+        { key: 147, label: "Painful Walking" },
+        { key: 148, label: "knee_pain" },
+        { key: 149, label: "Cramps" },
+        { key: 150, label: "Swollen Legs" },
+      ],
+    },
+    {
+      Neck: [
+        { key: 151, label: "Pain In Throat" },
+        { key: 152, label: "Throat Irritation" },
+        { key: 153, label: "Neck Pain" },
+        { key: 154, label: "Stiff Neck" },
+      ],
+    },
+
+    {
+      Head: [
+        { key: 124, label: "Headache" },
+        { key: 125, label: "Pain behind the Eyes" },
+        { key: 126, label: "Sunken Eyes" },
+        { key: 127, label: "Yellowing of Eyes" },
+        { key: 128, label: "Blurred and Distorted Vision" },
+        { key: 129, label: "Redness of Eyes" },
+        { key: 130, label: "Sinus Pressure" },
+        { key: 131, label: "Runny Nose" },
+        { key: 132, label: "Puffy Face" },
+        { key: 133, label: "Dry and Tingling Lips" },
+        { key: 134, label: "Pimples" },
+        { key: 135, label: "Red Sore around Nose" },
+      ],
     },
     {
       Nose: [
@@ -320,19 +372,16 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   };
   const handleSelection = (selectedItem) => () => {
     if (selectedItem.type === "bodyPart") {
-      // Handle body part selection
       setActiveBodyPart((prevPart) => [...prevPart, selectedItem]);
       const symptomsForBodyPart = getSymptomForBodyPart(selectedItem.label);
       setActiveSymptoms(symptomsForBodyPart.map((symptom) => ({ ...symptom })));
       setShowSymptoms(true);
       setBodyName(selectedItem.label);
     } else if (selectedItem.type === "symptom") {
-      // Handle symptom selection
       const symptomInSymptoms = symptoms.some(
         (symptom) => symptom.label === selectedItem.label
       );
 
-      // Update symptoms only if the symptom is not already present
       if (!symptomInSymptoms) {
         setSymptoms((prevSymptoms) => [
           ...prevSymptoms,

@@ -116,7 +116,6 @@ function UserInfo() {
       location.state.Age > 60
     ) {
       setImg(aged_women);
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "female" ||
         location.state.gender === "FEMALE") &&
@@ -124,20 +123,17 @@ function UserInfo() {
       location.state.Age > 30
     ) {
       setImg("");
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "male" || location.state.gender === "MALE") &&
       location.state.Age > 60
     ) {
       setImg(aged_men);
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "male" || location.state.gender === "MALE") &&
       location.state.Age < 60 &&
       location.state.Age > 30
     ) {
       setImg(middleAged);
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "female" ||
         location.state.gender === "FEMALE") &&
@@ -145,27 +141,23 @@ function UserInfo() {
       location.state.Age > 10
     ) {
       setImg(girl);
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "male" || location.state.gender === "MALE") &&
       location.state.Age < 20 &&
       location.state.Age > 10
     ) {
       setImg(boy);
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "male" || location.state.gender === "MALE") &&
       location.state.Age < 10
     ) {
       setImg(small_boy);
-      console.log("hmmmmmmmmmmmm");
     } else if (
       (location.state.gender === "female" ||
         location.state.gender === "FEMALE") &&
       location.state.Age < 10
     ) {
       setImg(small_girl);
-      console.log("hmmmmmmmmmmmm");
     }
   }, [location.state]);
   return (

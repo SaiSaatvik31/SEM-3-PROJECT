@@ -7,11 +7,11 @@ import Footer1 from "../n_compo/footer1";
 import N_footer from "../n_compo/N_footer";
 function Layout() {
   return (
-<>
-        <Navbar />
-        <Outlet />
+    <>
+      <Navbar />
+      <Outlet />
       <N_footer />
-</>
+    </>
   );
 }
 
