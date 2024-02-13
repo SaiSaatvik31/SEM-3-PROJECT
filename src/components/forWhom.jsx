@@ -29,7 +29,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <Grid
-      backgroundColor="#000000"
+      className=""
       container
       spacing={3}
       justifyContent="center"
@@ -40,10 +40,10 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
         <Card
           elevation={4}
           className="p-5"
-          style={{ backgroundColor: "#000000" }}
+          style={{ backgroundColor: "white" }}
         >
           <CardContent align="center">
-            <Typography className="text-white" variant="h4" sx={{ mb: 2 }}>
+            <Typography className="text-[rgb(40,48,115)]" variant="h4" sx={{ mb: 2 }}>
               For Whom the appointment is For?
             </Typography>
             <Grid container spacing={2}>
@@ -51,7 +51,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                 <Button
                   fullWidth
                   variant="contained"
-                  style={{ backgroundColor: "#00df9a" }}
+                  style={{ backgroundColor: "rgb(40,48,115) " }}
                   size="large"
                   onClick={() => namePage("FOR ME")}
                 >
@@ -61,7 +61,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                       src="YOUR_IMAGE_SRC_HERE"
                       sx={{ mr: 2 }}
                     />
-                    <Typography className="text-dark" variant="h6">
+                    <Typography className="text-white" variant="h6">
                       FOR ME
                     </Typography>
                   </Box>
@@ -71,7 +71,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                 <Button
                   fullWidth
                   variant="contained"
-                  style={{ backgroundColor: "#00df9a" }}
+                  style={{ backgroundColor: "rgb(40,48,115)" }}
                   color="secondary"
                   size="large"
                   onClick={() => namePage("SOMEONE ELSE")}
@@ -82,7 +82,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                       src="YOUR_IMAGE_SRC_HERE"
                       sx={{ mr: 2 }}
                     />
-                    <Typography className="text-dark" variant="h6">
+                    <Typography className="text-white" variant="h6">
                       SOMEONE ELSE
                     </Typography>
                   </Box>
@@ -92,7 +92,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                 <Button
                   fullWidth
                   variant="contained"
-                  style={{ backgroundColor: "#00df9a" }}
+                  style={{ backgroundColor: "rgb(40,48,115)" }}
                   color="secondary"
                   size="large"
                   onClick={() => {
@@ -105,7 +105,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
                       src="YOUR_IMAGE_SRC_HERE"
                       sx={{ mr: 2 }}
                     />
-                    <Typography className="text-dark" variant="h6">
+                    <Typography className="text-white" variant="h6">
                       Profiles
                     </Typography>
                   </Box>
@@ -116,7 +116,7 @@ function ForWhom({ selectedOptions, updateSelectedOptions }) {
           <CardActions>
             <Button
               variant="outlined"
-              style={{ backgroundColor: "#00df9a" }}
+              style={{ color: "white", fontFamily:"cursive" ,backgroundColor: "rgb(40,48,115)" }}
               onClick={handleBack}
               startIcon={<ArrowBackIcon />}
             >

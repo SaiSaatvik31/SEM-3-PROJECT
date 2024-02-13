@@ -27,7 +27,7 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen bg-[#000000] text-white">
+      <div className="flex flex-col min-h-screen bg-white text-[rgb(40,48,115)]">
         <div className="flex-grow m-5">
           <Navbar />
 
@@ -39,7 +39,7 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
               className="mb-6 text-center"
             >
               <h1 className="text-4xl font-bold">Choose Your Booking Type</h1>
-              <p className="text-lg mt-2">
+              <p className="text-lg mt-2 hfont">
                 Select the type of appointment that suits your needs.
               </p>
             </motion.div>
@@ -51,7 +51,7 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
                 transition={{ duration: 1 }}
               >
                 <button
-                  className="bg-[#00df9a] p-4 rounded-md hover:scale-110 duration-150"
+                  className="bg-[rgb(40,48,115)] text-white p-4 rounded-md hover:scale-110 duration-150"
                   onClick={() => handleNext("Advance Booking")}
                 >
                   ADVANCE BOOKING
@@ -64,7 +64,7 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
                 transition={{ duration: 1 }}
               >
                 <button
-                  className="bg-[#00df9a] p-4 rounded-md hover:scale-110 duration-150"
+                  className="bg-[rgb(40,48,115)] text-white p-4 rounded-md hover:scale-110 duration-150"
                   onClick={() => handleNext("Normal Booking")}
                 >
                   NORMAL BOOKING
@@ -77,7 +77,7 @@ function BookSelec({ selectedOptions, updateSelectedOptions }) {
                 transition={{ duration: 1 }}
               >
                 <button
-                  className="bg-[#00df9a] p-4 rounded-md hover:scale-110 duration-150"
+                  className="bg-[rgb(40,48,115)] text-white p-4 rounded-md hover:scale-110 duration-150"
                   onClick={() => handleNext("Online Booking")}
                 >
                   ONLINE CONSULTATION

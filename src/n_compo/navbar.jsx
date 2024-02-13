@@ -23,8 +23,9 @@ function Navbar() {
   };
 
   return (
+    <div className="bg_all">
     <motion.div
-      className="text-white flex justify-between items-center mx-auto px-4"
+      className="text-white flex justify-between  items-center mx-auto px-4"
       variants={navbarVariants}
       initial="hidden"
       animate="visible"
@@ -39,22 +40,22 @@ function Navbar() {
         >
           <ul className="flex uppercase font-bold">
             <li className="p-4 cursor-pointer">
-              <Link to="/home" style={{ color: "white" }}>
+              <Link to="/home" style={{ color: "rgb(40,48,115)" }}>
                 Home
               </Link>
             </li>
             <li className="p-4 cursor-pointer">
-              <Link to="/about" style={{ color: "white" }}>
+              <Link to="/about" style={{ color: "rgb(40,48,115)"  }}>
                 About
               </Link>
             </li>
             <li className="p-4 cursor-pointer">
-              <Link to="/feeback" style={{ color: "white" }}>
+              <Link to="/feeback" style={{ color: "rgb(40,48,115)" }}>
                 FeedBack
               </Link>
             </li>
             {userName ? (
-              <li className="p-3 cursor-pointer">
+              <li className="p-3 cursor-pointer fontprofile">
                 <a>{`Hey! ${userName}`}</a>
                 <ul className="dropdown">
                   <li className="p-2">
@@ -119,6 +120,7 @@ function Navbar() {
         </div>
       )}
     </motion.div>
+    </div>
   );
 }
 

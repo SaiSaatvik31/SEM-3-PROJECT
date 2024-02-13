@@ -23,20 +23,24 @@ body::-webkit-scrollbar {
 
 
   :root {
-      --primary-color : #123adc;
-      --secondary-color: #321cda;
-      --heading-color : #e89820;
-      --text-color : #6e7051;
+      --primary-color :rgb(40,48,115);
+      --secondary-color:rgb(40,48,115);
+      --heading-color : rgb(40,48,115);
+      --text-color : black;
       --font-name : 'Dosis',sans-serif;
       --other-font-name: 'Protest Revolution', sans-serif;
-      --background-color : rgb(160, 164, 156);
+      --background-color : white;
       --logo-color : rgb(2,2,2);
   
-      --hos-primary-color:#23412a;
-      --hos-title-color:#65721d;
-      --hos-text-color:#adfcea;
-      --hos-body-color : #eefa34;
-      --hos-container-color:#8752da;
+      /* --hos-primary-color:#23412a;
+      --hos-title-color:#65721d; */
+      --hos-primary-color:rgb(40,48,115);
+      --hos-title-color:rgb(40,48,115);
+      --hos-text-color:rgb(40,48,115);
+      --hos-body-color : rgb(40,48,115);
+      /* --hos-body-color : #eefa34; */
+      /* --hos-container-color:#8752da; */
+      -hos-container-color:rgb(40,48,115);
       --hos-h2-font-size:1.25rem;
       --hos-small-font-size:.813rem;
   
@@ -122,4 +126,55 @@ body::-webkit-scrollbar {
 .article__container {
   background: rgba(255,255,255,.25);
   backdrop-filter: blur(20px);
+}
+.fontprofile{
+   background-color: rgb(40,48,115) !important;
+}
+.pfont{
+  color: black;
+  font-family: cursive;
+}
+.hfont{
+     color: rgb(40,48,115) !important ;
+     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.btnall{
+   color: white !important;
+   background-color: rgb(40,48,115) !important;
+   font-family: cursive;
+   font-size: medium;
+}
+.bookbtn{
+   background-color: rgb(40,48,115) !important;
+   color: white !important;
+   padding: 10px !important;
+   font-family: cursive;
+}
+/* .bg{
+   background-color: white !important;
+} */
+.main_h_font{
+   color:rgb(40,48,115) !important;
+}
+.bg_all{
+   background-image: url("src\\bg_landing.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+.name{
+   justify-content: center;
+   align-items: center;
+}
+.bfont{
+   color: white !important;
+   font-family: cursive !important;
+   font-size: medium !important;
+}
+.bhover :hover{
+    background-color: rgb(0, 0, 105) !important;
+}
+.cardsize{
+   background: scroll;
+   width: 100px;
 }

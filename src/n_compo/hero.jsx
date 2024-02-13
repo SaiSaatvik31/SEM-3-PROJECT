@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Typed from "react-typed";
 import M_model from "./m_model";
+import bg from "../bg_Landing.jpg" 
 const variants = {
   hidden: { opacity: 0, y: 50, scale: 0.9 }, // Add scale for initial shrinking
   visible: {
@@ -21,7 +22,8 @@ const variants = {
 
 function Hero() {
   return (
-    <div className="text-white">
+    <div className="text-white bg_all">
+      {/* <img src={bg} alt="" /> */}
       <motion.div
         className="max-w-[800px] w-full h-screen mt-[-96px] mx-auto flex flex-column items-center justify-center"
         variants={variants}
@@ -38,14 +40,14 @@ function Hero() {
           TrustCure
         </h1>
         <p>
-          <span className="text-4xl font-medium mb-4 text-[#00df9a]">
+          <span className="text-4xl font-medium mb-4 text-[rgb(40,48,115)]">
             You Trust —
           </span>
-          <span className="text-4xl font-medium mb-4 "> We Cure</span>
+          <span className="text-4xl font-medium mb-4 text-[rgb(40,48,115)] "> We Cure</span>
         </p>
-        <span className="text-2xl font-semibold">We offer you</span>
+        <span className="text-2xl font-semibold text-[rgb(40,48,115)]">We offer you</span>
         <Typed
-          className="text-2xl font-semibold mb-6"
+          className="text-2xl font-semibold mb-6 text-[rgb(40,48,115)]"
           strings={[
             "Advance Booking",
             "Online Consultation",

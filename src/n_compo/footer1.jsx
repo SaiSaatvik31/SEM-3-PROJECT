@@ -8,7 +8,7 @@ import {
 import FadeInOnScroll from "./FadeInOnScroll";
 function Footer1() {
   return (
-    <div>
+    <div className="bg_all">
       <FadeInOnScroll>
         <div className="w-full bg-gray-900 text-white">
           <div className="max-w-[1240px] mx-auto py-8 px-4 lg:flex lg:justify-between lg:items-center">

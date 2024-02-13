@@ -8,6 +8,7 @@ const Item = styled(Paper)(({ theme, index }) => ({
   background: `linear-gradient(to right, ${theme.palette.primary.main}, ${
     index % 2 === 0 ? theme.palette.secondary.main : theme.palette.error.main
   })`,
+  background: `rgb(40,48,115)`,
 
   ...theme.typography.body2,
   padding: theme.spacing(10),
@@ -25,7 +26,7 @@ const Item = styled(Paper)(({ theme, index }) => ({
 const array = ["Add or Edit Doctors", "Todays Schedule", "Emergency"];
 export default function Admin() {
   return (
-    <div className="m-5">
+    <div className="m-5 ">
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container

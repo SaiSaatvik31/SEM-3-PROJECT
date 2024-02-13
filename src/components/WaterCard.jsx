@@ -69,11 +69,11 @@ function WaterCard() {
                         <img src='src\styles\1eUZSnIjT09CQq5Sj14XkBw.jpg'/>
                     </div>
                     <div className="name-profession">
-                        <span className="name">{doc.name}</span>
-                        <span className="department">{doc.department}</span>
+                        <span className="name hfont">{doc.name}</span>
+                        <span className="department hfont">{doc.department}</span>
                     </div>
-                    <div className="hospital_name">{doc.hospital}</div>
-                    <div className="rating">
+                    <div className="hospital_name hfont">{doc.hospital}</div>
+                    <div className="rating hfont">
                         <Stars stars={doc.rating}/>
                     </div>
                     <Button className='img__btn'>View Info</Button>

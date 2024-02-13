@@ -56,10 +56,11 @@ function Name({ selectedOptions, updateSelectedOptions }) {
   return (
     <>
       <div
-        style={{ backgroundColor: "#000000", height: "100vh" }}
-        className="p-3"
+        style={{ backgroundColor: "white", height: "100vh" }}
+        className="p-3  name"
       >
-        <label className="mt-5 text-white" htmlFor="name">
+        <br /><br /><br />
+        <label className="mt-3 text-[rgb(40,48,115)] " htmlFor="name">
           Enter Your Name
         </label>
         <form
@@ -69,14 +70,14 @@ function Name({ selectedOptions, updateSelectedOptions }) {
         >
           <input
             onBlur={functionRequired}
-            className="form-control mt-3"
+            className="form-control mt-2 col-4"
             id="name"
             type="text"
             placeholder="Please Enter Your Name"
             required
           />
           <p className="text-red-600">{required}</p>
-          <label className="mt-5 col-12 text-white" htmlFor="gender">
+          <label className="mt-5 col-12 text-[rgb(40,48,115)]" htmlFor="gender">
             Select Your Gender
           </label>
           <div className="d-flex flex-row mt-4">
@@ -88,7 +89,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 }}
                 variant="contained"
                 className="p-3"
-                style={{ width: "150px", backgroundColor: buttonColor1 }}
+                style={{ width: "150px",color:"white", backgroundColor: "rgb(40,48,115)" }}
               >
                 <i class="fa-solid fa-mars-stroke-up p-2"></i>
                 MALE
@@ -102,7 +103,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 }}
                 variant="contained"
                 className="p-3"
-                style={{ width: "150px", backgroundColor: buttonColor2 }}
+                style={{ width: "150px", color:"white", backgroundColor: "rgb(40,48,115)" }}
               >
                 <i class="fa-solid fa-venus p-2"></i>
                 FEMALE
@@ -117,7 +118,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 onClick={forWhomPage}
                 variant="contained"
                 color="success"
-                style={{ backgroundColor: "#00df9a" }}
+                style={{ backgroundColor: "rgb(40,48,115)" }}
               >
                 BACK
               </Button>
@@ -129,7 +130,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                 variant="contained"
                 color="success"
                 type="submit"
-                style={{ backgroundColor: "#00df9a" }}
+                style={{ backgroundColor: "rgb(40,48,115)" }}
               >
                 NEXT
               </Button>
