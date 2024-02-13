@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, CircularProgress } from "@mui/material";
-import Adv_book_m from "./adv_book_m";
+import Adv_book_m from "./Adv_book_m";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "./Navbar";
@@ -60,13 +60,13 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
     <>
       <Navbar />
       <div className="ml-5">
-        <h1 className="text-3xl font-bold text-emerald-300 mt-5 ">
+        <h1 className="text-3xl text-[rgb(40,48,115)] main_h_font font-bold text-emerald-300 mt-5 ">
           Advance Booking
         </h1>
         <br />
         <h2>Select a date from today to the next five days:</h2>
-        <span>Selected Data: </span>
-        <DatePicker
+        <span className="hfont">Selected Data: </span>
+        <DatePicker className="hfont"
           selected={selectedDate}
           onChange={(date) => {
             setSelectedDate(date);
@@ -81,17 +81,17 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
         />
         <div className="">
           <div>
-            <h1 className="text-3xl font-bold mt-4 text-emerald-300">
+            <h1 className="text-3xl hfont font-bold mt-4 text-emerald-300">
               Available Doctor List
             </h1>
           </div>
           <Table sx={{ minWidth: 650 }}>
             <TableHead>
               <TableRow>
-                <TableCell>Doctor Name</TableCell>
-                <TableCell align="center">Speciality</TableCell>
-                <TableCell align="center">Avaiable Slots</TableCell>
-                <TableCell align="center">Book Appointment</TableCell>
+                <TableCell className="hfont">Doctor Name</TableCell>
+                <TableCell className="hfont"align="center">Speciality</TableCell>
+                <TableCell className="hfont"align="center">Avaiable Slots</TableCell>
+                <TableCell className="hfont"align="center">Book Appointment</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -103,7 +103,7 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
                 </TableRow>
               ) : (
                 docData.map((doctor, index) => (
-                  <TableRow key={index}>
+                  <TableRow key={index} className="hfont">
                     <TableCell>{doctor.doc_name}</TableCell>
                     <TableCell align="center">{doctor.speciality}</TableCell>
                     <TableCell align="center">
