@@ -10,6 +10,7 @@ import SubTitle from "./Subtitle";
 import doc1 from "../doc1.jpg";
 import "../styles/home.css";
 import Services from "./services";
+import N_service from "./n_service";
 import doc2 from "../doc2.jpg";
 function Home({ selectedOptions, updateSelectedOptions }) {
   const [updatedList, setUpdatedOptions] = useState(selectedOptions);
@@ -128,7 +129,7 @@ function Home({ selectedOptions, updateSelectedOptions }) {
             <WaterCard />
           </Row>
           <Row className="mt-4 invisible-md">
-            <Services />
+            <N_service />
           </Row>
         </Container>
         {showModal && count > 0 && (
