@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import "../styles/HospitalCard.css";
 // import logo from "../styles/1eUZSnIjT09CQq5Sj14XkBw.jpg";
 import { Instagram, Twitter, YouTube } from "@mui/icons-material";
-
+import { useNavigate } from "react-router-dom";
 function HospitalCard() {
+  const navigate = useNavigate();
   const hospitalsData = [
     {
       name: "TrustCure Hospitals",
@@ -17,11 +18,20 @@ function HospitalCard() {
       type: "Speciality",
     },
     {
-      name: "Kamineni",
+      name: "Kamineni Hospitals",
       city: "Hyderabad",
       type: "Clinic",
     },
   ];
+  const handleClick = (hos) => {
+    if (hos === "TrustCure Hospitals") {
+      navigate("/trustcure");
+    } else if (hos === "Apollo Hospitals") {
+      navigate("/apollo");
+    } else if (hos === "Kamineni Hospitals") {
+      navigate("/kamineni");
+    }
+  };
   return (
     <>
       <section className="hos__card mt-4">
@@ -48,9 +58,14 @@ function HospitalCard() {
                   </span>
                 </h3>
                 <h3 className="hoscard__title hfont">{hospital.type}</h3>
-                <Link to="#" className="hoscard__button btnall">
+                <button
+                  className="hoscard__button btnall"
+                  onClick={() => {
+                    handleClick(hospital.name);
+                  }}
+                >
                   Read More
-                </Link>
+                </button>
                 <div className="hoscard__social">
                   <Link to="#" className="hoscard__link">
                     <Instagram />

@@ -11,6 +11,9 @@ import direct_book from "../direct_book.jpg";
 import online_cons from "../online_cons.jpg";
 import waiting from "../waiting.jpg";
 import symptom from "../symptom_detect.jpg";
+import v_room from "../v_room.jpeg";
+import bot from "../botAI.jpeg";
+import find from "../find.jpeg";
 import { Navigation, Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 function Services() {
@@ -20,18 +23,20 @@ function Services() {
       navigate("/chatBot");
     } else if (nav === "Virtual Waiting Room") {
       navigate("/virtualRoom");
+    } else if (nav === "Find a Doctor") {
+      navigate("/directBook");
     } else navigate("/book-appointment");
   };
   const topDoctors = [
     {
       name: "ChatBot",
       info: "Provides automated responses to common queries.",
-      img: botImg,
+      img: bot,
     },
     {
       name: "Virtual Waiting Room",
       info: "Allows patients to wait virtually for their appointments.",
-      img: waiting,
+      img: v_room,
     },
     {
       name: "Symptom Detection",
@@ -47,6 +52,11 @@ function Services() {
       name: "Direct Booking",
       info: "Allows patients to book appointments directly with the doctors.",
       img: direct_book,
+    },
+    {
+      name: "Find a Doctor",
+      info: "Allows patients to Find the Doctor according to personal choice.",
+      img: find,
     },
   ];
 

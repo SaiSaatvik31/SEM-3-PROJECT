@@ -43,6 +43,9 @@ import DirectBook from "./components/directBook.jsx";
 import Medicine from "./components/medicine.jsx";
 import OnlinePatients from "./components/onlinePatients.jsx";
 import DocNotes from "./components/docNotes.jsx";
+import Hos_apollo from "./components/hos_apollo.jsx";
+import Hos_trustCure from "./components/hos_trustCure.jsx";
+import Hos_kamineni from "./components/hos_kamineni.jsx";
 const MainApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -64,6 +67,9 @@ const MainApp = () => {
           <Route path="/virtualRoom" element={<VirtualRoom />} />
           <Route path="/cancellation" element={<Cancellation />} />
           <Route path="/patientList" element={<PatientList />} />
+          <Route path="/trustcure" element={<Hos_trustCure />} />
+          <Route path="/kamineni" element={<Hos_kamineni />} />
+          <Route path="/apollo" element={<Hos_apollo />} />
 
           <Route path="/medicine" element={<Medicine />} />
           <Route path="/notes" element={<DocNotes />} />

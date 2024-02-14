@@ -11,6 +11,7 @@ import doc1 from "../doc1.jpg";
 import "../styles/home.css";
 import Services from "./services";
 import doc2 from "../doc2.jpg";
+
 function Home({ selectedOptions, updateSelectedOptions }) {
   const [updatedList, setUpdatedOptions] = useState(selectedOptions);
   const [count, setCount] = useState(0);
