@@ -3,34 +3,35 @@ import doc from "../doc_cons.png";
 import FadeInOnScroll from "./FadeInOnScroll";
 function OnlineCons() {
   return (
-    <div>
+    <div className="bg_all">
       <FadeInOnScroll>
         <div className="w-full  py-16 px-4">
           <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
             <img src={doc} alt="/" className="w-[500px]  my-4 pl-0 ml-0 " />
             <div className="flex flex-col justify-start mt-5">
-              <h1 className="text-[#00df9a] md:text-4xl font-bold sm:text-3xl ">
-                Online Consultation
+              <h1 className="text-[rgb(40,48,115)] md:text-4xl font-bold sm:text-3xl ">
+                Online Consultation <br />
               </h1>
-              <p>
+              <br />
+              <p className="pfont">
                 Welcome to our Online Consultation service, designed to provide
-                you with convenient <br />
+                you with convenient 
                 and accessible healthcare from the comfort of your own space.
-                Our platform offers a <br />
+                Our platform offers a 
                 seamless experience for booking virtual appointments with
-                experienced doctors, <br />
+                experienced doctors, 
                 allowing you to consult with medical professionals without the
-                need for in-person <br />
+                need for in-person 
                 visits. Whether you're seeking expert advice, follow-up
-                consultations, or have non- <br />
+                consultations, or have non- 
                 emergency health concerns, our Online Consultation feature
-                empowers you to <br />
+                empowers you to 
                 schedule and attend appointments at your convenience. Experience
-                personalized and <br />
+                personalized and 
                 confidential healthcare consultations, ensuring that you receive
-                the care you need, <br />
+                the care you need, 
                 when you need it. Take a proactive step towards your well-being
-                with our efficient and <br />
+                with our efficient and 
                 secure online platform for medical consultations.
               </p>
             </div>

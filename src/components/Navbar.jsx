@@ -77,7 +77,7 @@ function Navbar() {
       <AppBar
         component={"nav"}
         sx={{
-          bgcolor: "rgba(255,255,255,.15)",
+          bgcolor: "rgb(40,48,115)",
           backdropFilter: "blur(20px)",
           borderRadius: "0 0 15px 15px",
         }}

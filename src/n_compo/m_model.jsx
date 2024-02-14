@@ -48,7 +48,7 @@ export default function M_model() {
   return (
     <div>
       <motion.button
-        className={`bg-[#00df9a] w-[200px] rounded-md font-medium px-6 mx-auto py-3 mt-3`}
+        className={`bg-[rgb(40,48,115)] w-[200px] rounded-md font-medium px-6 mx-auto py-3 mt-3`}
         variants={variants}
         initial="hidden"
         animate="buttonSlide"

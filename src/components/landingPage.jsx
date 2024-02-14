@@ -13,7 +13,7 @@ const bodyStyle = {
 };
 function LandingPage() {
   return (
-    <div style={bodyStyle}>
+    <div style={bodyStyle} >
       <Navbar />
       <Hero />
       <Adv_book />

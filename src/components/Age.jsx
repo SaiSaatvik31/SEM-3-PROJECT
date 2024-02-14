@@ -40,27 +40,30 @@ function Age({ selectedOptions, updateSelectedOptions }) {
   ];
 
   return (
-    <div className="text-white"
+    <div className="text-white bg_all"
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
         // backgroundImage: "linear-gradient(to bottom, #f4f4f4, #e5e5e5)", 
-        backgroundColor:"#000000",
+        backgroundColor:"white",
       }}
     >
       <Card
+      
         sx={{
+
           minWidth: 350,
           maxWidth: 800,
-          bgcolor: "#000",
+          bgcolor: "white",
           boxShadow: 2,
           borderRadius: 10,
           padding: 10,
         }}
       >
         <CardContent
+        
           sx={{
             p: 4,
             display: "flex",
@@ -68,10 +71,10 @@ function Age({ selectedOptions, updateSelectedOptions }) {
             alignItems: "center",
           }}
         >
-          <Typography className= "text-white" variant="h3" sx={{ mb: 3 }}>
+          <Typography className= "text-[rgb(40,48,115)]" variant="h3" sx={{ mb: 3 }}>
             What's Your Age?
           </Typography>
-          // ... (previous code)
+         
 
             <Slider
               value={sliderValue}
@@ -79,15 +82,15 @@ function Age({ selectedOptions, updateSelectedOptions }) {
               sx={{ 
                 width: 700, 
                 mt: 3,
-                color: '#00df9a', // Set the color of the slider track
+                color: 'rgb(40,48,115)', // Set the color of the slider track
                 '& .MuiSlider-thumb': {
-                  backgroundColor: '#00df9a', // Set the color of the slider thumb
+                  backgroundColor: 'rgb(40,48,115)', // Set the color of the slider thumb
                 },
                 '& .MuiSlider-valueLabel': {
-                  color: '#00df9a', // Set the color of the value label
+                  color: 'rgb(40,48,115)', // Set the color of the value label
                 },
                 '& .MuiSlider-markLabel': {
-                  color: 'white', // Set the color of the mark labels
+                  color: 'rgb(40,48,115)', // Set the color of the mark labels
                 },
               }}
               valueLabelDisplay="auto"
@@ -98,11 +101,12 @@ function Age({ selectedOptions, updateSelectedOptions }) {
 
 
 
-          <Typography className="text-white" variant="h5" sx={{ mt: 3, mb: 2 }}>
+          <Typography className="text-rgb(40,48,115) " variant="h5" sx={{ mt: 3, mb: 2 }}>
+           
             Your Age is: {sliderValue}
           </Typography>
           <motion.button
-        className={`bg-[#00df9a] w-[200px] rounded-md font-medium px-6 mx-auto py-3 mt-3`}
+        className={`bg-[rgb(40,48,115)] text-white w-[200px] rounded-md font-medium px-6 mx-auto py-3 mt-3`}
         initial="hidden"
         onClick={FormPage}
         animate="buttonSlide"

@@ -9,7 +9,10 @@ import FadeInOnScroll from "./FadeInOnScroll";
 function N_footer() {
   return (
     <FadeInOnScroll>
-      <div style={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
+      <div
+        style={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+        className="bg_all"
+      >
         <div
           className="w-full "
           style={{
