@@ -37,7 +37,7 @@ function Navbar() {
           animate="visible"
           variants={navbarVariants}
         >
-          <ul className="flex uppercase font-bold">
+          <ul className="flex uppercase font-bold text-white">
             <li className="p-4 cursor-pointer">
               <Link to="/home" style={{ color: "white" }}>
                 Home
@@ -99,7 +99,7 @@ function Navbar() {
       </div>
       {showMenu && (
         <div className="fixed left-0 top-0 w-[60%] border-r border-r-gray-900 bg-black ease-in-out duration-9000">
-          <ul className="pt-24 uppercase">
+          <ul className="pt-24 uppercase text-white">
             <li className="p-4 border-r cursor-pointer border-l m-3">Home</li>
             <li className="p-4 border-r cursor-pointer border-l m-3">About</li>
             <li className="p-4 border-r border-l m-3">FeedBack</li>
