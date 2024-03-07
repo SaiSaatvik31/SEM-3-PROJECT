@@ -4,20 +4,20 @@ import Typed from "react-typed";
 import M_model from "./m_model";
 import bg from "../bg_Landing.jpg" 
 const variants = {
-  hidden: { opacity: 0, y: 50, scale: 0.9 }, // Add scale for initial shrinking
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1, 
-    transition: { duration: 1.2, delay: 0.2, ease: "easeOut" }, // Adjust duration and easing
+    transition: { duration: 1.2, delay: 0.2, ease: "easeOut" },
   },
   titleScale: {
     y: 0,
-    scale: 1.1, // Add a slight bounce for the title
+    scale: 1.1, 
     transition: { duration: 0.4, delay: 0.8, ease: "easeOut" },
   },
-  typeFade: { opacity: 1, transition: { duration: 0.8, delay: 1.2 } }, // Fade in the typed text
-  buttonSlide: { x: 0, opacity: 1, transition: { duration: 0.6, delay: 1.6 } }, // Slide in the button
+  typeFade: { opacity: 1, transition: { duration: 0.8, delay: 1.2 } },
+  buttonSlide: { x: 0, opacity: 1, transition: { duration: 0.6, delay: 1.6 } }, 
 };
 
 function Hero() {

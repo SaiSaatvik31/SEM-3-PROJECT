@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 function Name({ selectedOptions, updateSelectedOptions }) {
-  const [buttonColor1, setButtonColor1] = useState("#00df9a");
-  const [buttonColor2, setButtonColor2] = useState("#00df9a");
+  const [buttonColor1, setButtonColor1] = useState("rgb(40,48,115)");
+  const [buttonColor2, setButtonColor2] = useState("rgb(40,48,115)");
   const [required, setRequired] = useState("");
+  const [nameEntered, setNameEntered] = useState(false);
   const navigate = useNavigate();
 
   const forWhomPage = () => {
@@ -17,11 +18,12 @@ function Name({ selectedOptions, updateSelectedOptions }) {
     const updatedOptions = { ...selectedOptions, name: name };
     updateSelectedOptions(updatedOptions);
     console.log(updatedOptions);
+    setNameEntered(true);
   };
 
   const handleGenderSelection1 = (gender) => {
     setButtonColor2("#000000");
-    setButtonColor1("#00df9a");
+    setButtonColor1("rgb(40,48,115)");
     const updatedOptions = { ...selectedOptions, gender: gender };
     updateSelectedOptions(updatedOptions);
     console.log(updatedOptions);
@@ -29,7 +31,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
 
   const handleGenderSelection2 = (gender) => {
     setButtonColor1("#000000");
-    setButtonColor2("#00df9a");
+    setButtonColor2("rgb(40,48,115)");
     const updatedOptions = { ...selectedOptions, gender: gender };
     updateSelectedOptions(updatedOptions);
     console.log(updatedOptions);
@@ -38,6 +40,7 @@ function Name({ selectedOptions, updateSelectedOptions }) {
   const functionRequired = (event) => {
     if (event.target.value === "") {
       setRequired("*REQUIRED");
+      setNameEntered(false);
     } else if (event.target.value !== "") {
       setRequired("");
       namePage(event.target.value);
@@ -46,8 +49,8 @@ function Name({ selectedOptions, updateSelectedOptions }) {
 
   const handleNextButtonClick = () => {
     if (
-      required === "" &&
-      (buttonColor1 === "#00df9a" || buttonColor2 === "#00df9a")
+      nameEntered &&
+      (buttonColor1 === "rgb(40,48,115)" || buttonColor2 === "rgb(40,48,115)")
     ) {
       navigate("/Age");
     }
@@ -59,7 +62,9 @@ function Name({ selectedOptions, updateSelectedOptions }) {
         style={{ backgroundColor: "white", height: "100vh" }}
         className="p-3  name"
       >
-        <br /><br /><br />
+        <br />
+        <br />
+        <br />
         <label className="mt-3 text-[rgb(40,48,115)] " htmlFor="name">
           Enter Your Name
         </label>
@@ -87,11 +92,16 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                   e.preventDefault();
                   handleGenderSelection1("MALE");
                 }}
-                variant="contained"
-                className="p-3"
-                style={{ width: "150px",color:"white", backgroundColor: "rgb(40,48,115)" }}
+                className={`p-3 male-button ${
+                  buttonColor1 === "rgb(40,48,115)" ? "male-selected" : ""
+                }`}
+                style={{
+                  width: "150px",
+                  color: "white",
+                  backgroundColor: buttonColor1,
+                }}
               >
-                <i class="fa-solid fa-mars-stroke-up p-2"></i>
+                <i className="fa-solid fa-mars-stroke-up p-2"></i>
                 MALE
               </button>
             </div>
@@ -101,11 +111,16 @@ function Name({ selectedOptions, updateSelectedOptions }) {
                   e.preventDefault();
                   handleGenderSelection2("FEMALE");
                 }}
-                variant="contained"
-                className="p-3"
-                style={{ width: "150px", color:"white", backgroundColor: "rgb(40,48,115)" }}
+                className={`p-3 female-button ${
+                  buttonColor2 === "rgb(40,48,115)" ? "female-selected" : ""
+                }`}
+                style={{
+                  width: "150px",
+                  color: "white",
+                  backgroundColor: buttonColor2,
+                }}
               >
-                <i class="fa-solid fa-venus p-2"></i>
+                <i className="fa-solid fa-venus p-2"></i>
                 FEMALE
               </button>
             </div>

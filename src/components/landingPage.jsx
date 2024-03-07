@@ -11,12 +11,19 @@ const bodyStyle = {
   backgroundSize: "cover",
   height: "100vh",
 };
+
 function LandingPage() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
-    <div style={bodyStyle} >
+    <div style={bodyStyle}>
       <Navbar />
       <Hero />
-      <Adv_book />
+      <Adv_book scrollToTop={scrollToTop} />
       <OnlineCons />
       <Prescription />
       <Articles />
