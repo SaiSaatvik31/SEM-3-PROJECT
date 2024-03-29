@@ -93,22 +93,19 @@ function Home({ selectedOptions, updateSelectedOptions }) {
                 <h1>
                   Book Your Doctor <span className="highlight">With Us</span>
                 </h1>
-                <p className="text-2xl" style={{ textAlign: "justify" }}>
+                <p className="text-2xl mr-3" style={{ textAlign: "justify" }}>
                   Experience a new era in healthcare efficiency with our
                   comprehensive suite of solutions dedicated to optimizing
                   doctors' availability.Say goodbye to long wait times and hello
                   to a healthcare experience where access to quality care is
                   prioritized and optimized at every step.
                 </p>
-                <Button
-                  className="p-2"
-                  color="success"
-                  onClick={() => {
-                    navigate("/book-appointment");
-                  }}
+                <button
+                  className="p-3 mt-4 text-white text-xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-blue-500 font-bold rounded-md shadow-md hover:to-yellow-500 hover:scale-110 hover:duration-100"
+                  onClick={() => navigate("/book-appointment")}
                 >
                   Book Now
-                </Button>
+                </button>
               </div>
             </Col>
             <Col lg="3">

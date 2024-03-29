@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import { addMinutes, format, parse } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
+import icon from "../icon.jpg";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -178,6 +179,9 @@ export default function VirtualRoom() {
                             transition={{ duration: 1 }}
                           >
                             <Item style={{ backgroundColor: "#00df9a" }}>
+                              <div className="imgContainer mb-4">
+                                <img src={icon} />
+                              </div>
                               <p className="text-white">
                                 Patient Name: {patient.patient_name}
                               </p>
@@ -199,11 +203,6 @@ export default function VirtualRoom() {
                     </Grid>
                   ))}
               </Grid>
-            </div>
-            <div className="col-3 border-l-4 border-l-emerald-400 p-4">
-              <h1 className="text-2xl font-bold text-decoration-underline">
-                Summary
-              </h1>
             </div>
           </div>
         </div>

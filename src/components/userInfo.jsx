@@ -13,6 +13,7 @@ import aged_women from "../above_60_men.jpg";
 import aged_men from "../above_60_women.jpg";
 import { HashLoader } from "react-spinners";
 import { timeout } from "webgi";
+import N_footer from "../n_compo/N_footer";
 
 function UserInfo() {
   let [loading, setLoading] = useState(false);
@@ -165,8 +166,8 @@ function UserInfo() {
       <Navbar />
       <Outlet />
       <div
-        className="container m-5 p-4 rounded-lg shadow-md text-large "
-        style={{ background: "#f3f9fc" }}
+        className="container m-5 p-4 rounded-lg shadow-md text-large  "
+        style={{ background: "#f3f9fc", marginBottom: "500px" }}
       >
         {loading ? (
           <div className="flex justify-center">
@@ -245,7 +246,12 @@ function UserInfo() {
           </div>
         )}
       </div>
-      <Footer1 />
+      <div>
+        <br />
+        <br />
+        <br />
+      </div>
+      <N_footer className="mt-auto" />
     </>
   );
 }

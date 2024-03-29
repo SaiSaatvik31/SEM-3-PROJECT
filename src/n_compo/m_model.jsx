@@ -78,7 +78,7 @@ export default function M_model() {
               onClick={() => {
                 navigate("/login");
               }}
-              className="bg-[#00df9a] w-[100px] col-6 rounded-md font-medium px-6 mx-auto  py-3 text-dark mt-3"
+              className="bg-[rgb(40,48,115)] w-[100px] col-6 rounded-md font-medium px-6 mx-auto  py-3 text-white mt-3"
             >
               Login
             </motion.button>
@@ -88,7 +88,7 @@ export default function M_model() {
               onClick={() => {
                 navigate("/register");
               }}
-              className="bg-[#00df9a] w-[100px] col-6 rounded-md font-medium px-6 mx-auto py-3 text-dark mt-3 mr=5"
+              className="bg-[rgb(40,48,115)]  w-[100px] col-6 rounded-md font-medium px-6 mx-auto py-3 text-white mt-3 mr=5"
             >
               Register
             </motion.button>

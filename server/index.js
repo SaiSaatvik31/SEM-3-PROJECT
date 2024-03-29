@@ -50,7 +50,8 @@ app.post('/api/register', async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      patient_id:`P${patient_id}`
+      patient_id:`P${patient_id}`,
+      mobile_no:req.body.mobNum
     });
     patient_id+=1;
     res.json({ status: 'ok' });

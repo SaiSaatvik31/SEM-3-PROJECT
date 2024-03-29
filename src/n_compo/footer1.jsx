@@ -29,13 +29,13 @@ function Footer1() {
               </div>
             </div>
             <div className="text-center lg:text-right lg:w-1/3">
-              <p className="text-base font-medium text-[#00df9a]">
+              <p className="text-base font-medium text-white">
                 © 2024 TrustCure
               </p>
             </div>
           </div>
         </div>
-      </FadeInOnScroll> 
+      </FadeInOnScroll>
     </div>
   );
 }

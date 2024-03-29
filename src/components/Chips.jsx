@@ -1,16 +1,13 @@
-// import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
-// import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import "../styles/chips.css";
 import { Box, Button } from "@mui/material";
-import ModelViewer from "./ModelViewer[1]";
 import Body_model from "./body_model";
 import { HashLoader } from "react-spinners";
+import Radio from "@mui/material/Radio";
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -258,6 +255,12 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   ];
   const [selectedFromShowContainer, setSelectedFromShowContainer] =
     useState(false);
+  const [selectedValue, setSelectedValue] = useState("body");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    console.log(event.target.value);
+  };
   const [loading, setLoading] = useState(false);
   const getSymptomForBodyPart = (bodyPart) => {
     const selectedDisease = diseases.find(
@@ -267,7 +270,6 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   };
 
   const handleBodyPart = (partSelected) => () => {
-    // Update activeBodyPart
     setActiveBodyPart((prevPart) => [...prevPart, partSelected]);
 
     const symptomsForBodyPart = getSymptomForBodyPart(partSelected.label);
@@ -278,12 +280,10 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
   };
 
   const handleSymptomSelection = (symptomSelected) => () => {
-    // Check if the symptom is already in symptoms
     const symptomInSymptoms = symptoms.some(
       (symptom) => symptom.label === symptomSelected.label
     );
 
-    // Update symptoms only if the symptom is not already present
     if (!symptomInSymptoms) {
       setSymptoms((prevSymptoms) => [
         ...prevSymptoms,
@@ -406,33 +406,145 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
         </div>
       ) : (
         <Box component={"div"} className="chip-container bg-dark">
-          <div className="flex flex-row">
-            <ModelViewer useModal={true} height="300" width="400" />
-            <Box component={"div"} className="body-parts-container">
-              <h3 className="font-bold">Body Parts</h3>
-              <ul>
-                {chipData.map((data) => (
-                  <ListItem key={data.key}>
-                    <Chip
-                      size="medium"
-                      className="showChips"
-                      color="secondary"
-                      onClick={handleSelection({
-                        type: "bodyPart",
-                        key: data.key,
-                        label: data.label,
-                      })}
-                      label={data.label}
-                    />
-                  </ListItem>
-                ))}
-              </ul>
-              <p className="ml-5 text-white">
-                Selected Body Part Name : {bodyName}
-              </p>
-            </Box>
-          </div>
           <div>
+            <Radio
+              checked={selectedValue === "body"}
+              onChange={handleChange}
+              value="body"
+              name="radio-buttons"
+              inputProps={{ "aria-label": "A" }}
+            />
+            <Radio
+              checked={selectedValue === "manual"}
+              onChange={handleChange}
+              value="manual"
+              name="radio-buttons"
+              inputProps={{ "aria-label": "B" }}
+            />
+          </div>
+          <div className="flex flex-row">
+            {selectedValue == "body" ? (
+              <div className="d-flex flex-row">
+                <div className="col-5">
+                  <div style={{ width: "600px" }}>
+                    {" "}
+                    {/* Adjust the width as needed */}
+                    <Body_model
+                      className="mt-0"
+                      handleBodyPartClick={handleBodyPartClick}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-row mt-3 col-6 ml-5">
+                  <Box component={"div"} className="chip-show-container ">
+                    <h3 className="font-bold" id="choose-symptoms">
+                      Please Select A Body Part First
+                    </h3>
+                    <AnimatePresence>
+                      {showSymptoms && (
+                        <motion.ul
+                          key="symptom-list"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        >
+                          {activeSymptoms.map((symptom) => (
+                            <motion.li
+                              className="ml-3 mb-2"
+                              key={symptom.key}
+                              initial={{ opacity: 0, x: -50 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -50 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 500,
+                                damping: 30,
+                              }}
+                            >
+                              <Chip
+                                size="medium"
+                                color="secondary"
+                                onClick={handleClick(symptom)}
+                                label={symptom.label}
+                              />
+                            </motion.li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </Box>
+                </div>
+              </div>
+            ) : (
+              <Box component={"div"} className="body-parts-container mb-5">
+                <h3 className="font-bold">Body Parts</h3>
+                <ul>
+                  {chipData.map((data) => (
+                    <ListItem key={data.key}>
+                      <Chip
+                        size="medium"
+                        className="showChips"
+                        color="secondary"
+                        onClick={handleSelection({
+                          type: "bodyPart",
+                          key: data.key,
+                          label: data.label,
+                        })}
+                        label={data.label}
+                      />
+                    </ListItem>
+                  ))}
+                </ul>
+                <p className="ml-5 text-white pl-5">
+                  Selected Body Part Name : {bodyName}
+                </p>
+              </Box>
+            )}
+          </div>
+          {selectedValue == "manual" ? (
+            <div className="flex flex-row mt-0">
+              <Box component={"div"} className="chip-show-container ">
+                <h3 className="font-bold" id="choose-symptoms">
+                  Please Select A Body Part First
+                </h3>
+                <AnimatePresence>
+                  {showSymptoms && (
+                    <motion.ul
+                      key="symptom-list"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {activeSymptoms.map((symptom) => (
+                        <motion.li
+                          className="ml-3 mb-2"
+                          key={symptom.key}
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -50 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 30,
+                          }}
+                        >
+                          <Chip
+                            size="medium"
+                            color="secondary"
+                            onClick={handleClick(symptom)}
+                            label={symptom.label}
+                          />
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </Box>
+            </div>
+          ) : (
+            <></>
+          )}
+          <div className="mt-5">
             <Box component={"div"} className="selected-chip-container">
               <h3 className="font-bold">Selected Symptoms</h3>
 
@@ -461,51 +573,6 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
 
                 <Button type="submit">Submit</Button>
               </form>
-            </Box>
-          </div>
-          <div className="flex flex-row mt-0">
-            <div className="col-6">
-              <Body_model
-                className="mt-0"
-                handleBodyPartClick={handleBodyPartClick}
-              />
-            </div>
-            <Box component={"div"} className="chip-show-container ">
-              <h3 className="font-bold" id="choose-symptoms">
-                Please Select A Body Part First
-              </h3>
-              <AnimatePresence>
-                {showSymptoms && (
-                  <motion.ul
-                    key="symptom-list"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    {activeSymptoms.map((symptom) => (
-                      <motion.li
-                        className="ml-3 mb-2"
-                        key={symptom.key}
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 30,
-                        }}
-                      >
-                        <Chip
-                          size="medium"
-                          color="secondary"
-                          onClick={handleClick(symptom)}
-                          label={symptom.label}
-                        />
-                      </motion.li>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
             </Box>
           </div>
         </Box>

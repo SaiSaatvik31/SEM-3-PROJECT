@@ -112,19 +112,13 @@ function Navbar() {
           <Box component={"div"} sx={{ display: { xs: "none", sm: "block" } }}>
             <ul className="navigation-menu text-white">
               <li className="text-white">
-                <Link style={{ color: "var(--heading-color)" }} to="/home">
-                  Home
-                </Link>
+                <Link to="/home">Home</Link>
               </li>
               <li>
-                <Link style={{ color: "var(--heading-color)" }} to="/about">
-                  About
-                </Link>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <Link style={{ color: "var(--heading-color)" }} to="/feedback">
-                  FeedBack
-                </Link>
+                <Link to="/feedback">FeedBack</Link>
               </li>
               {userName ? (
                 <div className="mr-5">

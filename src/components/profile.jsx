@@ -3,10 +3,13 @@ import "../styles/profile.css";
 import goku from "../goku.jpg";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { ContactSupportOutlined } from "@mui/icons-material";
 
 function Profile() {
   // const navigate = useNavigate()
   const [showContent, setShowContent] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -25,6 +28,18 @@ function Profile() {
   const handleOthers = () => {
     navigate("/otherProfile");
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      localStorage.removeItem("token");
+    } else {
+      const email = token ? JSON.parse(atob(token.split(".")[1])).email : null;
+      const name = token ? JSON.parse(atob(token.split(".")[1])).name : null;
+      setName(name);
+      setEmail(email);
+    }
+  }, [setEmail]);
   return (
     <>
       <div className="container">
@@ -43,9 +58,11 @@ function Profile() {
               transition={{ delay: 3, duration: 0.8 }}
             >
               <p className="text-white text-3xl header-font">Profile</p>
-              <p className="text-white body-font">Name: Your Name</p>
-              <p className="text-white body-font">Age: Your Age</p>
-              <p className="text-white body-font">Gender: Your Gender</p>
+              <p className="text-white body-font">Name:{name}</p>
+              <p className="text-white body-font">Email: {email}</p>
+              <p className="text-white text-3xl header-font mt-3">
+                Your Record:
+              </p>
             </motion.div>
           </div>
           <div>
@@ -53,7 +70,7 @@ function Profile() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 1 }}
-              transition={{ delay: 3, duration: 0.8 }}
+              transition={{ delay: 0, duration: 1 }}
             ></motion.div>
 
             <div className="flex flex-col items-center">
@@ -62,8 +79,8 @@ function Profile() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ delay: 3, duration: 0.8 }}
-                whileTap={{ scale: 0.9 }}
+                transition={{ delay: 0, duration: 1 }}
+                whileTap={{ scale: 1 }}
                 onClick={handleRecBook}
               >
                 Previous Bookings
@@ -73,8 +90,8 @@ function Profile() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ delay: 3, duration: 0.8 }}
-                whileTap={{ scale: 0.9 }}
+                transition={{ delay: 0, duration: 1 }}
+                whileTap={{ scale: 1 }}
                 onClick={handleCancelBook}
               >
                 Cancel Your Bookings
@@ -84,8 +101,8 @@ function Profile() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ delay: 3, duration: 0.8 }}
-                whileTap={{ scale: 0.9 }}
+                transition={{ delay: 0, duration: 1 }}
+                whileTap={{ scale: 1 }}
                 onClick={handleOthers}
               >
                 book for Other Profile

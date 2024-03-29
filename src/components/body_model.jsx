@@ -54,7 +54,7 @@ const YourComponent = ({ handleBodyPartClick }) => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
-              <image height="582" id="Image" width="571" xlinkHref="" />
+              <image height="50" id="Image" width="571" xlinkHref="" />
             </defs>
             <g id="Untitled" vectornatorLayerName="Untitled">
               <g opacity="1" vectornatorLayerName="Group 1">
