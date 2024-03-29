@@ -1,5 +1,6 @@
 import React from "react";
 import FadeInOnScroll from "./FadeInOnScroll";
+import { motion } from "framer-motion";
 function Adv_book({ scrollToTop }) {
   return (
     <div>
@@ -26,12 +27,14 @@ function Adv_book({ scrollToTop }) {
                 experience healthcare on your terms with "TrustCure".
               </p>
               <div>
-                <button
+                <motion.button
+                  initial={{ opacity: 1 }}
+                  whileHover={{ scale: 1.1 }}
                   onClick={scrollToTop}
                   className="bookbtn text-white bg-dark w-[200px] rounded-md font-medium px-6 mx-auto py-3 text-dark mt-3 "
                 >
                   Book Now
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
