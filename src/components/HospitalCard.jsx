@@ -4,6 +4,7 @@ import "../styles/HospitalCard.css";
 // import logo from "../styles/1eUZSnIjT09CQq5Sj14XkBw.jpg";
 import { Instagram, Twitter, YouTube } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import hos from "../hos_trust1.jpg";
 function HospitalCard() {
   const navigate = useNavigate();
   const hospitalsData = [
@@ -48,7 +49,7 @@ function HospitalCard() {
             <div key={index} className="hoscard__glass">
               <center>
                 {" "}
-                <img alt="" className="hoscard__image" />
+                <img alt="" src={hos} />
               </center>
 
               <div className="hoscard__data ">

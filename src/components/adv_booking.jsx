@@ -60,13 +60,14 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
     <>
       <Navbar />
       <div className="ml-5">
-        <h1 className="text-3xl text-[rgb(40,48,115)] main_h_font font-bold text-emerald-300 mt-5 ">
+        <h1 className="text-3xl text-[rgb(40,48,115)] main_h_font font-bold  mt-5 ">
           Advance Booking
         </h1>
         <br />
         <h2>Select a date from today to the next five days:</h2>
         <span className="hfont">Selected Data: </span>
-        <DatePicker className="hfont"
+        <DatePicker
+          className="hfont"
           selected={selectedDate}
           onChange={(date) => {
             setSelectedDate(date);
@@ -81,7 +82,7 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
         />
         <div className="">
           <div>
-            <h1 className="text-3xl hfont font-bold mt-4 text-emerald-300">
+            <h1 className="text-3xl hfont font-bold mt-4 text-[rgb(40,48,115)] ">
               Available Doctor List
             </h1>
           </div>
@@ -89,9 +90,15 @@ function Adv_booking({ selectedOptions, updateSelectedOptions }) {
             <TableHead>
               <TableRow>
                 <TableCell className="hfont">Doctor Name</TableCell>
-                <TableCell className="hfont"align="center">Speciality</TableCell>
-                <TableCell className="hfont"align="center">Avaiable Slots</TableCell>
-                <TableCell className="hfont"align="center">Book Appointment</TableCell>
+                <TableCell className="hfont" align="center">
+                  Speciality
+                </TableCell>
+                <TableCell className="hfont" align="center">
+                  Avaiable Slots
+                </TableCell>
+                <TableCell className="hfont" align="center">
+                  Book Appointment
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

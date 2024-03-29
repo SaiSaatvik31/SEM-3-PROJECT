@@ -94,13 +94,13 @@ export default function Adv_book_m({
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {doc_name}
+            Doctor Name:{doc_name}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {speciality}
+            Speciality:{speciality}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {amt}
+            Fees:{amt} rupees
           </Typography>
           {slot.map((time, index) => (
             <Button key={index} onClick={() => handleButtonClick(time)}>

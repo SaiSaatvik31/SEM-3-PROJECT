@@ -114,7 +114,7 @@ function recBook() {
                   backgroundColor:
                     element.book_type == "Advance Booking"
                       ? "#D3D3D3"
-                      : "#00df9a",
+                      : "#00df9a", //#283073
                   borderRadius: "10px",
                   padding: "20px",
                   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",

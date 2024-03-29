@@ -405,7 +405,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
           />
         </div>
       ) : (
-        <Box component={"div"} className="chip-container bg-dark">
+        <Box component={"div"} className="chip-container bg-white">
           <div>
             <Radio
               checked={selectedValue === "body"}
@@ -435,9 +435,12 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
                     />
                   </div>
                 </div>
-                <div className="flex flex-row mt-3 col-6 ml-5">
+                <div className="flex flex-row mt-3 col-6 ml-5 ">
                   <Box component={"div"} className="chip-show-container ">
-                    <h3 className="font-bold" id="choose-symptoms">
+                    <h3
+                      className="font-bold text-dark text-xl"
+                      id="choose-symptoms"
+                    >
                       Please Select A Body Part First
                     </h3>
                     <AnimatePresence>
@@ -476,8 +479,11 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
                 </div>
               </div>
             ) : (
-              <Box component={"div"} className="body-parts-container mb-5">
-                <h3 className="font-bold">Body Parts</h3>
+              <Box
+                component={"div"}
+                className="body-parts-container mb-5 text-dark text-xl"
+              >
+                <h3 className="font-bold text-dark text-xl">Body Parts</h3>
                 <ul>
                   {chipData.map((data) => (
                     <ListItem key={data.key}>
@@ -495,16 +501,19 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
                     </ListItem>
                   ))}
                 </ul>
-                <p className="ml-5 text-white pl-5">
+                <h1 className="ml-5 font-bold text-dark text-xll pl-5">
                   Selected Body Part Name : {bodyName}
-                </p>
+                </h1>
               </Box>
             )}
           </div>
           {selectedValue == "manual" ? (
             <div className="flex flex-row mt-0">
               <Box component={"div"} className="chip-show-container ">
-                <h3 className="font-bold" id="choose-symptoms">
+                <h3
+                  className="font-bold text-dark text-xl"
+                  id="choose-symptoms"
+                >
                   Please Select A Body Part First
                 </h3>
                 <AnimatePresence>
@@ -546,7 +555,7 @@ export default function ChipsArray({ selectedOptions, updateSelectedOptions }) {
           )}
           <div className="mt-5">
             <Box component={"div"} className="selected-chip-container">
-              <h3 className="font-bold">Selected Symptoms</h3>
+              <h3 className="font-bold text-dark text-xl">Selected Symptoms</h3>
 
               <form action="/predict" onSubmit={handleSubmit} method="post">
                 <ul>

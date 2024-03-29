@@ -22,28 +22,32 @@ function OnlinePatients() {
   }, []);
   return (
     <>
-      <h1>Online Patient Record</h1>
+      <div className="ml-4">
+        <h1 className="mt-4 mb-3 ml-2 text-xl font-bold">
+          Online Patient Record
+        </h1>
 
-      <Table>
-        <TableHead>
-          <TableCell>Patient Name</TableCell>
-          <TableCell>Gender</TableCell>
-          <TableCell>Age</TableCell>
-          <TableCell>Booking Date</TableCell>
-          <TableCell>Booking Time</TableCell>
-          <TableCell>Google Meet Link</TableCell>
-        </TableHead>
-        {data.map((elem, index) => (
-          <TableBody>
-            <TableCell>{elem.name}</TableCell>
-            <TableCell>{elem.gender}</TableCell>
-            <TableCell>{elem.Age}</TableCell>
-            <TableCell>{elem.date}</TableCell>
-            <TableCell>{elem.time}</TableCell>
-            <TableCell>{elem.meet_link}</TableCell>
-          </TableBody>
-        ))}
-      </Table>
+        <Table>
+          <TableHead>
+            <TableCell>Patient Name</TableCell>
+            <TableCell>Gender</TableCell>
+            <TableCell>Age</TableCell>
+            <TableCell>Booking Date</TableCell>
+            <TableCell>Booking Time</TableCell>
+            <TableCell>Google Meet Link</TableCell>
+          </TableHead>
+          {data.map((elem, index) => (
+            <TableBody>
+              <TableCell>{elem.name}</TableCell>
+              <TableCell>{elem.gender}</TableCell>
+              <TableCell>{elem.Age}</TableCell>
+              <TableCell>{elem.date}</TableCell>
+              <TableCell>{elem.time}</TableCell>
+              <TableCell>{elem.meet_link}</TableCell>
+            </TableBody>
+          ))}
+        </Table>
+      </div>
     </>
   );
 }

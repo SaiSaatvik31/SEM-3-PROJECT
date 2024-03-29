@@ -83,12 +83,12 @@ function On_cons2() {
     <>
       <Navbar />
       <div className="ml-5">
-        <h1 className="text-3xl font-bold text-emerald-300 mt-5 ">
+        <h1 className=" mt-4 text-3xl font-bold text-[rgb(40,48,115)] ">
           Online Booking
         </h1>
         <br />
         <h2>Select a date from today to the next five days:</h2>
-        <span>Selected Data: </span>
+        <span>Selected Date: </span>
         <DatePicker
           selected={selectedDate}
           onChange={(date) => {
@@ -104,7 +104,7 @@ function On_cons2() {
         />
         <div className="">
           <div>
-            <h1 className="text-3xl font-bold mt-4 text-emerald-300">
+            <h1 className="text-3xl font-bold mt-4 mb-3 text-[rgb(40,48,115)] ">
               Available Doctor List
             </h1>
           </div>

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import m_doct from "../m_doct.jpg";
 import { Navigation, Pagination } from "swiper/modules";
 
 function WaterCard() {
@@ -70,7 +70,7 @@ function WaterCard() {
               <SwiperSlide key={index} className="img__card">
                 <div className="img__card_content">
                   <div className="image">
-                    <img src="src\styles\1eUZSnIjT09CQq5Sj14XkBw.jpg" />
+                    <img src={m_doct} />
                   </div>
                   <div className="name-profession">
                     <span className="name hfont">{doc.name}</span>

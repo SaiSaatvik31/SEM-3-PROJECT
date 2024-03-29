@@ -11,6 +11,7 @@ import {
   LinearProgress,
   Typography,
 } from "@mui/material";
+import Navbar from "./Navbar";
 const Online_cons = ({ selectedOptions, updateSelectedOptions }) => {
   console.log(selectedOptions);
   useEffect(() => {
@@ -51,20 +52,22 @@ const Online_cons = ({ selectedOptions, updateSelectedOptions }) => {
 
   return (
     <div style={styles.cardContainer}>
-      <div style={styles.cardContent}>
+      <Navbar />
+      <div style={styles.cardContent} className="mt-5">
         <div>
           <img src={doc_cons} alt="Doctor Consultation" style={styles.image} />
         </div>
-        <div style={styles.textContainer}>
+        <div style={styles.textContainer} className="mt-4">
           <h2>
             Get personalized medical advice from the comfort of your home.
           </h2>
-          <p>
-            Skip the wait times and consult with Dr. [Doctor's name], a
-            [specialty] specialist, through secure online video calls. Choose a
-            convenient time slot and get expert medical advice from anywhere.
+          <p className="text-2x">
+            Skip the wait times and consult with Doctor or a specialist, through
+            secure online video calls. Choose a convenient time slot and get
+            expert medical advice from anywhere.
           </p>
           <button
+            className="bg-[#278073]"
             onClick={handleLogin}
             disabled={isLoggedIn}
             style={styles.loginButton}
